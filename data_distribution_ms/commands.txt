@@ -1,0 +1,4 @@
+- Creating Python 3 virtualenv
+
+virtualenv -p python3 ../../venv_stumped_ms1_data_collection
+
