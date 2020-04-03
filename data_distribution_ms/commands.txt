@@ -2,3 +2,7 @@
 
 virtualenv -p python3 ../../venv_stumped_ms1_data_collection
 
+- git configuration
+
+git remote show origin
+git remote set-url origin git+ssh://git@github.com/abhaystoic/stumped.git
