@@ -1,4 +1,6 @@
 """Base Task configurations for Celery tasks."""
+# TODO: Remove or modify this module to a meaningful base class.
+
 
 from celery import Task
 from pymongo import MongoClient
