@@ -6,3 +6,33 @@ virtualenv -p python3 ../../venv_stumped_ms1_data_collection
 
 git remote show origin
 git remote set-url origin git+ssh://git@github.com/abhaystoic/stumped.git
+
+
+- Configuring RabbitMQ
+
+- Installing Erlang
+
+Source: https://computingforgeeks.com/how-to-install-latest-erlang-on-ubuntu-18-04-lts/
+
+wget -O- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
+echo "deb https://packages.erlang-solutions.com/ubuntu bionic contrib" | sudo tee /etc/apt/sources.list.d/rabbitmq.list
+sudo apt update
+sudo apt -y install erlang
+
+- Installing RabbitMQ
+
+wget -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | sudo apt-key add -
+wget -O- https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | sudo apt-key add -
+echo "deb https://dl.bintray.com/rabbitmq/debian $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/rabbitmq.list
+sudo apt update
+sudo apt -y install rabbitmq-server
+
+sudo rabbitmqctl add_user admin ********
+sudo rabbitmqctl add_vhost vhost
+sudo rabbitmqctl set_user_tags admin admin_tag
+sudo rabbitmqctl set_permissions -p vhost admin ".*" ".*" ".*"
+
+- Execution
+
+celery worker -A fetch_headlines --loglevel=info &
+ps auxww | grep 'celery worker' | awk '{print $2}' | xargs kill
