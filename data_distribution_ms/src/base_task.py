@@ -1,6 +1,7 @@
 """Base Task configurations for Celery tasks."""
 
 from celery import Task
+from pymongo import MongoClient
 
 
 class DatabaseTask(Task):

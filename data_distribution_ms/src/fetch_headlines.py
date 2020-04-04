@@ -20,7 +20,7 @@ class FetchHeadlinesTask(DatabaseTask):
     pass
 
   def run(self):
-    self.fetch_headlines()
+    return self.fetch_headlines()
 
   def fetch_headlines(self):
     """Celery task to fetch headlines and save in the database."""
@@ -29,6 +29,7 @@ class FetchHeadlinesTask(DatabaseTask):
     f.close()
     return headlines['articles']
 
-app = Celery('fetch_headlines', backend='amqp', broker='amqp://')
+app = Celery('fetch_headlines', broker='amqp://')
+app.config_from_object('celeryconfig')
 headlines_task = app.register_task(FetchHeadlinesTask())
 headlines_task.delay()

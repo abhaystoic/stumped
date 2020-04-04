@@ -6,3 +6,10 @@ backend = 'amqp'
 task_serializer = 'json'
 accept_content = ['json']  # Ignore other content
 result_serializer = 'json'
+result_backend = 'mongodb'
+mongodb_backend_settings = {
+  'host': '127.0.0.1',
+  'port': 27017,
+  'database': 'news',
+  'taskmeta_collection': 'headline',
+}
