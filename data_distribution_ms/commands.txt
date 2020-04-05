@@ -34,5 +34,13 @@ sudo rabbitmqctl set_permissions -p vhost admin ".*" ".*" ".*"
 
 - Execution
 
+- Start celery worker
 celery worker -A fetch_headlines --loglevel=info &
+
+- Start celery beat scheduler
+celery -A fetch_headlines beat --loglevel=info -s ../celery_beat_logs/
+
+- Kill Celery tasks
 ps auxww | grep 'celery worker' | awk '{print $2}' | xargs kill
+ps auxww | grep 'beat' | awk '{print $2}' | xargs kill
+

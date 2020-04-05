@@ -1,3 +1,6 @@
+from celery.schedules import crontab
+
+
 enable_utc = True
 timezone = 'Asia/Kolkata'
 broker_url = 'amqp://admin:admin123@localhost:5672/vhost'
@@ -12,4 +15,10 @@ mongodb_backend_settings = {
   'port': 27017,
   'database': 'news',
   'taskmeta_collection': 'headline',
+}
+beat_schedule = {
+  "every_hour": {
+    "task": "fetch-headlines-task",
+    "schedule": crontab(minute=0, hour='*/1'), # Every hour.
+    }
 }
