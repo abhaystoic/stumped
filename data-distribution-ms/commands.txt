@@ -38,9 +38,15 @@ sudo rabbitmqctl set_permissions -p vhost admin ".*" ".*" ".*"
 celery worker -A fetch_headlines --loglevel=info &
 
 - Start celery beat scheduler
-celery -A fetch_headlines beat --loglevel=info -s ../celery_beat_logs/
+celery -A fetch_headlines beat --loglevel=info -s ../celery-beat-logs/
 
 - Kill Celery tasks
 ps auxww | grep 'celery worker' | awk '{print $2}' | xargs kill
 ps auxww | grep 'beat' | awk '{print $2}' | xargs kill
 
+- Build docker image
+docker build . -t worker:latest --rm
+docker-compose up -d
+
+- Remove unused docker images
+docker rmi $(docker images -f dangling=true -q)
