@@ -31,12 +31,6 @@ RUN mkdir -p /data/code
 # Expose port #27017 from the container to the host
 EXPOSE 27017
 
-# Set /usr/bin/mongod as the dockerized entry-point application
-# ENTRYPOINT ["/bin/bash"]
-
-# RUN mongo --host mongo --eval  "db.getSiblingDB('news').createUser({user:'admin', pwd:'admin123', roles:[{role:'readWrite',db:'news'}]});"
-# RUN rabbitmqctl add_user admin admin123
-
 COPY . /app
 
 WORKDIR /app/src
@@ -44,15 +38,3 @@ WORKDIR /app/src
 RUN chmod +x ./docker-entrypoint.sh
 
 CMD ./docker-entrypoint.sh
-
-# RUN nohup celery worker -A fetch_headlines --loglevel=info &
-
-
-# RUN celery -A fetch_headlines beat --loglevel=info -s ./celery-beat-logs/ &
-
-# RUN mongod --repair
-# RUN mongod --port 27017 --bind_ip_all &
-# COPY ./scripts/docker-entrypoint.sh /usr/local/bin/
-# RUN ln -s /usr/local/bin/docker-entrypoint.sh /
-# RUN chmod +x /docker-entrypoint.sh
-# ENTRYPOINT /docker-entrypoint.sh
