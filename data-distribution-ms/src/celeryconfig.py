@@ -11,7 +11,7 @@ accept_content = ['json']  # Ignore other content
 result_serializer = 'json'
 result_backend = 'mongodb'
 mongodb_backend_settings = {
-  'host': '127.0.0.1',
+  'host': '172.19.0.2',
   'port': 27017,
   'database': 'news',
   'taskmeta_collection': 'headline',
@@ -19,6 +19,6 @@ mongodb_backend_settings = {
 beat_schedule = {
   "every_hour": {
     "task": "fetch-headlines-task",
-    "schedule": crontab(minute=0, hour='*/1'), # Every hour.
+    "schedule": crontab(minute='*/1'), # Every hour.
     }
 }
