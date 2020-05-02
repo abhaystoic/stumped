@@ -1,16 +1,17 @@
-FROM ubuntu:latest
+FROM rabbitmq:3-management
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 PYTHONUNBUFFERED=1 TZ=Asia/Kolkata
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -y
 RUN apt-get install build-essential -y
-RUN apt-get install -y vim curl
-RUN apt-get install -y python3.6
-RUN apt-get install -y python3-pip
+RUN apt-get install -y python-setuptools
+RUN apt-get install -y vim
+RUN apt-get install python3.6 -y
+RUN apt-get install python3-pip -y
 
 RUN apt install -y apache2 apache2-utils
-RUN apt-get install -y libapache2-mod-wsgi-py3 python-dev
+RUN apt-get install -y libapache2-mod-wsgi-py3
 # RUN apache2 -f /etc/apache2/apache2.conf -k start
 RUN /etc/init.d/apache2 restart
 RUN pip3 install --upgrade pip setuptools
