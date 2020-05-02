@@ -67,6 +67,8 @@ sudo nc localhost 56733 < /dev/null; echo $?
 - Docker network issue solution:
 https://forums.docker.com/t/docker-pull-results-in-request-canceled-while-waiting-for-connection-client-timeout-exceeded-while-awaiting-headers/73064/7
 
+- List all docker networks:
+docker network ls
 
 - It should give you your public IP address as seen from another location on the internet:
 curl -4 icanhazip.com
