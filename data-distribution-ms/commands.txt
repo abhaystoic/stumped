@@ -35,7 +35,7 @@ sudo rabbitmqctl set_permissions -p vhost admin ".*" ".*" ".*"
 - Execution
 
 - Start celery worker
-celery worker -A fetch_headlines --loglevel=info &
+celery worker -A fetch_headlines --loglevel=info -s ./celery-beat-logs/ &
 
 - Start celery beat scheduler
 celery -A fetch_headlines beat --loglevel=info -s ./celery-beat-logs/
@@ -61,5 +61,18 @@ docker-compose build
 - SSH to container:
  docker exec -it data-distribution-ms-container /bin/bash
 
+- To check  if a port is open:
+sudo nc localhost 56733 < /dev/null; echo $?
+
+- Docker network issue solution:
+https://forums.docker.com/t/docker-pull-results-in-request-canceled-while-waiting-for-connection-client-timeout-exceeded-while-awaiting-headers/73064/7
 
 
+- It should give you your public IP address as seen from another location on the internet:
+curl -4 icanhazip.com
+
+- Check Apache2 server configuration:
+apache2ctl -S
+
+- Restart apache
+/etc/init.d/apache2 restart

@@ -7,9 +7,9 @@ services:
     image: abhaystoic/data-distribution-ms:latest
     restart: 'no'
     volumes:
-      - ./data-distribution-ms/data/mongodb:/data/db
-      - ./data-distribution-ms/data/mongoconfig:/data/configdb
-      - ./data-distribution-ms/celery-beat-logs:/celery-beat-logs
+      - ~/docker-data/data-distribution-ms/data/mongodb:/data/db
+      - ~/docker-data/data-distribution-ms/data/mongoconfig:/data/configdb
+      - ~/docker-data/data-distribution-ms/celery-beat-logs:/celery-beat-logs
     environment:
       - MONGO_INITDB_DATABASE=news
       - MONGO_INITDB_ROOT_USERNAME=admin
@@ -18,3 +18,31 @@ services:
       - 27018:27017
       - 5673:5672
       - 15673:15672
+    networks:
+      - stumped-back
+  
+  headlines-ms:
+    container_name: headlines-ms-container
+    build:
+      context: headlines-ms/.
+    image: abhaystoic/headlines-ms:latest
+    restart: 'no'
+    volumes:
+      - ~/docker-data/headlines-ms/www:/var/www
+      - ~/docker-data/headlines-ms/data/mongodb:/data/db
+      - ~/docker-data/headlines-ms/data/mongoconfig:/data/configdb
+    environment:
+      - MONGO_INITDB_DATABASE=headline
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin123
+    ports:
+      - 5001:80
+      - 27019:27017
+    links:
+      - data-distribution-ms
+    networks:
+      - stumped-back
+
+networks:
+  stumped-back:
+    driver: bridge
