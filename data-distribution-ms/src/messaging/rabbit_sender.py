@@ -6,8 +6,7 @@ def send_headlines(headlines):
   connection = pika.BlockingConnection(pika.ConnectionParameters(
     'headlines-ms', 5672, '/', credentials))
   channel = connection.channel()
-  channel.queue_declare(queue='hello')
-  # headlines = {'msg': 'Hello World!'}
+  channel.queue_declare(queue='headlines')
   channel.basic_publish(
     exchange='', routing_key='hello', body=json.dumps(headlines))
   print(" [x] Sent Hello World! in JSON format.")
