@@ -57,5 +57,5 @@ RUN /etc/init.d/apache2 restart
 WORKDIR /flask_app/src
 
 RUN chmod +x ./docker-entrypoint.sh
-
-CMD ./docker-entrypoint.sh
+# CMD ./docker-entrypoint.sh
+ENTRYPOINT ["./docker-entrypoint.sh"]

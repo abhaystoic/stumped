@@ -7,6 +7,7 @@ from celery.utils.log import get_task_logger
 from newsapi import NewsApiClient
 
 from base_task import DatabaseTask
+from messaging import rabbit_sender
 
 logger = get_task_logger(__name__)
 
@@ -26,7 +27,9 @@ class FetchHeadlinesTask(DatabaseTask):
     self.news_api = NewsApiClient(FetchHeadlinesTask.API_KEY)
 
   def run(self):
-    return self.fetch_headlines()
+    headlines = self.fetch_headlines()
+    rabbit_sender.send_headlines(headlines)
+    return headlines
 
   def fetch_headlines(self):
     """Celery task to fetch headlines and save in the database."""

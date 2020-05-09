@@ -78,3 +78,6 @@ apache2ctl -S
 
 - Restart apache
 /etc/init.d/apache2 restart
+
+- List RabbitMQ users:
+rabbitmqctl list_users
