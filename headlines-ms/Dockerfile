@@ -36,9 +36,8 @@ RUN mkdir -p /data/db
 # Create the MongoDB data directory
 RUN mkdir -p /data/code
 
-# Expose port #27017 from the container to the host
-EXPOSE 27017
-EXPOSE 80 443
+# Expose ports from the container to the host
+EXPOSE 27017 80 443
 
 COPY . /flask_app
 
@@ -57,5 +56,6 @@ RUN /etc/init.d/apache2 restart
 WORKDIR /flask_app/src
 
 RUN chmod +x ./docker-entrypoint.sh
-# CMD ./docker-entrypoint.sh
 ENTRYPOINT ["./docker-entrypoint.sh"]
+
+# RUN nohup python3 -u messaging/rabbit_receiver.py > /headlines_logs/output.log &

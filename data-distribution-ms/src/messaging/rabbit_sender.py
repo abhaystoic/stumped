@@ -8,6 +8,6 @@ def send_headlines(headlines):
   channel = connection.channel()
   channel.queue_declare(queue='headlines')
   channel.basic_publish(
-    exchange='', routing_key='hello', body=json.dumps(headlines))
+    exchange='', routing_key='headlines', body=json.dumps(headlines))
   print(" [x] Sent Hello World! in JSON format.")
   connection.close()

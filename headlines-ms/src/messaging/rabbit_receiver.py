@@ -1,4 +1,7 @@
+import json
 import pika
+
+from pymongo import MongoClient
 
 
 connection = pika.BlockingConnection(
@@ -9,7 +12,14 @@ channel.queue_declare(queue='headlines')
 
 
 def callback(ch, method, properties, body):
+  mongo_client = MongoClient('mongodb://localhost:27017')
+  db = mongo_client.news
+  collection = db['headlines']
+  total_docs = collection.count_documents({})
+  print(total_docs, ' total documents.')
   print(" [x] Received %r" % body)
+  rec_id = collection.insert_one(json.loads(body))
+  print("Data inserted with record id= ",rec_id)
 
 
 channel.basic_consume(
