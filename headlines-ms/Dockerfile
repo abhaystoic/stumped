@@ -12,7 +12,6 @@ RUN apt-get install python3-pip -y
 
 RUN apt install -y apache2 apache2-utils
 RUN apt-get install -y libapache2-mod-wsgi-py3
-# RUN apache2 -f /etc/apache2/apache2.conf -k start
 RUN /etc/init.d/apache2 restart
 RUN pip3 install --upgrade pip setuptools
 
@@ -49,8 +48,6 @@ RUN rm -rf /etc/apache2/sites-enabled/000-default.conf
 RUN /bin/sh /etc/apache2/envvars
 
 RUN a2ensite app.conf
-# RUN /etc/init.d/apache2 -f /etc/apache2/apache2.conf -k stop
-# RUN /etc/init.d/apache2 -f /etc/apache2/apache2.conf -k start
 RUN /etc/init.d/apache2 restart
 
 WORKDIR /flask_app/src

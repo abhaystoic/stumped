@@ -81,3 +81,7 @@ apache2ctl -S
 
 - List RabbitMQ users:
 rabbitmqctl list_users
+
+- Docker logs:
+docker-compose logs -f -t
+
