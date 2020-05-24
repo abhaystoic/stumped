@@ -3,16 +3,16 @@ FROM rabbitmq:3-management
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 PYTHONUNBUFFERED=1 TZ=Asia/Kolkata
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update -y
+RUN apt-get update --fix-missing -y
 RUN apt-get install build-essential -y
-RUN apt-get install -y python-setuptools
 RUN apt-get install -y vim
 RUN apt-get install python3.6 -y
 RUN apt-get install python3-pip -y
-
-RUN apt install -y apache2 apache2-utils
-RUN apt-get install -y libapache2-mod-wsgi-py3
-RUN /etc/init.d/apache2 restart
+RUN apt install python3-dev libssl-dev libffi-dev python3-setuptools -y
+# RUN apt install nginx -y
+# RUN service nginx start
+# RUN apt install ufw -y
+# RUN ufw allow 'Nginx Full'
 RUN pip3 install --upgrade pip setuptools
 
 
@@ -40,17 +40,12 @@ EXPOSE 27017 80 443
 
 COPY . /flask_app
 
-COPY ./app.conf /etc/apache2/sites-available/
+# COPY ./src/app/app.service /etc/systemd/system/
+# COPY ./src/app/app /etc/nginx/sites-available/
+# RUN ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled
+# RUN service nginx restart
 
-RUN rm -rf /etc/apache2/sites-available/000-default.conf
-RUN rm -rf /etc/apache2/sites-enabled/000-default.conf
-
-RUN /bin/sh /etc/apache2/envvars
-
-RUN a2ensite app.conf
-RUN /etc/init.d/apache2 restart
-
-WORKDIR /flask_app/src
+WORKDIR /flask_app/src/app
 
 RUN chmod +x ./docker-entrypoint.sh
 ENTRYPOINT ["./docker-entrypoint.sh"]
