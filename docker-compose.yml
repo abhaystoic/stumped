@@ -23,8 +23,9 @@ services:
   
   headlines-ms:
     container_name: headlines-ms-container
+    privileged: true
     build:
-      context: headlines-ms/.
+      context: headlines-ms/.                                                                                                                                                                                                                                                                                                                                 
     image: abhaystoic/headlines-ms:latest
     restart: 'no'
     volumes:
@@ -37,6 +38,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=admin123
     ports:
       - 5001:80
+      - 5004:5000
       - 27019:27017
     links:
       - data-distribution-ms

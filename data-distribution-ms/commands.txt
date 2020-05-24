@@ -85,3 +85,13 @@ rabbitmqctl list_users
 - Docker logs:
 docker-compose logs -f -t
 
+- Setting up Ubuntu server:
+https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04
+
+- Nginx:
+https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04
+sudo apt install nginx
+systemctl status nginx
+sudo ufw allow 'Nginx HTTP'
+
+- https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04
