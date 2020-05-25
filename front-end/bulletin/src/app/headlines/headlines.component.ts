@@ -14,8 +14,8 @@ export class HeadlinesComponent implements OnInit {
 
   ngOnInit(): void {
   	this.headlinesApiService.getHeadlines().subscribe((data)=>{
-      console.log(data);
-      this.headlines = data;
+      console.log(data['articles']);
+      this.headlines = data['articles'];
     });
   }
 
