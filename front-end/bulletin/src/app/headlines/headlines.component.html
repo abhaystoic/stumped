@@ -1,9 +1,11 @@
 <div>
   <ul>
     <li *ngFor="let headline of headlines" class="card flex-row flex-wrap">
-      <img class="card-header" src="{{ headline.urlToImage }}" alt="Card image cap"
-      width="200" height="120">
-      <div class="card-body" style="width:50%">
+      <div class="card-header">
+        <img src="{{ headline.urlToImage }}" alt="Card image cap"
+        width="200" height="120">
+      </div>
+      <div class="card-body news-content">
         <a href="{{ headline.url }}" target="_new">
           <h5 class="card-title">{{ headline.title }}</h5>
         </a>
