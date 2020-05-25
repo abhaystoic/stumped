@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,12 +12,13 @@ import { HeadlinesComponent } from './headlines/headlines.component';
   declarations: [
     AppComponent,
     HeaderComponent,
-    SideNavComponent,
-    HeadlinesComponent
+    HeadlinesComponent,
+    SideNavComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

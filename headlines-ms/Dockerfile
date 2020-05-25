@@ -9,10 +9,6 @@ RUN apt-get install -y vim
 RUN apt-get install python3.6 -y
 RUN apt-get install python3-pip -y
 RUN apt install python3-dev libssl-dev libffi-dev python3-setuptools -y
-# RUN apt install nginx -y
-# RUN service nginx start
-# RUN apt install ufw -y
-# RUN ufw allow 'Nginx Full'
 RUN pip3 install --upgrade pip setuptools
 
 
@@ -39,11 +35,6 @@ RUN mkdir -p /data/code
 EXPOSE 27017 80 443
 
 COPY . /flask_app
-
-# COPY ./src/app/app.service /etc/systemd/system/
-# COPY ./src/app/app /etc/nginx/sites-available/
-# RUN ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled
-# RUN service nginx restart
 
 WORKDIR /flask_app/src/app
 

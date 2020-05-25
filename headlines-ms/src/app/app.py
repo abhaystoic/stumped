@@ -2,20 +2,22 @@ import json
 
 from bson import json_util
 from flask import Flask
+from flask_cors import CORS
 from pymongo import MongoClient
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/')
 def hello():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.news
-  collection = db['headlines']
+  collection = db['headline']
   total_docs = collection.count_documents({})
   print(total_docs, ' total documents.')
-  records = [document for document in collection.find({})]
+  records = [document for document in collection.aggregate([{"$sort":{"created_time":-1}}])][0]
   return json.dumps(
     records, sort_keys=True, indent=4, default=json_util.default)
 
