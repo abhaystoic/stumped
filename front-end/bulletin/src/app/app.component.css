@@ -1,3 +1,7 @@
 .container-style {
-  background-color: #c7c7c7;
+  background-color: #ffffff;
+}
+
+.content-style {
+  padding: 30px;
 }

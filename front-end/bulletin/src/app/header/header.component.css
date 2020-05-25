@@ -1,0 +1,9 @@
+.header-style {
+  padding: 14px;
+}
+
+.hamburger {
+  cursor:pointer;
+  font-size:20px;
+  padding: 14px;
+}
