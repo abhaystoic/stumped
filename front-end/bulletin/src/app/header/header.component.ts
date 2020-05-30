@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openNav():void {
-    document.getElementById("mySidenav").style.width = "150px";
+    document.getElementById("appSidenav").style.width = "150px";
     document.getElementById("main").style.marginLeft = "150px";
   }
 

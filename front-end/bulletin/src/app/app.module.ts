@@ -7,13 +7,17 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { HeadlinesComponent } from './headlines/headlines.component';
+import { Covid19Component } from './covid19/covid19.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HeadlinesComponent,
-    SideNavComponent
+    SideNavComponent,
+    Covid19Component,
+    PageNotFoundComponent
   ],
   imports: [
     AppRoutingModule,

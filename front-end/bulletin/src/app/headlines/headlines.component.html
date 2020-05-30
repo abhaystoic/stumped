@@ -2,7 +2,7 @@
   <ul>
     <li *ngFor="let headline of headlines" class="card flex-row flex-wrap">
       <div class="card-header">
-        <img src="{{ headline.urlToImage }}" alt="Card image cap"
+        <img src="{{ headline.urlToImage }}" alt="{{ headline.title }}"
         width="200" height="120">
       </div>
       <div class="card-body news-content">

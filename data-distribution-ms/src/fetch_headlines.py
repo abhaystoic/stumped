@@ -34,7 +34,7 @@ class FetchHeadlinesTask(DatabaseTask):
   def fetch_headlines(self):
     """Celery task to fetch headlines and save in the database."""
     top_headlines_res = self.news_api.get_top_headlines(
-      language='en', country='in', page_size=100)
+      country='in', page_size=100)
     headlines = {}
     if top_headlines_res['status'] == 'ok':
       headlines = top_headlines_res

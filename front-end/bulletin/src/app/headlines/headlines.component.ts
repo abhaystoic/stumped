@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { HeadlinesApiService } from '../headlines-api.service';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-headlines',
@@ -10,10 +10,10 @@ import { HeadlinesApiService } from '../headlines-api.service';
 export class HeadlinesComponent implements OnInit {
   headlines;
 
-  constructor(private headlinesApiService: HeadlinesApiService) { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-  	this.headlinesApiService.getHeadlines().subscribe((data)=>{
+  	this.apiService.getHeadlines().subscribe((data)=>{
       console.log(data['articles']);
       this.headlines = data['articles'];
     });

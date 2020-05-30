@@ -23,7 +23,7 @@ services:
   
   headlines-ms:
     container_name: headlines-ms-container
-    privileged: true
+    # privileged: true
     build:
       context: headlines-ms/.                                                                                                                                                                                                                                                                                                                                 
     image: abhaystoic/headlines-ms:latest
@@ -40,6 +40,30 @@ services:
       - 5001:80
       - 5004:5000
       - 27019:27017
+    links:
+      - data-distribution-ms
+    networks:
+      - stumped-back
+  
+  covid19-ms:
+    container_name: covid19-ms-container
+    # privileged: true
+    build:
+      context: covid19-ms/.                                                                                                                                                                                                                                                                                                                                 
+    image: abhaystoic/covid19-ms:latest
+    restart: 'no'
+    volumes:
+      - ~/docker-data/covid19-ms/www:/var/www
+      - ~/docker-data/covid19-ms/data/mongodb:/data/db
+      - ~/docker-data/covid19-ms/data/mongoconfig:/data/configdb
+    environment:
+      - MONGO_INITDB_DATABASE=covid19
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin123
+    ports:
+      - 5002:80
+      - 5006:5000
+      - 27020:27017
     links:
       - data-distribution-ms
     networks:
