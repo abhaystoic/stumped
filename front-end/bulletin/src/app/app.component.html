@@ -8,11 +8,10 @@
 </head>
 <body>
   <div class="container-fluid container-style" id="main">
-    <router-outlet></router-outlet>
     <app-header></app-header>
     <div class="card content-style">
       <app-side-nav></app-side-nav>
-      <app-headlines></app-headlines>
+      <router-outlet></router-outlet>
     </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
