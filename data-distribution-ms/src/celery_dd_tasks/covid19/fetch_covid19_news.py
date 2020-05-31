@@ -41,6 +41,6 @@ class FetchCovid19NewsTask(Task):
     return covid19_news
 
 app = Celery('celery_dd_tasks.covid19.fetch_covid19_news', broker='amqp://')
-app.config_from_object('celeryconfig')
+app.config_from_object('celery_dd_tasks.covid19.celeryconfig')
 covid19_news_task = app.register_task(FetchCovid19NewsTask())
 covid19_news_task.delay()

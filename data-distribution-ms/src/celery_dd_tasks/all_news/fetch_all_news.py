@@ -8,6 +8,7 @@ from celery.utils.log import get_task_logger
 from newsapi import NewsApiClient
 
 from .messaging import rabbit_sender
+from .constants import categories
 
 logger = get_task_logger(__name__)
 
@@ -33,14 +34,18 @@ class FetchAllNews(Task):
 
   def fetch_all_news(self):
     """Celery task to fetch all news and save in the database."""
-    all_news_res = self.news_api.get_everything(
-      qintitle='all AND coronavirus', language='en', page_size=100)
     all_news = {}
-    if all_news_res['status'] == 'ok':
-      all_news = all_news_res
+    for topic, categories_list in categories.items():
+      news_res = self.news_api.get_everything(
+        qintitle=' AND '.join(categories_list), language='en', page_size=100)
+      if news_res['status'] == 'ok':
+        if topic in all_news:
+          all_news[topic].append(news_res)
+        else:
+          all_news[topic] = [news_res]
     return all_news
 
 app = Celery('celery_dd_tasks.all_news.fetch_all_news', broker='amqp://')
-app.config_from_object('celeryconfig')
+app.config_from_object('celery_dd_tasks.all_news.celeryconfig')
 all_news_task = app.register_task(FetchAllNews())
 all_news_task.delay()
