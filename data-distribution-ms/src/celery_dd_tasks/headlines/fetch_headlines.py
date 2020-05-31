@@ -2,17 +2,17 @@
 
 import json
 
-from celery import Celery    
+from celery import Celery
+from celery import Task
 from celery.utils.log import get_task_logger
 from newsapi import NewsApiClient
 
-from base_task import DatabaseTask
-from messaging import rabbit_sender
+from .messaging import rabbit_sender
 
 logger = get_task_logger(__name__)
 
 
-class FetchHeadlinesTask(DatabaseTask):
+class FetchHeadlinesTask(Task):
   """Celery task to fetch headlines and save in the database."""
 
   name = 'fetch-headlines-task'
@@ -40,7 +40,7 @@ class FetchHeadlinesTask(DatabaseTask):
       headlines = top_headlines_res
     return headlines
 
-app = Celery('fetch_headlines', broker='amqp://')
+app = Celery('celery_dd_tasks.headlines.fetch_headlines', broker='amqp://')
 app.config_from_object('celeryconfig')
 headlines_task = app.register_task(FetchHeadlinesTask())
 headlines_task.delay()
