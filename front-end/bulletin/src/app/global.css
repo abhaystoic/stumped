@@ -6,3 +6,11 @@
   width:50%;
   font-size: 14px;
 }
+
+.news-li-style {
+  max-height: 150px;
+}
+
+.center-img {
+  padding-top: 14px;
+}
