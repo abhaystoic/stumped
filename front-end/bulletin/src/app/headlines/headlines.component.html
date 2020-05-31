@@ -1,13 +1,13 @@
 <div>
   <ul>
     <li *ngFor="let headline of headlines" class="card flex-row flex-wrap">
-      <div class="card-header">
+      <div class="">
         <img src="{{ headline.urlToImage }}" alt="{{ headline.title }}"
         width="200" height="120">
       </div>
       <div class="card-body news-content">
         <a href="{{ headline.url }}" target="_new">
-          <h5 class="card-title">{{ headline.title }}</h5>
+          <p class="news-title">{{ headline.title }}</p>
         </a>
         <p class="card-text">{{  headline.description }}</p>
         <p><b>Source: </b>{{ headline.source.name }}</p>
