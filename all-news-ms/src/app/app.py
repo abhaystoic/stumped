@@ -11,15 +11,88 @@ CORS(app)
 
 
 @app.route('/technology')
-def hello():
+def get_technology_news():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.news
-  collection = db['all_news']
+  collection = db['technology']
   total_docs = collection.count_documents({})
   print(total_docs, ' total documents.')
-  records = [document for document in collection.aggregate([{"$sort":{"created_time":-1}}])][0]
+  records = [
+    document for document in collection.aggregate(
+      [{"$sort":{"created_time":-1}}])][0]
   return json.dumps(
     records, sort_keys=True, indent=4, default=json_util.default)
+
+
+@app.route('/sports')
+def get_sports_news():
+  mongo_client = MongoClient('mongodb://localhost:27017')
+  db = mongo_client.news
+  collection = db['sports']
+  total_docs = collection.count_documents({})
+  print(total_docs, ' total documents.')
+  records = [
+    document for document in collection.aggregate(
+      [{"$sort":{"created_time":-1}}])][0]
+  return json.dumps(
+    records, sort_keys=True, indent=4, default=json_util.default)
+
+
+@app.route('/entertainment')
+def get_entertainment_news():
+  mongo_client = MongoClient('mongodb://localhost:27017')
+  db = mongo_client.news
+  collection = db['entertainment']
+  total_docs = collection.count_documents({})
+  print(total_docs, ' total documents.')
+  records = [
+    document for document in collection.aggregate(
+      [{"$sort":{"created_time":-1}}])][0]
+  return json.dumps(
+    records, sort_keys=True, indent=4, default=json_util.default)
+
+
+@app.route('/science')
+def get_science_news():
+  mongo_client = MongoClient('mongodb://localhost:27017')
+  db = mongo_client.news
+  collection = db['science']
+  total_docs = collection.count_documents({})
+  print(total_docs, ' total documents.')
+  records = [
+    document for document in collection.aggregate(
+      [{"$sort":{"created_time":-1}}])][0]
+  return json.dumps(
+    records, sort_keys=True, indent=4, default=json_util.default)
+
+
+@app.route('/business')
+def get_business_news():
+  mongo_client = MongoClient('mongodb://localhost:27017')
+  db = mongo_client.news
+  collection = db['business']
+  total_docs = collection.count_documents({})
+  print(total_docs, ' total documents.')
+  records = [
+    document for document in collection.aggregate(
+      [{"$sort":{"created_time":-1}}])][0]
+  return json.dumps(
+    records, sort_keys=True, indent=4, default=json_util.default)
+
+
+@app.route('/health')
+def get_health_news():
+  mongo_client = MongoClient('mongodb://localhost:27017')
+  db = mongo_client.news
+  collection = db['health']
+  total_docs = collection.count_documents({})
+  print(total_docs, ' total documents.')
+  records = [
+    document for document in collection.aggregate(
+      [{"$sort":{"created_time":-1}}])][0]
+  return json.dumps(
+    records, sort_keys=True, indent=4, default=json_util.default)
+
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0')

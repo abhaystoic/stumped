@@ -9,10 +9,10 @@ categories = {
     'entertainment', 'movies', 'music'
   ],
   'science': [
-    'research'
+    'research', 'science'
   ],
   'business': [
-    'business', 'economy'
+    'business', 'economy', 'bse', 'bombay stock exchange'
   ],
   'health': [
     'health', 'medicine'

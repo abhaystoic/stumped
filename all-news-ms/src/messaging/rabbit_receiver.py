@@ -18,14 +18,16 @@ channel.queue_declare(queue='all_news')
 def callback(ch, method, properties, body):
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.news
-  collection = db['all_news']
-  total_docs = collection.count_documents({})
-  print(total_docs, ' total documents.')
   print(' [x] Received %r' % body)
   body = json.loads(body)
-  body['created_time'] = datetime.now()
-  rec_id = collection.insert_one(body)
-  print('Data inserted with record id= ',rec_id)
+  for topic, categories_list in body.items():
+    collection = db[topic]
+    categ_news = []
+    for c_news in categories_list:
+      c_news.update({'created_time': datetime.now()})
+      categ_news.append(c_news)
+    rec_id = collection.insert_many(categ_news)
+    print('Data inserted with record id= ',rec_id)
 
 
 channel.basic_consume(
