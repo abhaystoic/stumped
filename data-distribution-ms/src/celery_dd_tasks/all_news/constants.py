@@ -1,6 +1,6 @@
 categories = {
   'technology': [
-    'technology'
+    'technology', 'top mobile phones'
   ],
   'sports': [
     'ipl', 'cricket', 'football', 'basket ball', 'athletics'

@@ -68,6 +68,30 @@ services:
       - data-distribution-ms
     networks:
       - stumped-back
+  
+  alll-news-ms:
+    container_name: alll-news-ms-container
+    # privileged: true
+    build:
+      context: alll-news-ms/.                                                                                                                                                                                                                                                                                                                                 
+    image: abhaystoic/alll-news-ms:latest
+    restart: 'no'
+    volumes:
+      - ~/docker-data/alll-news-ms/www:/var/www
+      - ~/docker-data/alll-news-ms/data/mongodb:/data/db
+      - ~/docker-data/alll-news-ms/data/mongoconfig:/data/configdb
+    environment:
+      - MONGO_INITDB_DATABASE=all_news
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin123
+    ports:
+      - 5003:80
+      - 5007:5000
+      - 27021:27017
+    links:
+      - data-distribution-ms
+    networks:
+      - stumped-back
 
 networks:
   stumped-back:
