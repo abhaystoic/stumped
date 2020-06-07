@@ -1,15 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ApiService } from '../api.service';
+
 @Component({
   selector: 'app-entertainment',
   templateUrl: './entertainment.component.html',
-  styleUrls: ['./entertainment.component.css']
+  styleUrls: ['./entertainment.component.css', '../global.css']
 })
 export class EntertainmentComponent implements OnInit {
 
-  constructor() { }
+  entertainmentNews;
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
+    this.apiService.getTechnologyNews().subscribe((data)=>{
+      this.entertainmentNews = data['articles'];
+    });
   }
 
 }
