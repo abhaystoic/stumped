@@ -20,6 +20,10 @@ services:
       - 15673:15672
     networks:
       - stumped-back
+    depends_on: 
+      - headlines-ms
+      - covid19-ms
+      - all-news-ms
   
   headlines-ms:
     container_name: headlines-ms-container
@@ -40,8 +44,6 @@ services:
       - 5001:80
       - 5004:5000
       - 27019:27017
-    links:
-      - data-distribution-ms
     networks:
       - stumped-back
   
@@ -64,8 +66,6 @@ services:
       - 5002:80
       - 5006:5000
       - 27020:27017
-    links:
-      - data-distribution-ms
     networks:
       - stumped-back
   
@@ -88,8 +88,6 @@ services:
       - 5003:80
       - 5007:5000
       - 27021:27017
-    links:
-      - data-distribution-ms
     networks:
       - stumped-back
 

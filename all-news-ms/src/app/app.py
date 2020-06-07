@@ -20,8 +20,15 @@ def get_technology_news():
   records = [
     document for document in collection.aggregate(
       [{"$sort":{"created_time":-1}}])][0]
+  result = {
+    'created_time': records['created_time'],
+    'articles': [],
+    }
+  for rec in records['news']:
+    for article in rec['articles']:
+      result['articles'].append(article)
   return json.dumps(
-    records, sort_keys=True, indent=4, default=json_util.default)
+    result, sort_keys=True, indent=4, default=json_util.default)
 
 
 @app.route('/sports')

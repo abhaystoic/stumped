@@ -10,4 +10,4 @@ def send_all_news(all_news):
   channel.basic_publish(
     exchange='', routing_key='all_news', body=json.dumps(all_news))
   print(" [x] Sent Hello World! in JSON format.")
-  connection.close()  
+  connection.close()

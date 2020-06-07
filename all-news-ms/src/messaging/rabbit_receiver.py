@@ -20,13 +20,12 @@ def callback(ch, method, properties, body):
   db = mongo_client.news
   print(' [x] Received %r' % body)
   body = json.loads(body)
-  for topic, categories_list in body.items():
+  for topic, news in body.items():
     collection = db[topic]
-    categ_news = []
-    for c_news in categories_list:
-      c_news.update({'created_time': datetime.now()})
-      categ_news.append(c_news)
-    rec_id = collection.insert_many(categ_news)
+    rec_id = collection.insert_one({
+      'news': news,
+      'created_time': datetime.now(),
+      })
     print('Data inserted with record id= ',rec_id)
 
 

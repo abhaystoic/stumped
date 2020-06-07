@@ -16,4 +16,9 @@ export class ApiService {
   	console.log('getCovid19News');
   	return this.httpClient.get('http://172.22.0.3:5000');
   }
+
+  public getTechnologyNews() {
+  	return this.httpClient.get('http://localhost:5000/technology');
+  }
+
 }

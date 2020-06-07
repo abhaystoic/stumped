@@ -21,7 +21,7 @@ class FetchCovid19NewsTask(Task):
 
   def __init__(self):
     self.configure_news_api()
-  
+
   def configure_news_api(self):
     """Configures the News API."""
     self.news_api = NewsApiClient(FetchCovid19NewsTask.API_KEY)

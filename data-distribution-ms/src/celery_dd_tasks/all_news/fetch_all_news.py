@@ -22,7 +22,7 @@ class FetchAllNews(Task):
 
   def __init__(self):
     self.configure_news_api()
-  
+
   def configure_news_api(self):
     """Configures the News API."""
     self.news_api = NewsApiClient(FetchAllNews.API_KEY)
@@ -36,13 +36,13 @@ class FetchAllNews(Task):
     """Celery task to fetch all news and save in the database."""
     all_news = {}
     for topic, categories_list in categories.items():
-      news_res = self.news_api.get_everything(
-        qintitle=' AND '.join(categories_list), language='en', page_size=100)
-      if news_res['status'] == 'ok':
-        if topic in all_news:
-          all_news[topic].append(news_res)
-        else:
-          all_news[topic] = [news_res]
+      for cat in categories_list:
+        news_res = self.news_api.get_everything(q=cat, language='en', page_size=100)
+        if news_res['status'] == 'ok':
+          if topic in all_news:
+            all_news[topic].append(news_res)
+          else:
+            all_news[topic] = [news_res]
     return all_news
 
 app = Celery('celery_dd_tasks.all_news.fetch_all_news', broker='amqp://')
