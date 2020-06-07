@@ -15,6 +15,7 @@ import { EntertainmentComponent } from './entertainment/entertainment.component'
 import { ScienceComponent } from './science/science.component';
 import { BusinessComponent } from './business/business.component';
 import { HealthComponent } from './health/health.component';
+import { ArticleCardComponent } from './shared/article-card/article-card.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HealthComponent } from './health/health.component';
     EntertainmentComponent,
     ScienceComponent,
     BusinessComponent,
-    HealthComponent
+    HealthComponent,
+    ArticleCardComponent
   ],
   imports: [
     AppRoutingModule,

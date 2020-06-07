@@ -1,17 +1,1 @@
-<div>
-  <ul>
-    <li *ngFor="let news of sportsNews" class="card flex-row flex-wrap news-li-style">
-      <div class="center-img">
-        <img src="{{ news.urlToImage }}" alt="{{ news.title }}"
-        width="200" height="120">
-      </div>
-      <div class="card-body news-content">
-        <a href="{{ news.url }}" target="_new">
-          <p class="card-title">{{ news.title }}</p>
-        </a>
-        <p class="card-text">{{  news.description }}</p>
-        <p><b>Source: </b>{{ news.source.name }}</p>
-      </div>
-    </li>
-  </ul>
-</div>
+<app-article-card [allArticles]="sportsNews"></app-article-card>
