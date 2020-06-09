@@ -3,6 +3,7 @@ import pika
 
 from datetime import datetime
 from pymongo import MongoClient
+from ..sentiment_analyzer import classifier
 
 
 connection = pika.BlockingConnection(
@@ -18,8 +19,9 @@ def callback(ch, method, properties, body):
   collection = db['headline']
   total_docs = collection.count_documents({})
   print(total_docs, ' total documents.')
-  print(' [x] Received %r' % body)
   body = json.loads(body)
+  print(' [x] Received %r' % body)
+  body = classifier.classify(body)
   body['created_time'] = datetime.now()
   rec_id = collection.insert_one(body)
   print('Data inserted with record id= ',rec_id)

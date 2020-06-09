@@ -3,6 +3,7 @@ import pika
 
 from datetime import datetime
 from pymongo import MongoClient
+from ..sentiment_analyzer import classifier
 
 
 credentials = pika.PlainCredentials('admin', 'admin123')
@@ -18,8 +19,9 @@ channel.queue_declare(queue='all_news')
 def callback(ch, method, properties, body):
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.news
-  print(' [x] Received %r' % body)
   body = json.loads(body)
+  print(' [x] Received %r' % body)
+  body = classifier.classify(body)
   for topic, news in body.items():
     collection = db[topic]
     rec_id = collection.insert_one({
