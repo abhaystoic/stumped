@@ -13,4 +13,9 @@ export class ArticleCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getPercentageStyle(percentage: number): string {
+    var percentage:number = Math.round(percentage * 100);
+    return `--percent:${ percentage };`;
+  }
+
 }

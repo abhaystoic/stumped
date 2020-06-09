@@ -1,6 +1,7 @@
 <div>
   <ul>
-    <li *ngFor="let news of allArticles" class="card flex-row flex-wrap news-li-style">
+    <li *ngFor="let news of allArticles"
+        class="card flex-row flex-wrap news-li-style">
       <div class="center-img">
         <img src="{{ news.urlToImage }}" alt="{{ news.title }}"
              width="200" height="120"
@@ -11,7 +12,24 @@
           <p class="card-title">{{ news.title }}</p>
         </a>
         <p class="card-text">{{  news.description }}</p>
-        <p><b>Source: </b>{{ news.source.name }}</p>
+        <span>
+          <b>Source: </b>{{ news.source.name }}
+        </span>
+      </div>
+      <div class="">
+        <span class="sml col">
+          <span class="pie pie--value row"
+                style="{{ this.getPercentageStyle(news.positivity) }}"
+                data-toggle="tooltip" data-placement="top"
+                title="Tooltip on top">
+          </span>
+          <span class="pie pie--value row"
+                style="{{ this.getPercentageStyle(news.neutrality) }}">
+          </span>
+          <span class="pie pie--value row"
+                style="{{ this.getPercentageStyle(news.negativity) }}">
+          </span>
+        </span>
       </div>
     </li>
   </ul>

@@ -8,7 +8,7 @@
 }
 
 .news-li-style {
-  max-height: 160px;
+  min-height: 160px;
 }
 
 .center-img {

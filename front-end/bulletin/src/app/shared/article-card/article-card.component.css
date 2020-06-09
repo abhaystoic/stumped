@@ -1,0 +1,73 @@
+.pie {
+  position: relative;
+  display: inline-block;
+  background-image: conic-gradient(rgba(0,0,0,0) calc(3.6deg * var(--percent)),rgba(0,0,0,1) calc(3.6deg * var(--percent)));
+  background-blend-mode: overlay;
+  background-position: 50% 50%;
+  background-size: 150%;
+  width: 3.75em;
+  height: 3.75em;
+  border-radius: 50%;
+}
+
+/* show the percentage*/
+.pie--value::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  counter-reset: percent var(--percent);
+  content: counter(percent) "%";
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+}
+.pie--disc::before {
+  content: '';
+  position: absolute;
+  top: .5em;
+  left: .5em;
+  right: .5em;
+  bottom: .5em;
+  border-radius: 50%;
+  background: #fff;
+}
+.pie--disc::after {
+  color: #000;
+  text-shadow: none;
+}
+
+/* demo styles
+----------------------------------------------------- */
+body::before {
+  color: red;
+  font-size: 150%;
+  background-color: #f1f1f2;
+  content: "This browser doesn't support conical graidents yet";
+}
+@supports (background: conic-gradient(red, blue)) {
+  body::before {
+    content: '';
+  }
+}
+body {
+  font: 90%/1.5 Arial;
+  background: #f1f1f2;
+  text-align: center;
+}
+.pie {
+  border: .15em solid #fff;
+  box-shadow: 0 .075em .2em .05em rgba(0,0,0,.25);
+  margin: .75rem;
+}
+.pie:nth-child(1) {
+  background-color: #ac0;
+}
+.pie:nth-child(2) {
+  background-color: #fc3;
+}
+.pie:nth-child(3) {
+  background-color: #d44;
+}
+.sml {
+  font-size: 60%;
+}
