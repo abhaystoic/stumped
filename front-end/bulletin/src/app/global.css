@@ -26,6 +26,8 @@
 .news-img {
   border-radius: 15%;
   padding: 4%;
+  width: 100%;
+  max-width: 200px;
 }
 
 /* Styling for Filters: toggle switches etc. */
