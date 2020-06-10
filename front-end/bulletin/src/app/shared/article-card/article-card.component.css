@@ -21,6 +21,7 @@
   color: #fff;
   text-shadow: 1px 1px 1px #000;
 }
+
 .pie--disc::before {
   content: '';
   position: absolute;
@@ -31,6 +32,7 @@
   border-radius: 50%;
   background: #fff;
 }
+
 .pie--disc::after {
   color: #000;
   text-shadow: none;
@@ -44,6 +46,7 @@ body::before {
   background-color: #f1f1f2;
   content: "This browser doesn't support conical graidents yet";
 }
+
 @supports (background: conic-gradient(red, blue)) {
   body::before {
     content: '';
@@ -54,20 +57,31 @@ body {
   background: #f1f1f2;
   text-align: center;
 }
+
 .pie {
   border: .15em solid #fff;
   box-shadow: 0 .075em .2em .05em rgba(0,0,0,.25);
   margin: .75rem;
 }
+
 .pie:nth-child(1) {
   background-color: #ac0;
 }
+
 .pie:nth-child(2) {
   background-color: #fc3;
 }
+
 .pie:nth-child(3) {
   background-color: #d44;
 }
+
 .sml {
   font-size: 60%;
+}
+
+@media screen and (max-width: 450px) {
+  .sml {
+    font-size: 40%;
+  }
 }
