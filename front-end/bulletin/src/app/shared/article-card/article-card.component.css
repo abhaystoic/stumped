@@ -18,8 +18,8 @@
   transform: translate(-50%, -50%);
   counter-reset: percent var(--percent);
   content: counter(percent) "%";
-  color: #fff;
-  text-shadow: 1px 1px 1px #000;
+  color: #000000;
+  font-weight: 20;
 }
 
 .pie--disc::before {
@@ -65,7 +65,7 @@ body {
 }
 
 .pie:nth-child(1) {
-  background-color: #ac0;
+  background-color: #1baf00;
 }
 
 .pie:nth-child(2) {

@@ -13,6 +13,8 @@
 }
 
 .topnav {
+  background: #211e1e;
+  box-shadow: 0 1px #000;
   overflow: hidden;
 }
 
