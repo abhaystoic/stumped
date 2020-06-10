@@ -2,7 +2,7 @@
   <div class="filters-container">
     <span class="toggle-text">Display positive News</span>
     <label class="switch">
-      <input type="checkbox" checked>
+      <input type="checkbox" [checked]="displayPositiveNews">
       <span class="slider round"></span>
     </label>
   </div>
@@ -12,7 +12,8 @@
       <div class="center-img">
         <img src="{{ news.urlToImage }}" alt="{{ news.title }}"
              width="200" height="120"
-             onerror="this.src='assets/images/default.jpg'">
+             onerror="this.src='assets/images/default.jpg'"
+             class="news-img">
       </div>
       <div class="card-body news-content">
         <a href="{{ news.url }}" target="_new">

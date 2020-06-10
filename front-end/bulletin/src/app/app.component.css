@@ -1,11 +1,16 @@
+body {
+  background-color: #292525;
+  color: #fffff0;
+}
 .container-style {
-  background-color: #ffffff;
+  background-color: #292525;
 }
 
 .content-style {
-  padding: 30px;
+  background: #d2b48c;
   margin-left: 44px;
   margin-right: 44px;
+  padding: 30px;
 }
 
 .app-style {

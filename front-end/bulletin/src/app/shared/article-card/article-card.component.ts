@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ArticleCardComponent implements OnInit {
 
   @Input() allArticles;
+  @Input() displayPositiveNews;
   constructor() { }
 
   ngOnInit(): void {
