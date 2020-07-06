@@ -1,13 +1,15 @@
 body {
-  background-color: #292525;
+  background-color: #434343;
   color: #fffff0;
 }
 .container-style {
-  background-color: #292525;
+  background: #485563;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #29323c, #485563);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .content-style {
-  background: #d2b48c;
+  background: #feb645;
   margin-left: 44px;
   margin-right: 44px;
   margin-top: 2%;
