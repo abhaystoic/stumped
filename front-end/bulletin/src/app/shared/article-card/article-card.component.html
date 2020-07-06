@@ -2,7 +2,9 @@
   <div class="filters-container">
     <span class="toggle-text">Display positive News</span>
     <label class="switch">
-      <input type="checkbox" [checked]="displayPositiveNews">
+      <input type="checkbox"
+             [checked]="displayPositiveNews"
+             (change)="filterNews()">
       <span class="slider round"></span>
     </label>
   </div>
