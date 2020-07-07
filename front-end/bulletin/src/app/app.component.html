@@ -14,7 +14,10 @@
     <div class="card content-style">
       <app-side-nav></app-side-nav>
       <div class="app-style">
-        <router-outlet></router-outlet>
+        <div class="splash" *ngIf="showSplash">
+          <img width="100" height="20" src="../../assets/images/loading.gif"/>
+        </div>
+        <router-outlet *ngIf="!showSplash"></router-outlet>
       </div>
     </div>
   </div>

@@ -13,9 +13,15 @@ body {
   margin-left: 44px;
   margin-right: 44px;
   margin-top: 2%;
+  min-height: 100vh;
   padding: 30px;
 }
 
 .app-style {
   margin-left: -40px;
+}
+
+.splash {
+  margin-left: 47%;
+  margin-top: 10%;
 }
