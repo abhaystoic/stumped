@@ -2,6 +2,7 @@ version: '3.7'
 services:
   data-distribution-ms:
     container_name: data-distribution-ms-container
+    privileged: true
     build:
       context: data-distribution-ms/.
     image: abhaystoic/data-distribution-ms:latest
@@ -49,7 +50,7 @@ services:
   
   covid19-ms:
     container_name: covid19-ms-container
-    # privileged: true
+    privileged: true
     build:
       context: covid19-ms/.                                                                                                                                                                                                                                                                                                                                 
     image: abhaystoic/covid19-ms:latest
@@ -71,7 +72,7 @@ services:
   
   all-news-ms:
     container_name: all-news-ms-container
-    # privileged: true
+    privileged: true
     build:
       context: all-news-ms/.                                                                                                                                                                                                                                                                                                                                 
     image: abhaystoic/all-news-ms:latest
