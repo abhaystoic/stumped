@@ -19,7 +19,7 @@ mongodb_backend_settings = {
 beat_schedule = {
   "every_hour": {
     "task": "fetch-headlines-task",
-    # "schedule": crontab(minute='*/5'), # Every 5 minutes.
-    "schedule": crontab(minute=0, hour='*/1'), # Every hour.
+    "schedule": crontab(minute='*/5'), # Every 5 minutes.
+    # "schedule": crontab(minute=0, hour='*/1'), # Every hour.
   }
 }

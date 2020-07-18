@@ -10,4 +10,4 @@ rabbitmqctl set_user_tags admin administrator ; \
 rabbitmqctl set_permissions -p / admin  ".*" ".*" ".*" ; \
 echo "User 'admin' has been created") & rabbitmq-server
 
-# python3 -u /flask_app/src/messaging/rabbit_receiver.py > output.log &
+python3 -u /flask_app/src/messaging/rabbit_receiver.py > output.log &

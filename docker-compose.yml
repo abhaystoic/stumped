@@ -6,7 +6,7 @@ services:
     build:
       context: data-distribution-ms/.
     image: abhaystoic/data-distribution-ms:latest
-    restart: 'no'
+    restart: 'unless-stopped'
     volumes:
       - ~/docker-data/data-distribution-ms/data/mongodb:/data/db
       - ~/docker-data/data-distribution-ms/data/mongoconfig:/data/configdb
@@ -32,7 +32,7 @@ services:
     build:
       context: headlines-ms/.                                                                                                                                                                                                                                                                                                                                 
     image: abhaystoic/headlines-ms:latest
-    restart: 'no'
+    restart: 'unless-stopped'
     volumes:
       - ~/docker-data/headlines-ms/www:/var/www
       - ~/docker-data/headlines-ms/data/mongodb:/data/db
@@ -54,7 +54,7 @@ services:
     build:
       context: covid19-ms/.                                                                                                                                                                                                                                                                                                                                 
     image: abhaystoic/covid19-ms:latest
-    restart: 'no'
+    restart: 'unless-stopped'
     volumes:
       - ~/docker-data/covid19-ms/www:/var/www
       - ~/docker-data/covid19-ms/data/mongodb:/data/db
@@ -76,7 +76,7 @@ services:
     build:
       context: all-news-ms/.                                                                                                                                                                                                                                                                                                                                 
     image: abhaystoic/all-news-ms:latest
-    restart: 'no'
+    restart: 'unless-stopped'
     volumes:
       - ~/docker-data/all-news-ms/www:/var/www
       - ~/docker-data/all-news-ms/data/mongodb:/data/db

@@ -3,7 +3,7 @@
 Please download the vader_lexicon first time by using the following command:
 nltk.download('vader_lexicon')
 
- """
+"""
 
 
 import json
@@ -18,12 +18,10 @@ from IPython import display
 from nltk.sentiment.vader import SentimentIntensityAnalyzer as SIA
 from pprint import pprint
 
-from ..app import app
-
 
 def classify(all_news):
   nltk.download('vader_lexicon')
-  
+
   sia = SIA()
   results = []
 
