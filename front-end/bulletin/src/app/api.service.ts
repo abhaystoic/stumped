@@ -9,36 +9,36 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
 
   public getBusinessNews() {
-    return this.httpClient.get('http://localhost/fetch-business');
+    return this.httpClient.get('/fetch-business');
   }
 
   public getCovid19News() {
   	console.log('getCovid19News');
-    return this.httpClient.get('http://localhost/fetch-covid19');
+    return this.httpClient.get('/fetch-covid19');
   }
 
   public getEntertainmentNews() {
-    return this.httpClient.get('http://localhost/fetch-entertainment');
+    return this.httpClient.get('/fetch-entertainment');
   }
 
   public getHeadlines() {
-  	return this.httpClient.get('http://localhost/fetch-headlines');
+  	return this.httpClient.get('/fetch-headlines');
   }
 
   public getHealthNews() {
-    return this.httpClient.get('http://localhost/fetch-health');
+    return this.httpClient.get('/fetch-health');
   }
 
   public getScienceNews() {
-    return this.httpClient.get('http://localhost/fetch-science');
+    return this.httpClient.get('/fetch-science');
   }
 
   public getSportsNews() {
-    return this.httpClient.get('http://localhost/fetch-sports');
+    return this.httpClient.get('/fetch-sports');
   }
 
   public getTechnologyNews() {
-    return this.httpClient.get('http://localhost/fetch-technology');
+    return this.httpClient.get('/fetch-technology');
   }
 
 }
