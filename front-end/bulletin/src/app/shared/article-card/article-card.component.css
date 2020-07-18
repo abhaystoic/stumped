@@ -2,7 +2,7 @@
   position: relative;
   /* Uncomment this to position the pies horizontally */
   /* display: inline-block; */
-  /* Uncomment this to enable the clock like formation representing the percentage. */
+  /* Comment this to disable the clock like formation representing the percentage. */
   background-image: conic-gradient(rgba(0,0,0,0) calc(3.6deg * var(--percent)),rgba(0,0,0,1) calc(3.6deg * var(--percent)));
   background-blend-mode: overlay;
   background-position: 50% 50%;
@@ -10,6 +10,7 @@
   width: 3.75em;
   height: 3.75em;
   border-radius: 50%;
+  cursor: help;
 }
 
 /* show the percentage*/
