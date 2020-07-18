@@ -21,7 +21,7 @@
         <a href="{{ news.url }}" target="_new">
           <p class="card-title">{{ news.title }}</p>
         </a>
-        <p class="card-text">{{  news.description }}</p>
+        <p class="card-text"><span [innerHTML]="news.description"></span></p>
         <span>
           <b>Source: </b>{{ news.source.name }}
         </span>
