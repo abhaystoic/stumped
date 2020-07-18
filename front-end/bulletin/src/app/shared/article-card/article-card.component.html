@@ -31,13 +31,15 @@
           <span class="pie pie--value row"
                 style="{{ this.getPercentageStyle(news.positivity) }}"
                 data-toggle="tooltip" data-placement="top"
-                title="Tooltip on top">
+                title="Bots found it to be {{ news.positivity * 100 }}% positive.">
           </span>
           <span class="pie pie--value row"
-                style="{{ this.getPercentageStyle(news.neutrality) }}">
+                style="{{ this.getPercentageStyle(news.neutrality) }}"
+                title="Bots found it to be {{ news.neutrality * 100 }}% positive.">
           </span>
           <span class="pie pie--value row"
-                style="{{ this.getPercentageStyle(news.negativity) }}">
+                style="{{ this.getPercentageStyle(news.negativity) }}"
+                title="Bots found it to be {{ news.negativity * 100 }}% positive.">
           </span>
         </span>
       </div>
