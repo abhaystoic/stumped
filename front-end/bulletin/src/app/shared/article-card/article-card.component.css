@@ -1,6 +1,8 @@
 .pie {
   position: relative;
-  display: inline-block;
+  /* Uncomment this to position the pies horizontally */
+  /* display: inline-block; */
+  /* Uncomment this to enable the clock like formation representing the percentage. */
   background-image: conic-gradient(rgba(0,0,0,0) calc(3.6deg * var(--percent)),rgba(0,0,0,1) calc(3.6deg * var(--percent)));
   background-blend-mode: overlay;
   background-position: 50% 50%;
@@ -18,8 +20,8 @@
   transform: translate(-50%, -50%);
   counter-reset: percent var(--percent);
   content: counter(percent) "%";
-  color: #000000;
-  font-weight: 20;
+  color: #fff;
+  font-weight: bold;
 }
 
 .pie--disc::before {
@@ -59,7 +61,7 @@ body {
 }
 
 .pie {
-  border: .15em solid #fff;
+  /* border: .15em solid #fff; */
   box-shadow: 0 .075em .2em .05em rgba(0,0,0,.25);
   margin: .75rem;
 }
@@ -69,7 +71,7 @@ body {
 }
 
 .pie:nth-child(2) {
-  background-color: #fc3;
+  background-color: #848382;
 }
 
 .pie:nth-child(3) {
@@ -77,11 +79,15 @@ body {
 }
 
 .sml {
-  font-size: 60%;
+  font-size: 80%;
 }
 
 @media screen and (max-width: 450px) {
   .sml {
     font-size: 40%;
   }
+}
+
+.card-title {
+  font-size: 18px;
 }

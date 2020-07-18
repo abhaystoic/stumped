@@ -17,6 +17,13 @@ body {
   padding: 30px;
 }
 
+@media screen and (max-width: 450px) {
+  .content-style {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
 .app-style {
   margin-left: -40px;
 }
