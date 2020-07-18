@@ -12,9 +12,7 @@ export class ArticleCardComponent implements OnInit {
   @Input() displayPositiveNews = false;
   constructor() { }
 
-  ngOnInit(): void {
-    this.allOriginalArticles = this.allArticles;
-  }
+  ngOnInit(): void {}
 
   getPercentageStyle(percentage: number): string {
     var percentage:number = Math.round(percentage * 100);
@@ -24,11 +22,11 @@ export class ArticleCardComponent implements OnInit {
   filterNews() {
     this.displayPositiveNews = !this.displayPositiveNews;
     if(this.displayPositiveNews) {
+      this.allOriginalArticles = this.allArticles;
       this.allArticles = this.allOriginalArticles.filter(
-        news => news.negativity <= 8 || !news.negativity);
+        news => news.negativity <= 0.08 || !news.negativity);
     } else {
       this.allArticles = this.allOriginalArticles;
     }
   }
-
 }
