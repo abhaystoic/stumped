@@ -13,7 +13,7 @@ export class EntertainmentComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.apiService.getTechnologyNews().subscribe((data)=>{
+    this.apiService.getEntertainmentNews().subscribe((data)=>{
       this.entertainmentNews = data['articles'];
     });
   }
