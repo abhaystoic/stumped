@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 import { Covid19Component } from './covid19/covid19.component';
 import { BusinessComponent } from './business/business.component';
 import { EntertainmentComponent } from './entertainment/entertainment.component';
@@ -12,16 +14,18 @@ import { SportsComponent } from './sports/sports.component';
 import { TechnologyComponent } from './technology/technology.component';
 
 const routes: Routes = [
-  {path: 'covid19', component: Covid19Component},
-  {path: 'business', component: BusinessComponent},
-  {path: 'entertainment', component: EntertainmentComponent},
-  {path: 'headlines', component: HeadlinesComponent},
-  {path: 'health', component: HealthComponent},
-  {path: 'science', component: ScienceComponent},
-  {path: 'sports', component: SportsComponent},
-  {path: 'technology', component: TechnologyComponent},
-  {path: '',   redirectTo: '/headlines', pathMatch: 'full'},
-  {path: '**', component: PageNotFoundComponent},
+  { path: 'about-us', component: AboutUsComponent },
+  { path: 'contact-us', component: ContactUsComponent },
+  { path: 'covid19', component: Covid19Component },
+  { path: 'business', component: BusinessComponent },
+  { path: 'entertainment', component: EntertainmentComponent },
+  { path: 'headlines', component: HeadlinesComponent },
+  { path: 'health', component: HealthComponent },
+  { path: 'science', component: ScienceComponent },
+  { path: 'sports', component: SportsComponent },
+  { path: 'technology', component: TechnologyComponent },
+  { path: '',   redirectTo: '/headlines', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
