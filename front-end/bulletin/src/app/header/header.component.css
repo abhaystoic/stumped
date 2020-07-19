@@ -58,3 +58,8 @@
     border: 1px solid #ccc;
   }
 }
+
+.main-site-title {
+  text-decoration: none;
+  color: inherit;
+}
