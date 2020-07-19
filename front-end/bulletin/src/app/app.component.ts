@@ -15,7 +15,6 @@ export class AppComponent {
   ngOnInit(): void {
     this.splashService.getSplashState().subscribe(
       splashState => {
-        console.log('got splashState== ', splashState);
         this.showSplash = splashState;
       }
     );
