@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { SplashService } from '../../splash.service';
+
 @Component({
   selector: 'app-article-card',
   templateUrl: './article-card.component.html',
@@ -10,9 +12,17 @@ export class ArticleCardComponent implements OnInit {
   @Input() allArticles;
   @Input() allOriginalArticles;
   @Input() displayPositiveNews = false;
-  constructor() { }
+  showSplash = true;
 
-  ngOnInit(): void {}
+  constructor(private splashService:SplashService) { }
+
+  ngOnInit(): void {
+    this.splashService.getSplashState().subscribe(
+      splashState => {
+        this.showSplash = splashState;
+      }
+    );
+  }
 
   getPercentageStyle(percentage: number): string {
     var percentage:number = Math.round(percentage * 100);
@@ -20,6 +30,7 @@ export class ArticleCardComponent implements OnInit {
   }
 
   filterNews() {
+    setTimeout(() =>this.splashService.updateSplashState(true), 0);
     this.displayPositiveNews = !this.displayPositiveNews;
     if(this.displayPositiveNews) {
       this.allOriginalArticles = this.allArticles;
@@ -28,5 +39,6 @@ export class ArticleCardComponent implements OnInit {
     } else {
       this.allArticles = this.allOriginalArticles;
     }
+    setTimeout(() =>this.splashService.updateSplashState(false), 1000);
   }
 }

@@ -8,13 +8,16 @@ import { SplashService } from './splash.service'
 })
 export class AppComponent {
   title: string = 'bulletin';
-  showSplash: boolean = false; 
+  showSplash: boolean = false;
 
-  constructor(private splashService:SplashService) {
+  constructor(private splashService:SplashService) { }
+
+  ngOnInit(): void {
     this.splashService.getSplashState().subscribe(
       splashState => {
+        console.log('got splashState== ', splashState);
         this.showSplash = splashState;
       }
-    )
+    );
   }
 }
