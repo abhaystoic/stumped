@@ -22,7 +22,7 @@ export class ApiService {
   }
 
   public getHeadlines() {
-  	return this.httpClient.get('/fetch-headlines');
+  	return this.httpClient.get('http://localhost/fetch-headlines');
   }
 
   public getHealthNews() {

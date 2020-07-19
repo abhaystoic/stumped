@@ -1,17 +1,1 @@
-<div>
-  <ul>
-    <li *ngFor="let headline of headlines" class="card flex-row flex-wrap news-li-style">
-      <div class="center-img">
-        <img src="{{ headline.urlToImage }}" alt="{{ headline.title }}"
-        width="200" height="120">
-      </div>
-      <div class="card-body news-content">
-        <a href="{{ headline.url }}" target="_new">
-          <p class="news-title">{{ headline.title }}</p>
-        </a>
-        <p class="card-text">{{  headline.description }}</p>
-        <p><b>Source: </b>{{ headline.source.name }}</p>
-      </div>
-    </li>
-  </ul>
-</div>
+<app-article-card [allArticles]="headlines"></app-article-card>
