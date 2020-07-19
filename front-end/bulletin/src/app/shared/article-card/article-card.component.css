@@ -68,15 +68,15 @@ body {
 }
 
 .pie:nth-child(1) {
-  background-color: #1baf00;
+  background-color: #36d219;
 }
 
 .pie:nth-child(2) {
-  background-color: #848382;
+  background-color: #5f9ea0;
 }
 
 .pie:nth-child(3) {
-  background-color: #d44;
+  background-color: #ff8585;
 }
 
 .sml {
