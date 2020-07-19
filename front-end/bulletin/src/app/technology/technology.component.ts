@@ -13,8 +13,7 @@ export class TechnologyComponent implements OnInit {
   displayPositiveNews;
   showSplash: boolean = true;
 
-  constructor(private apiService: ApiService, private splashService:SplashService) {
-  }
+  constructor(private apiService: ApiService, private splashService:SplashService) { }
 
   ngOnInit(): void {
     // this.apiService.getTechnologyNews().subscribe((data)=>{
