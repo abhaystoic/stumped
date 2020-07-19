@@ -24,7 +24,9 @@ export class ArticleCardComponent implements OnInit {
     if(this.displayPositiveNews) {
       this.allOriginalArticles = this.allArticles;
       this.allArticles = this.allOriginalArticles.filter(
-        news => news.negativity <= 0.08 || !news.negativity);
+        news => {
+          return Math.round(news.negativity * 100) < 8 || !news.negativity;
+        });
     } else {
       this.allArticles = this.allOriginalArticles;
     }
