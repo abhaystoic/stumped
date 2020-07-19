@@ -12,18 +12,13 @@ export class HeadlinesComponent implements OnInit {
   headlines;
   showSplash: boolean = true;
 
-  constructor(private apiService: ApiService, private splashService:SplashService) {
-    this.splashService.getSplashState().subscribe(
-      splashState => {
-        this.showSplash = splashState;
-      }
-    );
-  }
+  constructor(private apiService: ApiService, private splashService:SplashService) { }
 
   ngOnInit(): void {
-    // this.splashService.updateSplashState(true);
+    setTimeout(() =>this.splashService.updateSplashState(true), 0);
   	this.apiService.getHeadlines().subscribe((data)=>{
       this.headlines = data['articles'];
+      setTimeout(() =>this.splashService.updateSplashState(false), 1000);
     });
   }
 

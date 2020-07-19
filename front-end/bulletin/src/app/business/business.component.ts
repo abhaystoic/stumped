@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ApiService } from '../api.service';
+import { SplashService } from '../splash.service';
 
 @Component({
   selector: 'app-business',
@@ -10,11 +11,13 @@ import { ApiService } from '../api.service';
 export class BusinessComponent implements OnInit {
 
   businessNews;
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private splashService:SplashService) { }
 
   ngOnInit(): void {
+    setTimeout(() =>this.splashService.updateSplashState(true), 0);
     this.apiService.getBusinessNews().subscribe((data)=>{
       this.businessNews = data['articles'];
+      setTimeout(() =>this.splashService.updateSplashState(false), 1000);
     });
   }
 
