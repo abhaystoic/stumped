@@ -102,3 +102,6 @@ sudo service nginx restart
 
 - mongodb get last inserted record:
 db.headline.find({}).sort({$natural:-1}).limit(1)
+
+- supervisord
+supervisord -n --configuration=supervisord.conf --directory=~/github/stumped/all-news-ms/src/app --logfile=supervisord.log --loglevel=trace
