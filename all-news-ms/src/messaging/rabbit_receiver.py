@@ -1,5 +1,6 @@
 import json
 import pika
+import pytz
 
 from datetime import datetime
 from pymongo import MongoClient
@@ -22,11 +23,12 @@ def callback(ch, method, properties, body):
   body = json.loads(body)
   print(' [x] Received %r' % body)
   body = classifier.classify(body)
+  tz = pytz.timezone('Asia/Kolkata')
   for topic, news in body.items():
     collection = db[topic]
     rec_id = collection.insert_one({
       'news': news,
-      'created_time': datetime.now(),
+      'created_time': datetime.now(tz),
       })
     print('Data inserted with record id= ',rec_id)
 
