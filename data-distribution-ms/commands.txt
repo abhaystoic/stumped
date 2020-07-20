@@ -54,6 +54,9 @@ docker rmi $(docker images -f dangling=true -q)
 - Remove stopped containers:
 docker rm $(docker ps -a -q)
 
+- Stop all running containers
+docker stop $(docker ps -aq)
+
 - If you change a service’s Dockerfile or the contents of its build directory, run
 the followig to rebuild it:
 docker-compose build
