@@ -105,3 +105,6 @@ db.headline.find({}).sort({$natural:-1}).limit(1)
 
 - supervisord
 supervisord -n --configuration=supervisord.conf --directory=~/github/stumped/all-news-ms/src/app --logfile=supervisord.log --loglevel=trace
+
+- supervisord all-news
+supervisord -n --configuration=supervisord.conf --directory=~/github/stumped/data-distribution-ms/src/celery_dd_tasks --logfile=all_news/supervisord.log --loglevel=trace

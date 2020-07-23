@@ -40,7 +40,7 @@ class FetchHeadlinesTask(Task):
       headlines = top_headlines_res
     return headlines
 
-app = Celery('celery_dd_tasks.headlines.fetch_headlines', broker='amqp://')
-app.config_from_object('celery_dd_tasks.headlines.celeryconfig')
+app = Celery('headlines.fetch_headlines', broker='amqp://')
+app.config_from_object('headlines.celeryconfig')
 headlines_task = app.register_task(FetchHeadlinesTask())
 headlines_task.delay()

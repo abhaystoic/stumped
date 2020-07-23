@@ -45,7 +45,7 @@ class FetchAllNews(Task):
             all_news[topic] = [news_res]
     return all_news
 
-app = Celery('celery_dd_tasks.all_news.fetch_all_news', broker='amqp://')
-app.config_from_object('celery_dd_tasks.all_news.celeryconfig')
+app = Celery('all_news.fetch_all_news', broker='amqp://')
+app.config_from_object('all_news.celeryconfig')
 all_news_task = app.register_task(FetchAllNews())
 all_news_task.delay()
