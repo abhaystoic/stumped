@@ -19,7 +19,8 @@ mongodb_backend_settings = {
 beat_schedule = {
   "every_hour": {
     "task": "fetch-covid19-news-task",
-    "schedule": crontab(minute='*/5'), # Every 5 minutes.
+    "schedule": crontab(minute='*/7'), # Every 7 minutes.
+    "options": {"queue": "all-news"},
     # "schedule": crontab(minute=0, hour='*/1'), # Every hour.
   }
 }
