@@ -4,7 +4,7 @@ import pika
 def send_headlines(headlines):
   credentials = pika.PlainCredentials('admin', 'admin123')
   connection = pika.BlockingConnection(pika.ConnectionParameters(
-    'headlines-ms', 5672, '/', credentials))
+    'headlines-ms', 5672, 'headlinesvhost', credentials))
   channel = connection.channel()
   channel.queue_declare(queue='headlines')
   channel.basic_publish(
