@@ -15,6 +15,3 @@ rabbitmqctl add_vhost covid19vhost; \
 rabbitmqctl set_user_tags admin administrator ; \
 rabbitmqctl set_permissions -p covid19vhost admin  ".*" ".*" ".*" ; \
 echo "User 'admin' has been created") & rabbitmq-server
-
-supervisord --configuration=/flask_app/src/app/supervisord.conf --directory=/flask_app/src/app  --logfile=/flask_app/src/app/supervisord.log --loglevel=trace
-echo "supervisord scheduled the tasks succesfully"
