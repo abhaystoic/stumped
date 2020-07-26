@@ -108,3 +108,6 @@ supervisord -n --configuration=supervisord.conf --directory=~/github/stumped/all
 
 - supervisord all-news
 supervisord -n --configuration=supervisord.conf --directory=~/github/stumped/data-distribution-ms/src/celery_dd_tasks --logfile=all_news/supervisord.log --loglevel=trace
+
+- Get list of directories and usages
+sudo du -h --max-depth=1 | sort -hr
