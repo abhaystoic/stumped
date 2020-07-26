@@ -7,8 +7,11 @@ from pymongo import MongoClient
 from sentiment_analyzer import classifier
 
 
+credentials = pika.PlainCredentials('admin', 'admin123')
 connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host='headlinesvhost'))
+    pika.ConnectionParameters(
+      host='localhost', virtual_host='headlinesvhost', credentials=credentials))
+
 channel = connection.channel()
 
 channel.queue_declare(queue='headlines')
