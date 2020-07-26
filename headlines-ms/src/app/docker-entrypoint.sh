@@ -10,4 +10,5 @@ rabbitmqctl set_user_tags admin administrator ; \
 rabbitmqctl set_permissions -p / admin  ".*" ".*" ".*" ; \
 echo "User 'admin' has been created") & rabbitmq-server
 
-python3 -u /flask_app/src/messaging/rabbit_receiver.py > output.log &
+supervisord --configuration=/flask_app/src/app/supervisord.conf --directory=/flask_app/src/app  --logfile=/flask_app/src/app/supervisord.log --loglevel=trace
+echo "supervisord scheduled the tasks succesfully"
