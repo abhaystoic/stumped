@@ -8,7 +8,7 @@ from sentiment_analyzer import classifier
 
 
 connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host='localhost'))
+    pika.ConnectionParameters(host='headlinesvhost'))
 channel = connection.channel()
 
 channel.queue_declare(queue='headlines')

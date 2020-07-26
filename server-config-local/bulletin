@@ -1,23 +1,22 @@
 server {
     listen  80 default_server;
     listen  [::]:80 default_server;
-    server_name example.com www.example.com;
-    root    /home/abhay/github/stumped/front-end/bulletin/dist/bulletin;
+    root    /home/ubuntu/stumped/front-end/bulletin/dist/bulletin;
     index   index.html;
     location / {
 	    try_files $uri $uri/ /index.html;
     }
     location /fetch-business {
 	    rewrite /fetch-business /$1  break;
-	    proxy_pass http://172.18.0.4:5000;
+	    proxy_pass http://172.18.0.3:5000;
     }
     location /fetch-covid19 {
 	    rewrite /fetch-covid19 /$1  break;
-	    proxy_pass http://172.18.0.4:5000;
+	    proxy_pass http://172.18.0.2:5000;
     }
     location /fetch-entertainment {
 	    rewrite /fetch-entertainment /$1  break;
-	    proxy_pass http://172.18.0.4:5000;
+	    proxy_pass http://172.18.0.3:5000;
     }
     location /fetch-headlines {
 	    rewrite /fetch-headlines /$1  break;
@@ -25,18 +24,18 @@ server {
     }
     location /fetch-health {
 	    rewrite /fetch-health /$1  break;
-	    proxy_pass http://172.18.0.4:5000;
+	    proxy_pass http://172.18.0.3:5000;
     }
     location /fetch-science {
 	    rewrite /fetch-science /$1  break;
-	    proxy_pass http://172.18.0.4:5000;
+	    proxy_pass http://172.18.0.3:5000;
     }
     location /fetch-sports {
 	    rewrite /fetch-sports /$1  break;
-	    proxy_pass http://172.18.0.4:5000;
+	    proxy_pass http://172.18.0.3:5000;
     }
     location /fetch-technology {
 	    rewrite /fetch-technology /$1  break;
-	    proxy_pass http://172.18.0.4:5000;
+	    proxy_pass http://172.18.0.3:5000;
     }
 }
