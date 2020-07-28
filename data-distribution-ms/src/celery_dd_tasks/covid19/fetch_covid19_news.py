@@ -34,7 +34,7 @@ class FetchCovid19NewsTask(Task):
   def fetch_covid19_news(self):
     """Celery task to fetch covid19 news and save in the database."""
     covid19_news_res = self.news_api.get_everything(
-      qintitle='covid19 AND coronavirus', language='en', page_size=100)
+      q='covid19 AND coronavirus', language='en', page_size=100)
     covid19_news = {}
     if covid19_news_res['status'] == 'ok':
       covid19_news = covid19_news_res
