@@ -111,3 +111,6 @@ supervisord -n --configuration=supervisord.conf --directory=~/github/stumped/dat
 
 - Get list of directories and usages
 sudo du -h --max-depth=1 | sort -hr
+
+- Running Flask app locally
+sudo env FLASK_APP=app.py python3 -m flask run

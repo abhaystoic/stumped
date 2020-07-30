@@ -17,7 +17,7 @@ export class BusinessComponent implements OnInit {
     setTimeout(() =>this.splashService.updateSplashState(true), 0);
     this.apiService.getBusinessNews().subscribe((data)=>{
       this.businessNews = data['articles'];
-      setTimeout(() =>this.splashService.updateSplashState(false), 1000);
+      setTimeout(() =>this.splashService.updateSplashState(false), 300);
     });
   }
 
