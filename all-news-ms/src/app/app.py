@@ -19,7 +19,11 @@ def get_business_news():
   print(total_docs, ' total documents.')
   records = [
     document for document in collection.aggregate(
-      [{"$sort":{"created_time":-1}}])][0]
+      [
+        {"$sort":{"created_time":-1}},
+        {'$limit': 1}
+      ],
+      allowDiskUse=True)][0]
   result = {
     'created_time': records['created_time'],
     'articles': [],
@@ -40,7 +44,11 @@ def get_entertainment_news():
   print(total_docs, ' total documents.')
   records = [
     document for document in collection.aggregate(
-      [{"$sort":{"created_time":-1}}])][0]
+      [
+        {"$sort":{"created_time":-1}},
+        {'$limit': 1}
+      ],
+      allowDiskUse=True)][0]
   result = {
     'created_time': records['created_time'],
     'articles': [],
@@ -61,7 +69,11 @@ def get_health_news():
   print(total_docs, ' total documents.')
   records = [
     document for document in collection.aggregate(
-      [{"$sort":{"created_time":-1}}])][0]
+      [
+        {"$sort":{"created_time":-1}},
+        {'$limit': 1}
+      ],
+      allowDiskUse=True)][0]
   result = {
     'created_time': records['created_time'],
     'articles': [],
@@ -82,7 +94,11 @@ def get_science_news():
   print(total_docs, ' total documents.')
   records = [
     document for document in collection.aggregate(
-      [{"$sort":{"created_time":-1}}])][0]
+      [
+        {"$sort":{"created_time":-1}},
+        {'$limit': 1}
+      ],
+      allowDiskUse=True)][0]
   result = {
     'created_time': records['created_time'],
     'articles': [],
@@ -103,7 +119,11 @@ def get_sports_news():
   print(total_docs, ' total documents.')
   records = [
     document for document in collection.aggregate(
-      [{"$sort":{"created_time":-1}}])][0]
+      [
+        {"$sort":{"created_time":-1}},
+        {'$limit': 1}
+      ],
+      allowDiskUse=True)][0]
   result = {
     'created_time': records['created_time'],
     'articles': [],
@@ -124,7 +144,11 @@ def get_technology_news():
   print(total_docs, ' total documents.')
   records = [
     document for document in collection.aggregate(
-      [{"$sort":{"created_time":-1}}])][0]
+      [
+        {"$sort":{"created_time":-1}},
+        {'$limit': 1}
+      ],
+      allowDiskUse=True)][0]
   result = {
     'created_time': records['created_time'],
     'articles': [],
