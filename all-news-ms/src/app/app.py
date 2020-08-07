@@ -20,7 +20,7 @@ def get_business_news():
   records = [
     document for document in collection.aggregate(
       [
-        {"$sort":{"created_time":-1}},
+        {'$sort':{'created_time':-1}},
         {'$limit': 1}
       ],
       allowDiskUse=True)][0]
@@ -45,7 +45,7 @@ def get_entertainment_news():
   records = [
     document for document in collection.aggregate(
       [
-        {"$sort":{"created_time":-1}},
+        {'$sort':{'created_time':-1}},
         {'$limit': 1}
       ],
       allowDiskUse=True)][0]
@@ -70,7 +70,7 @@ def get_health_news():
   records = [
     document for document in collection.aggregate(
       [
-        {"$sort":{"created_time":-1}},
+        {'$sort':{'created_time':-1}},
         {'$limit': 1}
       ],
       allowDiskUse=True)][0]
@@ -95,7 +95,7 @@ def get_science_news():
   records = [
     document for document in collection.aggregate(
       [
-        {"$sort":{"created_time":-1}},
+        {'$sort':{'created_time':-1}},
         {'$limit': 1}
       ],
       allowDiskUse=True)][0]
@@ -120,7 +120,7 @@ def get_sports_news():
   records = [
     document for document in collection.aggregate(
       [
-        {"$sort":{"created_time":-1}},
+        {'$sort':{'created_time':-1}},
         {'$limit': 1}
       ],
       allowDiskUse=True)][0]
@@ -145,7 +145,7 @@ def get_technology_news():
   records = [
     document for document in collection.aggregate(
       [
-        {"$sort":{"created_time":-1}},
+        {'$sort':{'created_time':-1}},
         {'$limit': 1}
       ],
       allowDiskUse=True)][0]

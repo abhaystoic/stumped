@@ -17,7 +17,13 @@ def hello():
   collection = db['covid19']
   total_docs = collection.count_documents({})
   print(total_docs, ' total documents.')
-  records = [document for document in collection.aggregate([{"$sort":{"created_time":-1}}])][0]
+  records = [
+    document for document in collection.aggregate(
+      [
+        {'$sort':{'created_time':-1}},
+        {'$limit': 1}
+      ],
+      allowDiskUse=True)][0]
   return json.dumps(
     records, sort_keys=True, indent=4, default=json_util.default)
 
