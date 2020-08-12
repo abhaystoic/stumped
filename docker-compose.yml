@@ -93,8 +93,10 @@ services:
       - stumped-back
   
   elastic-search:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.8.1
     container_name: elastic-search
+    privileged: true
+    build:
+      context: elastic-search/.
     environment:
       - node.name=elastic-search
       - cluster.name=es-docker-cluster
