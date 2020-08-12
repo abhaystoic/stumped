@@ -92,11 +92,12 @@ services:
     networks:
       - stumped-back
   
-  elastic-search:
-    container_name: elastic-search
+  elastic-search-ms:
+    container_name: elastic-search-ms-container
     privileged: true
     build:
-      context: elastic-search/.
+      context: elastic-search-ms/.
+    image: abhaystoic/elastic-search-ms:latest
     environment:
       - node.name=elastic-search
       - cluster.name=es-docker-cluster
