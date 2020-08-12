@@ -13,7 +13,6 @@ export class ApiService {
   }
 
   public getCovid19News() {
-  	console.log('getCovid19News');
     return this.httpClient.get('/fetch-covid19');
   }
 
