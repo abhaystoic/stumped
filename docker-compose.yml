@@ -92,17 +92,20 @@ services:
     networks:
       - stumped-back
   
-  elastic-search:
-    container_name: elastic-search
+  elastic-search-ms:
+    container_name: elastic-search-ms-container
     privileged: true
     build:
-      context: elastic-search/.
+      context: elastic-search-ms/.
+    image: abhaystoic/elastic-search-ms:latest
     environment:
       - node.name=elastic-search
       - cluster.name=es-docker-cluster
       - cluster.initial_master_nodes=elastic-search
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - network.bind_host=0.0.0.0
+      - network.host=0.0.0.0
     ulimits:
       memlock:
         soft: -1
