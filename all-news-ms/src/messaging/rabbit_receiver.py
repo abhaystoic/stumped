@@ -4,6 +4,7 @@ import pytz
 
 from datetime import datetime
 from pymongo import MongoClient
+from search import elasticsearch_indexer
 from sentiment_analyzer import classifier
 
 
@@ -23,6 +24,7 @@ def callback(ch, method, properties, body):
   body = json.loads(body)
   print(' [x] Received %r' % body)
   body = classifier.classify(body)
+  elasticsearch_indexer.create_es_index(body)
   tz = pytz.timezone('Asia/Kolkata')
   for topic, news in body.items():
     collection = db[topic]

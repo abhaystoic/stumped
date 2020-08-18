@@ -100,7 +100,7 @@ services:
     image: abhaystoic/elastic-search-ms:latest
     environment:
       - node.name=elastic-search
-      - cluster.name=es-docker-cluster
+      - cluster.name=news-elasticsearch-cluster
       - cluster.initial_master_nodes=elastic-search
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"

@@ -7,8 +7,8 @@ from celery import Task
 from celery.utils.log import get_task_logger
 from newsapi import NewsApiClient
 
-from .messaging import rabbit_sender
 from .constants import categories
+from .messaging import rabbit_sender
 
 logger = get_task_logger(__name__)
 
@@ -37,7 +37,8 @@ class FetchAllNews(Task):
     all_news = {}
     for topic, categories_list in categories.items():
       for cat in categories_list:
-        news_res = self.news_api.get_everything(q=cat, language='en', page_size=100)
+        news_res = self.news_api.get_everything(
+          q=cat, language='en', page_size=100)
         if news_res['status'] == 'ok':
           if topic in all_news:
             all_news[topic].append(news_res)

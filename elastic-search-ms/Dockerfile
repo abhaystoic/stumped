@@ -4,4 +4,4 @@ COPY --chown=elasticsearch:elasticsearch elasticsearch.yml /usr/share/elasticsea
 # Expose the default Elasticsearch port
 EXPOSE 9200
 
-RUN yum install vim-enhanced -y  
+# RUN yum install vim-enhanced -y  
