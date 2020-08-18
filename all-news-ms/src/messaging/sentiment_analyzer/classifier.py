@@ -28,7 +28,6 @@ def classify(all_news):
   for topic, categ_news in all_news.items():
     for rec in categ_news:
       for article in rec['articles']:
-        print(article)
         desc = article.get('description', '') or ''
         content = article.get('content', '') or ''
         pol_score = sia.polarity_scores(desc + ' ' + content)
