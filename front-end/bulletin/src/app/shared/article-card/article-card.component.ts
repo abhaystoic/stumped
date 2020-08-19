@@ -12,6 +12,8 @@ export class ArticleCardComponent implements OnInit {
   @Input() allArticles;
   @Input() allOriginalArticles;
   @Input() displayPositiveNews = false;
+  @Input() source = '';
+  @Input() query = '';
   showSplash = true;
 
   constructor(private splashService:SplashService) { }
