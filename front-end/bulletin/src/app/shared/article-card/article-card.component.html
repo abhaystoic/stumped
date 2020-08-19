@@ -1,4 +1,7 @@
 <div [hidden]="showSplash">
+  <div class="search-res-indicator-txt" *ngIf="source === 'search'">
+    Search results for <b>"{{query}}"</b>
+  </div>
   <div class="filters-container">
     <span class="toggle-text">Display positive News</span>
     <label class="switch">

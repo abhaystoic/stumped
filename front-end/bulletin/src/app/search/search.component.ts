@@ -11,6 +11,7 @@ import { SplashService } from '../splash.service';
 })
 export class SearchComponent implements OnInit {
 
+  query: string = '';
   searchResults: Array<object> = [];
 
   constructor(
@@ -21,9 +22,9 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('in ngOnInit');
-    let query = this.route.snapshot.params['query'];
+    this.query = this.route.snapshot.params['query'];
     setTimeout(() =>this.splashService.updateSplashState(true), 0);
-    this.apiService.getSearchResults(query).subscribe((data)=>{
+    this.apiService.getSearchResults(this.query).subscribe((data)=>{
       for (let news of data['hits']['hits']) {
         this.searchResults.push(news['_source']);
       }
