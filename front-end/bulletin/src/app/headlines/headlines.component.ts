@@ -12,7 +12,8 @@ export class HeadlinesComponent implements OnInit {
   headlines;
   showSplash: boolean = true;
 
-  constructor(private apiService: ApiService, private splashService:SplashService) { }
+  constructor(
+    private apiService: ApiService, private splashService:SplashService) { }
 
   ngOnInit(): void {
     setTimeout(() =>this.splashService.updateSplashState(true), 0);

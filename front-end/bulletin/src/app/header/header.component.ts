@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
+import { SplashService } from '../splash.service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  searchResults: object = [];
+  searchInput: string = '';
+
+  constructor(
+    private apiService: ApiService, private router: Router){}
 
   ngOnInit(): void {
   }
@@ -16,6 +23,18 @@ export class HeaderComponent implements OnInit {
     document.getElementById("appSidenav").style.width = "200px";
     document.getElementById("main").style.marginLeft = "200px";
     document.getElementById("main").style.width = "85%";
+  }
+
+  search():void {
+    this.apiService.getSearchResults(this.searchInput).subscribe((data)=>{
+      console.log(data['hits']['hits']);
+      this.searchResults = data['hits']['hits'];
+    });
+  }
+
+  showAllSearchResults():void {
+    console.log(this.searchInput);
+    this.router.navigate(['/search/' + this.searchInput]);
   }
 
 }

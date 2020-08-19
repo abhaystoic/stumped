@@ -10,18 +10,20 @@ import { HeadlinesComponent } from './headlines/headlines.component';
 import { HealthComponent } from './health/health.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ScienceComponent } from './science/science.component';
+import { SearchComponent } from './search/search.component';
 import { SportsComponent } from './sports/sports.component';
 import { TechnologyComponent } from './technology/technology.component';
 
 const routes: Routes = [
   { path: 'about-us', component: AboutUsComponent },
+  { path: 'business', component: BusinessComponent },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'covid19', component: Covid19Component },
-  { path: 'business', component: BusinessComponent },
   { path: 'entertainment', component: EntertainmentComponent },
   { path: 'headlines', component: HeadlinesComponent },
   { path: 'health', component: HealthComponent },
   { path: 'science', component: ScienceComponent },
+  { path: 'search/:query', component: SearchComponent },
   { path: 'sports', component: SportsComponent },
   { path: 'technology', component: TechnologyComponent },
   { path: '',   redirectTo: '/headlines', pathMatch: 'full' },

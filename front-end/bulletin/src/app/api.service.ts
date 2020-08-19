@@ -40,4 +40,26 @@ export class ApiService {
     return this.httpClient.get('/fetch-technology');
   }
 
+  public getSearchResults(query) {
+    let body = {
+      'query': {
+        'match_phrase_prefix' : {
+          'title': {
+            'query': query,
+            'slop': 3,
+            'max_expansions': 20,
+          }
+        }
+      },
+      '_source': [
+        'title', 'description', 'content', 'source', 'url', 'urlToImage',
+        'positivity', 'negativity', 'neutrality'],
+    };
+    let headers = {
+      'Content-Type': 'application/json',
+    }
+    return this.httpClient.post<any>(
+      '/search-news', body, {headers});
+  }
+
 }

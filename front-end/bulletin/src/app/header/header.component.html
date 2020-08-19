@@ -6,7 +6,13 @@
     <h4><a href="/" class="main-site-title">Bulletin News</a></h4>
   </div>
   <div class="col-xs-6 search-container">
-    <input type="text" placeholder="Search... (Coming Soon)" name="search">
-    <button type="submit"><i class="fa fa-search"></i></button>
+    <input type="text"
+           placeholder="Search for topics"
+           [(ngModel)]="searchInput"
+           (keyup)="search()">
+    <button type="button"
+            (click)="showAllSearchResults()">
+            <i class="fa fa-search"></i>
+    </button>
   </div>
 </div>
