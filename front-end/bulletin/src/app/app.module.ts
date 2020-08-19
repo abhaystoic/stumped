@@ -18,6 +18,7 @@ import { HealthComponent } from './health/health.component';
 import { ArticleCardComponent } from './shared/article-card/article-card.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     HealthComponent,
     ArticleCardComponent,
     ContactUsComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    SearchComponent
   ],
   imports: [
     AppRoutingModule,
