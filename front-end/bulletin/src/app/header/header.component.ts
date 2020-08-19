@@ -33,8 +33,8 @@ export class HeaderComponent implements OnInit {
   }
 
   showAllSearchResults():void {
-    console.log(this.searchInput);
-    this.router.navigate(['/search/' + this.searchInput]);
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(
+      ()=>this.router.navigate(['/search/' + this.searchInput]));
   }
 
 }

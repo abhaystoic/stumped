@@ -47,7 +47,7 @@ export class ApiService {
           'title': {
             'query': query,
             'slop': 3,
-            'max_expansions': 20,
+            'max_expansions': 10,
           }
         }
       },
@@ -59,7 +59,7 @@ export class ApiService {
       'Content-Type': 'application/json',
     }
     return this.httpClient.post<any>(
-      '/search-news', body, {headers});
+      'http://172.18.0.6:9200/news-search/news/_search', body, {headers});
   }
 
 }
