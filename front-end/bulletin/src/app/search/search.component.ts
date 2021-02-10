@@ -21,15 +21,22 @@ export class SearchComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    console.log('in ngOnInit');
+    console.log('in ngOnInit of SearchComponent');
     this.query = this.route.snapshot.params['query'];
     setTimeout(() =>this.splashService.updateSplashState(true), 0);
-    this.apiService.getSearchResults(this.query).subscribe((data)=>{
-      for (let news of data['hits']['hits']) {
-        this.searchResults.push(news['_source']);
-      }
-      setTimeout(() =>this.splashService.updateSplashState(false), 300);
-    });
+    this.apiService.getSearchResults(this.query)
+                   .subscribe(
+                     (data)=>{
+                       for (let news of data['hits']['hits']) {
+                         this.searchResults.push(news['_source']);
+                        }
+                        setTimeout(() =>this.splashService.updateSplashState(false), 300);
+                      },
+                      (error) => {
+                        console.log(error);
+                        this.searchResults = null;
+                        setTimeout(() =>this.splashService.updateSplashState(false), 300);
+                      });
   }
 
 }

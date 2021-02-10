@@ -29,6 +29,10 @@ export class HeaderComponent implements OnInit {
     this.apiService.getSearchResults(this.searchInput).subscribe((data)=>{
       console.log(data['hits']['hits']);
       this.searchResults = data['hits']['hits'];
+    },
+    (error) => {
+      console.log(error);
+      this.searchResults = null;
     });
   }
 

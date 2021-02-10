@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +61,11 @@ export class ApiService {
       'Content-Type': 'application/json',
     }
     return this.httpClient.post<any>(
-      'http://172.18.0.6:9200/news-search/news/_search', body, {headers});
+      'http://172.18.0.6:9200/news-search/news/_search', body, {headers}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Elastic Search MS returned no results.');
+        }));
   }
 
 }
