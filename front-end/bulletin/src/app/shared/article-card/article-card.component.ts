@@ -41,6 +41,6 @@ export class ArticleCardComponent implements OnInit {
     } else {
       this.allArticles = this.allOriginalArticles;
     }
-    setTimeout(() =>this.splashService.updateSplashState(false), 300);
+    setTimeout(() =>this.splashService.updateSplashState(false), 100);
   }
 }
