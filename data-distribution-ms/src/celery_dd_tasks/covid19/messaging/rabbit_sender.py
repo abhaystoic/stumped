@@ -9,5 +9,5 @@ def send_covid19_news(covid19_news):
   channel.queue_declare(queue='covid19_news')
   channel.basic_publish(
     exchange='', routing_key='covid19_news', body=json.dumps(covid19_news))
-  print(" [x] Sent Hello World! in JSON format.")
+  print(" [x] Sent covide19 in JSON format.")
   connection.close()  

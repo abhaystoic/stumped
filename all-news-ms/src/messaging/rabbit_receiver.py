@@ -24,7 +24,11 @@ def callback(ch, method, properties, body):
   body = json.loads(body)
   print(' [x] Received %r' % body)
   body = classifier.classify(body)
-  elasticsearch_indexer.create_es_index(body)
+  try:
+    elasticsearch_indexer.create_es_index(body)
+  except Exception:
+    print('Failed to create elastic search index.')
+    pass
   tz = pytz.timezone('Asia/Kolkata')
   for topic, news in body.items():
     collection = db[topic]
