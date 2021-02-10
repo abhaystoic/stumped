@@ -15,7 +15,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645', GradientType=1 );
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
+  padding-top: 65px;
   font-weight: bold;
 }
 
@@ -72,3 +72,9 @@
   background: #555; 
 }
 /* Custom scrollbar ends. */
+
+/* Highlight active side-nav link. */
+.active-sidenav-link {
+  color: #ffffff !important;
+  background-color: #434343 !important;
+}
