@@ -19,7 +19,7 @@ export class HeadlinesComponent implements OnInit {
     setTimeout(() =>this.splashService.updateSplashState(true), 0);
   	this.apiService.getHeadlines().subscribe((data)=>{
       this.headlines = data['articles'];
-      setTimeout(() =>this.splashService.updateSplashState(false), 300);
+      setTimeout(() =>this.splashService.updateSplashState(false), 100);
     });
   }
 

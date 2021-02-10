@@ -19,7 +19,7 @@ export class TechnologyComponent implements OnInit {
     setTimeout(() =>this.splashService.updateSplashState(true), 0);
     this.apiService.getTechnologyNews().subscribe((data) => {
       this.technologyNews = data['articles'];
-      setTimeout(() =>this.splashService.updateSplashState(false), 300);
+      setTimeout(() =>this.splashService.updateSplashState(false), 100);
     });
   }
 

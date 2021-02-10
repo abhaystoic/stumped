@@ -61,6 +61,12 @@ docker stop $(docker ps -aq)
 the followig to rebuild it:
 docker-compose build
 
+- Start a specific container/service
+docker-compose start elastic-search-ms
+
+- Stop all running containers
+docker stop $(docker ps -a -q)
+
 - SSH to container:
  docker exec -it data-distribution-ms-container /bin/bash
 
@@ -142,3 +148,7 @@ https://medium.com/naukri-engineering/elasticsearch-tutorial-for-beginners-using
     },
     "_source": [ "title", "description", "content"]
 }'
+
+- Angular app deployment over production
+https://www.devdungeon.com/content/deploy-angular-apps-nginx
+
