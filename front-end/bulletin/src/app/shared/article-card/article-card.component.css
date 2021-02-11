@@ -97,3 +97,7 @@ body {
   color: #000000;
   margin-left: 24px;
 }
+
+.search-text-adjust {
+  min-height: 0 !important;
+}

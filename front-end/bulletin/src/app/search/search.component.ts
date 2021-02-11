@@ -34,7 +34,7 @@ export class SearchComponent implements OnInit {
                       },
                       (error) => {
                         console.log(error);
-                        this.searchResults = null;
+                        this.searchResults = [];
                         setTimeout(() =>this.splashService.updateSplashState(false), 100);
                       });
   }
