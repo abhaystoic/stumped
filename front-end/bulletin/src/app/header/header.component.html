@@ -8,7 +8,8 @@
   <div class="col-xs-6 search-container">
     <input type="text"
            placeholder="Search for topics"
-           [(ngModel)]="searchInput">
+           [(ngModel)]="searchInput"
+           (keyup.enter)="showAllSearchResults()">
     <button type="button"
             (click)="showAllSearchResults()">
             <i class="fa fa-search"></i>
