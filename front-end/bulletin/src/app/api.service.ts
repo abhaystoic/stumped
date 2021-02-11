@@ -61,7 +61,7 @@ export class ApiService {
       'Content-Type': 'application/json',
     }
     return this.httpClient.post<any>(
-      'http://172.18.0.6:9200/news-search/news/_search', body, {headers}).pipe(
+      '/search-news', body, {headers}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Elastic Search MS returned no results.');
