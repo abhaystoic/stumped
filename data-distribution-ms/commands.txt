@@ -152,3 +152,4 @@ https://medium.com/naukri-engineering/elasticsearch-tutorial-for-beginners-using
 - Angular app deployment over production
 https://www.devdungeon.com/content/deploy-angular-apps-nginx
 
+- Favicons source: https://fontawesome.com/v4.7.0/icons/
