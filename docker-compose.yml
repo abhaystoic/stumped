@@ -98,6 +98,7 @@ services:
     build:
       context: elastic-search-ms/.
     image: abhaystoic/elastic-search-ms:latest
+    restart: 'unless-stopped'
     environment:
       - node.name=elastic-search
       - cluster.name=news-elasticsearch-cluster

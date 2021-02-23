@@ -17,7 +17,7 @@ export class SportsComponent implements OnInit {
     setTimeout(() =>this.splashService.updateSplashState(true), 0);
     this.apiService.getSportsNews().subscribe((data)=>{
       this.sportsNews = data['articles'];
-      setTimeout(() =>this.splashService.updateSplashState(false), 100);
+      setTimeout(() =>this.splashService.updateSplashState(false), 200);
     });
   }
 

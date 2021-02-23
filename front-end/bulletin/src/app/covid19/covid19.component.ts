@@ -17,7 +17,7 @@ export class Covid19Component implements OnInit {
     setTimeout(() =>this.splashService.updateSplashState(true), 0);
     this.apiService.getCovid19News().subscribe((data)=>{
       this.covid19News = data['articles'];
-      setTimeout(() =>this.splashService.updateSplashState(false), 100);
+      setTimeout(() =>this.splashService.updateSplashState(false), 200);
     });
   }
 

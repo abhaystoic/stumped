@@ -30,12 +30,12 @@ export class SearchComponent implements OnInit {
                        for (let news of data['hits']['hits']) {
                          this.searchResults.push(news['_source']);
                         }
-                        setTimeout(() =>this.splashService.updateSplashState(false), 100);
+                        setTimeout(() =>this.splashService.updateSplashState(false), 200);
                       },
                       (error) => {
                         console.log(error);
                         this.searchResults = [];
-                        setTimeout(() =>this.splashService.updateSplashState(false), 100);
+                        setTimeout(() =>this.splashService.updateSplashState(false), 200);
                       });
   }
 

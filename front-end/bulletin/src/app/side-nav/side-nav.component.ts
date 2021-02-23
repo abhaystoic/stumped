@@ -14,7 +14,7 @@ export class SideNavComponent implements OnInit {
 
   closeNav() {
     document.getElementById("appSidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft= "0";
+    document.getElementById("main").style.marginLeft = "0";
     document.getElementById("main").style.width = "100%";
   }
 
