@@ -20,6 +20,7 @@ import { ArticleCardComponent } from './shared/article-card/article-card.compone
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { SearchComponent } from './search/search.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SearchComponent } from './search/search.component';
     ArticleCardComponent,
     ContactUsComponent,
     AboutUsComponent,
-    SearchComponent
+    SearchComponent,
+    MyProfileComponent
   ],
   imports: [
     AppRoutingModule,
