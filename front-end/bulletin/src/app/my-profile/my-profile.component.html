@@ -1,15 +1,17 @@
 <div class="my-profile-container">
   <div class="card flex-row flex-wrap">
     <div class="flex-wrap card-body news-li-style news-content">
-      <div *ngIf="!user" class="">
+      <div *ngIf="!user" class="btn-social-container">
         <p>Please login and customize your experience.</p>
-        <button class="btn btn-social-icon btn-google"
+        <button class="btn-social-auth btn-lg btn-google btn-block text-uppercase"
                 (click)="signInWithGoogle()">
                 <span class="fa fa-google"></span>
+                <span class="login-btn-txt"> Sign in with Google </span>
         </button>
-        <button class="btn btn-social-icon btn-facebook"
+        <button class="btn-social-auth btn-lg btn-facebook btn-block text-uppercase"
                 (click)="signInWithFB()">
                 <span class="fa fa-facebook"></span>
+                <span class="login-btn-txt"> Sign in with Facebook </span>
         </button>
       </div>
       <div *ngIf="user">
