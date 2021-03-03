@@ -4,6 +4,8 @@ import { SocialAuthService, SocialUser } from "angularx-social-login";
 import {
   FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
+import { ApiService } from '../api.service';
+
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
@@ -14,7 +16,8 @@ export class MyProfileComponent implements OnInit {
   user: SocialUser;
   loggedIn: boolean;
 
-  constructor(private authService: SocialAuthService) { }
+  constructor(
+    private apiService: ApiService, private authService: SocialAuthService) { }
 
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {

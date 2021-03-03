@@ -15,7 +15,10 @@
         </button>
       </div>
       <div *ngIf="user">
-        <img src="{{ user.photoUrl }}">
+        <img *ngIf="user.provider==='GOOGLE'"
+             src="{{ user.photoUrl }}">
+        <img *ngIf="user.provider==='FACEBOOK'"
+             src="{{ user.response.picture.data.url }}">
         <div>
           <h4>{{ user.name }}</h4>
           <p>{{ user.email }}</p>

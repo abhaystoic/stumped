@@ -68,4 +68,8 @@ export class ApiService {
         }));
   }
 
+  public saveUserInfo(info) {
+    
+  }
+
 }
