@@ -4,7 +4,7 @@
   <div class="card flex-row flex-wrap">
     <div class="flex-wrap card-body news-li-style news-content">
       <div *ngIf="!user" class="btn-social-container">
-        <p>Please login and customize your experience.</p>
+        <p>Please login to customize your experience.</p>
         <button class="btn-social-auth btn-lg btn-google btn-block text-uppercase"
                 (click)="signInWithGoogle()">
                 <span class="fa fa-google"></span>
@@ -207,8 +207,10 @@
             </label>
           </div>
         </div>
-        <div class="">
-          <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+        <div class="row">
+          <div class="col col-content">
+            <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+          </div>
         </div>
       </div>
     </div>

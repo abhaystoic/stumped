@@ -53,9 +53,11 @@ export class MyProfileComponent implements OnInit {
       /**
        * Updates user info if the user already exists.
        */
-      this.apiService.saveUser(user).subscribe((data)=>{
-        console.log(data);
-        // setTimeout(() =>this.splashService.updateSplashState(false), 200);
+      this.apiService.saveUser(user).subscribe((data) => {
+        let userInfo = data['user'];
+        if (userInfo.hasOwnProperty('preferences')) {
+          this.preferences = userInfo['preferences'];
+        }
       });
     });
   }
@@ -78,8 +80,6 @@ export class MyProfileComponent implements OnInit {
     console.log("savePreferences===>>", this.user);
     this.apiService.saveUser(this.user).subscribe((data)=>{
       console.log(data);
-      // this.headlines = data['articles'];
-      // setTimeout(() =>this.splashService.updateSplashState(false), 200);
     });
   }
 
