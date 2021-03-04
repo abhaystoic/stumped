@@ -50,7 +50,13 @@ export class MyProfileComponent implements OnInit {
       this.user = user;
       this.loggedIn = (user != null);
       console.log("MyProfileComponent===>", user);
-      this.apiService.saveUserInfo(user);
+      /**
+       * Updates user info if the user already exists.
+       */
+      this.apiService.saveUser(user).subscribe((data)=>{
+        console.log(data);
+        // setTimeout(() =>this.splashService.updateSplashState(false), 200);
+      });
     });
   }
 
@@ -68,9 +74,13 @@ export class MyProfileComponent implements OnInit {
 
   savePreferences(category, pref): void {
     this.preferences[category] = pref;
-    console.log("savePreferences===>>", this.preferences);
     this.user['preferences'] = this.preferences;
-    this.apiService.saveUserInfo(this.user);
+    console.log("savePreferences===>>", this.user);
+    this.apiService.saveUser(this.user).subscribe((data)=>{
+      console.log(data);
+      // this.headlines = data['articles'];
+      // setTimeout(() =>this.splashService.updateSplashState(false), 200);
+    });
   }
 
 }

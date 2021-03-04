@@ -1,6 +1,8 @@
 import json
+import pytz
 
 from bson import json_util
+from datetime import datetime
 from flask import Flask, request
 from flask_cors import CORS
 from pymongo import MongoClient
@@ -10,7 +12,7 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route('/')
+@app.route('/', methods = ['GET'])
 def getHeadlines():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.news
@@ -27,25 +29,21 @@ def getHeadlines():
   return json.dumps(
     records, sort_keys=True, indent=4, default=json_util.default)
 
-@app.route('/save-user')
+@app.route('/save-user', methods = ['POST'])
 def saveUser():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
   collection_preferences = db['user_preferences']
-  user_info = request.args.get('user_info')
-  print('user_info===>', user_info)
-  # body = json.loads(body)
-  # print(' [x] Received %r' % body)
-  # body = classifier.classify(body)
-  # try:
-  #   elasticsearch_indexer.create_es_index(body['articles'])
-  # except Exception:
-  #   print('Failed to create elastic search index.')
-  #   pass
-  # tz = pytz.timezone('Asia/Kolkata')
-  # body['created_time'] = datetime.now(tz)
-  # rec_id = collection.insert_one(body)
-  # print('Data inserted with record id= ', rec_id)
+  preferences = request.get_json()
+  mongodb_id = preferences['email'] + '-' + preferences['provider']
+  preferences['_id'] = mongodb_id
+  tz = pytz.timezone('Asia/Kolkata')
+  preferences['created_time'] = datetime.now(tz)
+  print('preferences== ', preferences)
+  rec_id = collection_preferences.update(
+    {'_id': mongodb_id}, preferences, upsert=True)
+  print('Data inserted with record id= ', rec_id)
+  return {'success': True}
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0')
