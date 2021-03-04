@@ -5,6 +5,7 @@ import {
   FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
 import { ApiService } from '../api.service';
+import { SplashService } from '../splash.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -13,12 +14,14 @@ import { ApiService } from '../api.service';
 })
 export class MyProfileComponent implements OnInit {
 
-  user: SocialUser;
+  hideEverythingUntilVerified: boolean;
   loggedIn: boolean;
   preferences: object;
+  user: SocialUser;
 
   constructor(
-    private apiService: ApiService, private authService: SocialAuthService) {
+    private apiService: ApiService, private authService: SocialAuthService,
+    private splashService:SplashService) {
       this.preferences = {
         "activist": false,
         "adventure": false,
@@ -46,9 +49,13 @@ export class MyProfileComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    setTimeout(() =>this.splashService.updateSplashState(true), 0);
+    this.hideEverythingUntilVerified = true;
     this.authService.authState.subscribe((user) => {
+      setTimeout(() =>this.splashService.updateSplashState(false), 0);
       this.user = user;
       this.loggedIn = (user != null);
+      this.hideEverythingUntilVerified = false;
       console.log("MyProfileComponent===>", user);
       /**
        * Updates user info if the user already exists.
