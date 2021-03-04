@@ -1,3 +1,5 @@
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <div class="my-profile-container">
   <div class="card flex-row flex-wrap">
     <div class="flex-wrap card-body news-li-style news-content">
@@ -14,14 +16,196 @@
                 <span class="login-btn-txt"> Sign in with Facebook </span>
         </button>
       </div>
-      <div *ngIf="user">
-        <img *ngIf="user.provider==='GOOGLE'"
-             src="{{ user.photoUrl }}">
-        <img *ngIf="user.provider==='FACEBOOK'"
-             src="{{ user.response.picture.data.url }}">
-        <div>
-          <h4>{{ user.name }}</h4>
-          <p>{{ user.email }}</p>
+      <div *ngIf="user" class="profile-content-container">
+        <div class="row">
+          <div class="col col-content">
+            <img class="profile-pic"
+                 *ngIf="user.provider==='GOOGLE'"
+                 src="{{ user.photoUrl }}">
+            <img class="profile-pic"
+                 *ngIf="user.provider==='FACEBOOK'"
+                 src="{{ user.response.picture.data.url }}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-content">
+            <h5>Welcome {{ user.name }}!</h5>
+            <p>Please save your prefereces:</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-content">
+            <span class="toggle-text">Activist</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['activist']"
+                    (change)="savePreferences('activist', !preferences['activist'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">Adventure</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['adventure']"
+                    (change)="savePreferences('adventure', !preferences['adventure'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">Arts</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['arts']"
+                    (change)="savePreferences('arts', !preferences['arts'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">Automobiles</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['automobiles']"
+                    (change)="savePreferences('automobiles', !preferences['automobiles'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">Culture</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['culture']"
+                    (change)="savePreferences('culture', !preferences['culture'])">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-content">
+            <span class="toggle-text">Economics</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['economics']"
+                    (change)="savePreferences('economics', !preferences['economics'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">Entertainment</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['entertainment']"
+                    (change)="savePreferences('entertainment', !preferences['entertainment'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">Environmental</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['environmental']"
+                    (change)="savePreferences('environmental', !preferences['environmental'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">Faith</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['faith']"
+                    (change)="savePreferences('faith', !preferences['faith'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">Games</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['games']"
+                    (change)="savePreferences('games', !preferences['games'])">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-content">
+            <span class="toggle-text">Health</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['health']"
+                    (change)="savePreferences('health', !preferences['health'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">International</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['international']"
+                    (change)="savePreferences('international', !preferences['international'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">Investmets</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['investmets']"
+                    (change)="savePreferences('investmets', !preferences['investmets'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">Jobs</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['jobs']"
+                    (change)="savePreferences('jobs', !preferences['jobs'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">Local</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['local']"
+                    (change)="savePreferences('local', !preferences['local'])">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-content">
+            <span class="toggle-text">National</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['national']"
+                    (change)="savePreferences('national', !preferences['national'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">Politics</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['politics']"
+                    (change)="savePreferences('politics', !preferences['politics'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">Science</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['science']"
+                    (change)="savePreferences('science', !preferences['science'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">Sports</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['sports']"
+                    (change)="savePreferences('sports', !preferences['sports'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">Technology</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['technology']"
+                    (change)="savePreferences('technology', !preferences['technology'])">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-content">
+            <span class="toggle-text">Travel</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['travel']"
+                    (change)="savePreferences('travel', !preferences['travel'])">
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-text">Weather</span>
+            <label class="switch">
+              <input type="checkbox"
+                    [checked]="preferences['weather']"
+                    (change)="savePreferences('weather', !preferences['weather'])">
+              <span class="slider round"></span>
+            </label>
+          </div>
         </div>
         <div class="">
           <button class="btn btn-danger" (click)="signOut()">Sign out</button>

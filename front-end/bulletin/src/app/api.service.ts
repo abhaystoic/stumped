@@ -68,8 +68,16 @@ export class ApiService {
         }));
   }
 
-  public saveUserInfo(info) {
-    
+  public saveUser(user) {
+    let headers = {
+      'Content-Type': 'application/json',
+    }
+    return this.httpClient.post<any>(
+      '/save-user', user, {headers}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Failed to save user info.');
+        }));
   }
 
 }

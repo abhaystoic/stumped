@@ -36,6 +36,18 @@
   text-align: center;
 }
 
+.col-content {
+  margin: auto;
+  padding: 5px;
+  text-align: center;
+}
+
+.profile-pic {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+}
+
 @media screen and (max-width: 1024px) {
   .btn-social-container {
     max-width: 100%;
