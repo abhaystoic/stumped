@@ -42,7 +42,7 @@ export class ApiService {
     return this.httpClient.get('/fetch-technology');
   }
 
-  public getSavedNews(
+  public getSavedNewsAndSentiments(
     email: string, provider: string, newsArticleIds: string[],
     pageName: string, newsId: string) {
     let headers = {
@@ -53,9 +53,10 @@ export class ApiService {
       'news-article-ids': newsArticleIds,
       'news-id': newsId,
       'provider': provider,
+      'page-name': pageName,
     }
     return this.httpClient.post<any>(
-      'http://172.18.0.4:5000/get-saved-news', body, {headers}).pipe(
+      '/get-saved-news-and-sentiments', body, {headers}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to get saved news for the user.');
@@ -95,11 +96,30 @@ export class ApiService {
     }
     let body = {
       'email': email,
-      'provider': provider,
       'news-article-id': newsId,
+      'provider': provider,
     }
     return this.httpClient.post<any>(
-      'http://172.18.0.4:5000/save-news', body, {headers}).pipe(
+      '/save-news', body, {headers}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Failed to save news for the user.');
+        }));
+  }
+
+  public saveSentiment(
+    email: string, provider: string, newsId: string, sentiment: string) {
+    let headers = {
+      'Content-Type': 'application/json',
+    }
+    let body = {
+      'email': email,
+      'news-article-id': newsId,
+      'provider': provider,
+      'sentiment': sentiment,
+    }
+    return this.httpClient.post<any>(
+      '/save-sentiments', body, {headers}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to save news for the user.');
@@ -117,7 +137,7 @@ export class ApiService {
       'news-article-id': newsId,
     }
     return this.httpClient.post<any>(
-      'http://172.18.0.4:5000/unsave-news', body, {headers}).pipe(
+      '/unsave-news', body, {headers}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to unsave news for the user.');
@@ -129,7 +149,7 @@ export class ApiService {
       'Content-Type': 'application/json',
     }
     return this.httpClient.post<any>(
-      'http://172.18.0.4:5000/save-user', user, {headers}).pipe(
+      '/save-user', user, {headers}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to save user info.');

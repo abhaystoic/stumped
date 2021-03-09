@@ -74,4 +74,14 @@ export class HeadlinesComponent implements OnInit {
     return false;
   }
 
+  async saveHeadlinesSentiment(newsId: string, sentiment: string) {
+    console.log('saveHeadlinesSentiment==>', newsId, sentiment);
+    let response = await this.apiService.saveSentiment(
+      this.user.email, this.user.provider, newsId, sentiment).toPromise();
+    if (response['success']) {
+      return true;
+    }
+    return false;
+  }
+
 }

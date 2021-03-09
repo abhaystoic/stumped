@@ -17,6 +17,7 @@ export class ArticleCardComponent implements OnInit {
   @Input() query = '';
   @Output() saveNews: EventEmitter<any> = new EventEmitter();
   @Output() unSaveNews: EventEmitter<any> = new EventEmitter();
+  @Output() saveSentiment: EventEmitter<any> = new EventEmitter();
   showSplash = true;
 
   constructor(private splashService:SplashService) { }
@@ -45,6 +46,11 @@ export class ArticleCardComponent implements OnInit {
       this.allArticles = this.allOriginalArticles;
     }
     setTimeout(() =>this.splashService.updateSplashState(false), 200);
+  }
+
+  saveUserSentiment(newsUrl: string, sentiment: string): void {
+    console.log('saveUserSentiment==>', sentiment);
+    this.saveSentiment.emit([newsUrl, sentiment]);
   }
 
   saveUserNews(news): void {

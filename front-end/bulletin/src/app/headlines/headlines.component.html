@@ -1,4 +1,5 @@
 <app-article-card [allArticles]="headlines" [loggedIn]="loggedIn"
                   (saveNews)="saveHeadlines($event[0])"
-                  (unSaveNews)="unSaveHeadlines($event[0])">
+                  (unSaveNews)="unSaveHeadlines($event[0])"
+                  (saveSentiment)="saveHeadlinesSentiment($event[0], $event[1])">
 </app-article-card>

@@ -47,17 +47,17 @@
             <i class="fas fa-bookmark fa-lg fa-fw" aria-hidden="true" *ngIf="loggedIn && news.savedArticle"></i>
           </span>
           <label class="fancy-radio user-interaction-element">
-            <input type="radio" name="news-sentiment-{{i}}" [ngModel]="news.sentiment" value="smile"/>
+            <input type="radio" (change)="saveUserSentiment(news.url, 'smile')" name="news-sentiment-{{i}}" [ngModel]="news.sentiment" value="smile"/>
             <i class="far fa-smile fa-lg fa-fw unchecked" aria-hidden="true"></i>
             <i class="fas fa-smile fa-lg fa-fw checked" aria-hidden="true"></i>
           </label>
           <label class="fancy-radio user-interaction-element">
-            <input type="radio" name="news-sentiment-{{i}}" [ngModel]="news.sentiment" value="meh"/>
+            <input type="radio" (change)="saveUserSentiment(news.url, 'meh')" name="news-sentiment-{{i}}" [ngModel]="news.sentiment" value="meh"/>
             <i class="far fa-meh fa-lg fa-fw unchecked" aria-hidden="true"></i>
             <i class="fas fa-meh fa-lg fa-fw checked" aria-hidden="true"></i>
           </label>
           <label class="fancy-radio user-interaction-element">
-            <input type="radio" name="news-sentiment-{{i}}" [ngModel]="news.sentiment" value="frown"/>
+            <input type="radio" (change)="saveUserSentiment(news.url, 'frown')" name="news-sentiment-{{i}}" [ngModel]="news.sentiment" value="frown"/>
             <i class="far fa-frown fa-lg fa-fw unchecked" aria-hidden="true"></i>
             <i class="fas fa-frown fa-lg fa-fw checked" aria-hidden="true"></i>
           </label>

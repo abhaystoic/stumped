@@ -29,25 +29,38 @@ def getHeadlines():
   return json.dumps(
     records, sort_keys=True, indent=4, default=json_util.default)
 
-@app.route('/get-saved-news', methods = ['POST'])
-def getSavedNews():
+@app.route('/get-saved-news-and-sentiments', methods = ['POST'])
+def getSavedNewsAndSentiments():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
   collection_user_headlines = db['user_headlines']
+  collection_user_sentiments = db['user_sentiments']
   params = request.get_json()
   user_id = params['email'] + '-' + params['provider']
   news_article_urls = params['news-article-ids']
 
   saved_news_ids = []
+  saved_news_sentiments = {}
   for article_url in news_article_urls:
+    # Saved news articles.
     article = collection_user_headlines.find_one(
       {'user_id': user_id, 'news_article_id': article_url})
     if (article):
       saved_news_ids.append(article_url)
+    
+    # Saved news sentiments.
+    saved_sentiment = collection_user_sentiments.find_one(
+      {'user_id': user_id, 'news_article_id': article_url})
+    print('saved_sentiment==>', saved_sentiment)
+    if (saved_sentiment):
+      saved_news_sentiments[article_url] = saved_sentiment['sentiment']
   print('saved_news_ids==>', saved_news_ids)
+  print('saved_news_sentiments==>', saved_news_sentiments)
+
   return {
     'success': True,
     'saved_news_ids': saved_news_ids,
+    'saved_news_sentiments': saved_news_sentiments,
   }
 
 @app.route('/save-news', methods = ['POST'])
@@ -67,6 +80,30 @@ def saveNews():
     'last_updated': datetime.now(tz),
   }
   rec_id = collection_user_headlines.insert_one(user_news)
+  if (rec_id):
+    print('Data inserted with record id= ', rec_id)
+  return {'success': True}
+
+@app.route('/save-sentiments', methods = ['POST'])
+def saveSentiments():
+  mongo_client = MongoClient('mongodb://localhost:27017')
+  db = mongo_client.user
+  collection_user_sentiments = db['user_sentiments']
+  params = request.get_json()
+  user_id = params['email'] + '-' + params['provider']
+  tz = pytz.timezone('Asia/Kolkata')
+
+  user_news_sentiment = {
+    'user_id': user_id,
+    'email': params['email'],
+    'provider': params['provider'],
+    'news_article_id': params['news-article-id'],
+    'sentiment': params['sentiment'],
+    'last_updated': datetime.now(tz),
+  }
+  rec_id = collection_user_sentiments.update(
+      { 'user_id': user_id, 'news_article_id': params['news-article-id'] },
+      user_news_sentiment, upsert=True)
   if (rec_id):
     print('Data inserted with record id= ', rec_id)
   return {'success': True}
