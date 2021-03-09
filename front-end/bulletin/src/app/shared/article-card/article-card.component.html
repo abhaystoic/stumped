@@ -41,19 +41,17 @@
         </div>
         <div>
           <span (click)="saveUserNews(news)" class="user-interaction-element">
-            <i class="far fa-bookmark fa-lg" aria-hidden="true" *ngIf="!loggedIn || (loggedIn && !news.savedArticle)"></i>
+            <i class="far fa-bookmark fa-lg fa-fw" aria-hidden="true" *ngIf="!loggedIn || (loggedIn && !news.savedArticle)"></i>
           </span>
-          <span></span>
           <span (click)="unSaveUserNews(news)" class="user-interaction-element">
-            <i class="fas fa-bookmark fa-lg" aria-hidden="true" *ngIf="loggedIn && news.savedArticle"></i>
+            <i class="fas fa-bookmark fa-lg fa-fw" aria-hidden="true" *ngIf="loggedIn && news.savedArticle"></i>
           </span>
-          <span></span>
-          <span><i class="far fa-smile fa-lg" aria-hidden="true" *ngIf="loggedIn"></i></span>
-          <span><i class="fas fa-smile fa-lg" aria-hidden="true" *ngIf="!loggedIn"></i></span>
-          <span><i class="far fa-meh fa-lg" aria-hidden="true" *ngIf="loggedIn"></i></span>
-          <span><i class="fas fa-meh fa-lg" aria-hidden="true" *ngIf="!loggedIn"></i></span>
-          <span><i class="far fa-frown fa-lg" aria-hidden="true" *ngIf="loggedIn"></i></span>
-          <span><i class="fas fa-frown fa-lg" aria-hidden="true" *ngIf="!loggedIn"></i></span>
+          <span><i class="far fa-smile fa-lg fa-fw" aria-hidden="true" *ngIf="loggedIn"></i></span>
+          <span><i class="fas fa-smile fa-lg fa-fw" aria-hidden="true" *ngIf="!loggedIn"></i></span>
+          <span><i class="far fa-meh fa-lg fa-fw" aria-hidden="true" *ngIf="loggedIn"></i></span>
+          <span><i class="fas fa-meh fa-lg fa-fw" aria-hidden="true" *ngIf="!loggedIn"></i></span>
+          <span><i class="far fa-frown fa-lg fa-fw" aria-hidden="true" *ngIf="loggedIn"></i></span>
+          <span><i class="fas fa-frown fa-lg fa-fw" aria-hidden="true" *ngIf="!loggedIn"></i></span>
         </div>
       </div>
       <div class="">
