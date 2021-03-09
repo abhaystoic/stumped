@@ -7,7 +7,7 @@
   font-size: 18px;
 }
 
-.news-content > a {
+.news-content > div > a {
   color: #ffff00
 }
 

@@ -1,1 +1,4 @@
-<app-article-card [allArticles]="headlines"></app-article-card>
+<app-article-card [allArticles]="headlines" [loggedIn]="loggedIn"
+                  (saveNews)="saveHeadlines($event[0])"
+                  (unSaveNews)="unSaveHeadlines($event[0])">
+</app-article-card>

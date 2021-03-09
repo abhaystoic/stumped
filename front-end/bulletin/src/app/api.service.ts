@@ -23,7 +23,7 @@ export class ApiService {
   }
 
   public getHeadlines() {
-  	return this.httpClient.get('/fetch-headlines');
+  	return this.httpClient.get('http://localhost/fetch-headlines');
   }
 
   public getHealthNews() {
@@ -40,6 +40,26 @@ export class ApiService {
 
   public getTechnologyNews() {
     return this.httpClient.get('/fetch-technology');
+  }
+
+  public getSavedNews(
+    email: string, provider: string, newsArticleIds: string[],
+    pageName: string, newsId: string) {
+    let headers = {
+      'Content-Type': 'application/json',
+    }
+    let body = {
+      'email': email,
+      'news-article-ids': newsArticleIds,
+      'news-id': newsId,
+      'provider': provider,
+    }
+    return this.httpClient.post<any>(
+      '/get-saved-news', body, {headers}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Failed to get saved news for the user.');
+        }));
   }
 
   public getSearchResults(query) {
@@ -65,6 +85,42 @@ export class ApiService {
         catchError(err => {
           console.log(err);
           return throwError('Elastic Search MS returned no results.');
+        }));
+  }
+
+  public saveNews(
+    email: string, provider: string, newsId: string) {
+    let headers = {
+      'Content-Type': 'application/json',
+    }
+    let body = {
+      'email': email,
+      'provider': provider,
+      'news-article-id': newsId,
+    }
+    return this.httpClient.post<any>(
+      '/save-news', body, {headers}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Failed to save news for the user.');
+        }));
+  }
+
+  public unSaveNews(
+    email: string, provider: string, newsId: string) {
+    let headers = {
+      'Content-Type': 'application/json',
+    }
+    let body = {
+      'email': email,
+      'provider': provider,
+      'news-article-id': newsId,
+    }
+    return this.httpClient.post<any>(
+      '/unsave-news', body, {headers}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Failed to unsave news for the user.');
         }));
   }
 

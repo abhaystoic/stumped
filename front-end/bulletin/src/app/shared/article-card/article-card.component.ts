@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { SplashService } from '../../splash.service';
 
@@ -12,8 +12,11 @@ export class ArticleCardComponent implements OnInit {
   @Input() allArticles;
   @Input() allOriginalArticles;
   @Input() displayPositiveNews = false;
+  @Input() loggedIn;
   @Input() source = '';
   @Input() query = '';
+  @Output() saveNews: EventEmitter<any> = new EventEmitter();
+  @Output() unSaveNews: EventEmitter<any> = new EventEmitter();
   showSplash = true;
 
   constructor(private splashService:SplashService) { }
@@ -43,4 +46,17 @@ export class ArticleCardComponent implements OnInit {
     }
     setTimeout(() =>this.splashService.updateSplashState(false), 200);
   }
+
+  saveUserNews(news): void {
+    console.log('saveUserNews==>', news);
+    this.saveNews.emit([news['url']]);
+    news['savedArticle'] = true;
+  }
+
+  unSaveUserNews(news): void {
+    console.log('unSaveUserNews==>', news);
+    this.unSaveNews.emit([news['url']]);
+    news['savedArticle'] = false;
+  }
+
 }

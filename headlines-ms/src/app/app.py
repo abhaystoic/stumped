@@ -29,6 +29,62 @@ def getHeadlines():
   return json.dumps(
     records, sort_keys=True, indent=4, default=json_util.default)
 
+@app.route('/get-saved-news', methods = ['POST'])
+def getSavedNews():
+  mongo_client = MongoClient('mongodb://localhost:27017')
+  db = mongo_client.user
+  collection_user_headlines = db['user_headlines']
+  params = request.get_json()
+  user_id = params['email'] + '-' + params['provider']
+  news_article_urls = params['news-article-ids']
+
+  saved_news_ids = []
+  for article_url in news_article_urls:
+    article = collection_user_headlines.find_one(
+      {'user_id': user_id, 'news_article_id': article_url})
+    if (article):
+      saved_news_ids.append(article_url)
+  print('saved_news_ids==>', saved_news_ids)
+  return {
+    'success': True,
+    'saved_news_ids': saved_news_ids,
+  }
+
+@app.route('/save-news', methods = ['POST'])
+def saveNews():
+  mongo_client = MongoClient('mongodb://localhost:27017')
+  db = mongo_client.user
+  collection_user_headlines = db['user_headlines']
+  params = request.get_json()
+  user_id = params['email'] + '-' + params['provider']
+  tz = pytz.timezone('Asia/Kolkata')
+
+  user_news = {
+    'user_id': user_id,
+    'email': params['email'],
+    'provider': params['provider'],
+    'news_article_id': params['news-article-id'],
+    'last_updated': datetime.now(tz),
+  }
+  rec_id = collection_user_headlines.insert_one(user_news)
+  if (rec_id):
+    print('Data inserted with record id= ', rec_id)
+  return {'success': True}
+
+@app.route('/unsave-news', methods = ['POST'])
+def unSaveNews():
+  mongo_client = MongoClient('mongodb://localhost:27017')
+  db = mongo_client.user
+  collection_user_headlines = db['user_headlines']
+  params = request.get_json()
+  user_id = params['email'] + '-' + params['provider']
+
+  rec_deleted = collection_user_headlines.delete_one(
+      {'user_id': user_id, 'news_article_id': params['news-article-id']})
+  if (rec_deleted):
+    print(rec_deleted.deleted_count, " documents deleted.")
+  return {'success': True}
+
 @app.route('/save-user', methods = ['POST'])
 def saveUser():
   mongo_client = MongoClient('mongodb://localhost:27017')
@@ -77,7 +133,8 @@ def saveUser():
     user['_id'] = mongodb_id
     user['preferences'] = default_preferences
     rec_id = collection_preferences.insert_one(user)
-  print('Data inserted with record id= ', rec_id)
+  if (rec_id):
+    print('Data inserted with record id= ', rec_id)
   return {'success': True, 'user': user}
 
 if __name__ == '__main__':

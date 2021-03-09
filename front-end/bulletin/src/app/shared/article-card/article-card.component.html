@@ -30,13 +30,31 @@
              class="news-img">
       </div>
       <div class="card-body news-content">
-        <a href="{{ news.url }}" target="_new">
-          <p class="card-title"><b>{{ news.title }}</b></p>
-        </a>
-        <p class="card-text"><span [innerHTML]="news.description"></span></p>
-        <span>
-          <b>Source: </b>{{ news.source.name }}
-        </span>
+        <div>
+          <a href="{{ news.url }}" target="_new">
+            <p class="card-title"><b>{{ news.title }}</b></p>
+          </a>
+          <p class="card-text"><span [innerHTML]="news.description"></span></p>
+          <span>
+            <b>Source: </b>{{ news.source.name }}
+          </span>
+        </div>
+        <div>
+          <span (click)="saveUserNews(news)" class="user-interaction-element">
+            <i class="far fa-bookmark fa-lg" aria-hidden="true" *ngIf="!loggedIn || (loggedIn && !news.savedArticle)"></i>
+          </span>
+          <span></span>
+          <span (click)="unSaveUserNews(news)" class="user-interaction-element">
+            <i class="fas fa-bookmark fa-lg" aria-hidden="true" *ngIf="loggedIn && news.savedArticle"></i>
+          </span>
+          <span></span>
+          <span><i class="far fa-smile fa-lg" aria-hidden="true" *ngIf="loggedIn"></i></span>
+          <span><i class="fas fa-smile fa-lg" aria-hidden="true" *ngIf="!loggedIn"></i></span>
+          <span><i class="far fa-meh fa-lg" aria-hidden="true" *ngIf="loggedIn"></i></span>
+          <span><i class="fas fa-meh fa-lg" aria-hidden="true" *ngIf="!loggedIn"></i></span>
+          <span><i class="far fa-frown fa-lg" aria-hidden="true" *ngIf="loggedIn"></i></span>
+          <span><i class="fas fa-frown fa-lg" aria-hidden="true" *ngIf="!loggedIn"></i></span>
+        </div>
       </div>
       <div class="">
         <span class="sml col">
