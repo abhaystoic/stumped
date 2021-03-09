@@ -105,3 +105,16 @@ body {
 .user-interaction-element {
   cursor: pointer;
 }
+
+.fancy-radio input[type="radio"],
+.fancy-radio .checked {
+    display: none;
+}
+ 
+.fancy-radio input[type="radio"]:checked ~ .checked {
+    display: inline-block;
+}
+ 
+.fancy-radio input[type="radio"]:checked ~ .unchecked {
+    display: none;
+}
