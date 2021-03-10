@@ -4,10 +4,18 @@
      (click)="closeNav()">
      &times;
   </a>
-  <a routerLink="my-profile" routerLinkActive="active-sidenav-link">
-    <i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-    My Profile
-  </a>
+  <div class="user-nav-options">
+    <a routerLink="my-profile" routerLinkActive="active-sidenav-link">
+      <i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+      My Profile
+    </a>
+    <a routerLink="saved-news" routerLinkActive="active-sidenav-link">
+      <span class="saved-news">
+        <i class="fas fa-star fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+        Saved News
+      </span>
+    </a>
+  </div>
   <a routerLink="headlines" routerLinkActive="active-sidenav-link">
     <i class="fa fa-bolt fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;
     Headlines

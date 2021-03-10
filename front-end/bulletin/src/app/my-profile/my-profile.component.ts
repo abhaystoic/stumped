@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SocialAuthService, SocialUser } from "angularx-social-login";
-import {
-  FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+import { 
+  FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser 
+} from "angularx-social-login";
 
 import { ApiService } from '../api.service';
 import { SplashService } from '../splash.service';
@@ -57,15 +57,17 @@ export class MyProfileComponent implements OnInit {
       this.loggedIn = (user != null);
       this.hideEverythingUntilVerified = false;
       console.log("MyProfileComponent===>", user);
-      /**
-       * Updates user info if the user already exists.
-       */
-      this.apiService.saveUser(user).subscribe((data) => {
-        let userInfo = data['user'];
-        if (userInfo.hasOwnProperty('preferences')) {
-          this.preferences = userInfo['preferences'];
-        }
-      });
+      if (this.loggedIn) {
+        /**
+         * Updates user info if the user already exists.
+         */
+        this.apiService.saveUser(user).subscribe((data) => {
+          let userInfo = data['user'];
+          if (userInfo.hasOwnProperty('preferences')) {
+            this.preferences = userInfo['preferences'];
+          }
+        });
+      }
     });
   }
 

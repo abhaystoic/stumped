@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -32,6 +34,7 @@ import {
   SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import {
   GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { SavedNewsComponent } from './saved-news/saved-news.component';
 
 @NgModule({
   declarations: [
@@ -51,13 +54,15 @@ import {
     ContactUsComponent,
     AboutUsComponent,
     SearchComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    SavedNewsComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    NgbModule,
     SocialLoginModule
   ],
   providers: [
