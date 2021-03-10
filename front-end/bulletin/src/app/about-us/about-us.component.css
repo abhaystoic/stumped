@@ -1,3 +1,11 @@
 .about-us-container {
   padding: 5%;
 }
+
+.about-us-section-header {
+  text-align: center;
+}
+
+.about-us-content {
+  margin-top: 50px;
+}

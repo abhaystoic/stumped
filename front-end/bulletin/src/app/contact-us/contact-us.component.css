@@ -1,3 +1,56 @@
 .contact-us-container {
   padding: 5%;
 }
+
+/* Contact section */
+.section-content {
+  text-align: center;
+}
+
+.contact-section {
+  padding-top: 20px;
+}
+.contact-section .col-md-6 {
+  width: 50%;
+}
+
+@media screen and (max-width: 1024px) {
+  .contact-section .col-md-6 {
+    width: 100%;
+  }
+}
+
+.form-line {
+  /* border-right: 1px solid #B29999; */
+  margin: auto;
+}
+
+.form-group {
+  margin-top: 10px;
+}
+
+.contact-us-label {
+  font-size: 18px;
+  line-height: 1em;
+  font-weight: normal;
+}
+
+.form-control {
+  font-size: 18px;
+  color: #080808;
+}
+
+textarea.form-control {
+    height: 135px;
+   /* margin-top: px;*/
+}
+
+.submit {
+  font-size: 18px;
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-grp {
+  text-align: center;
+}

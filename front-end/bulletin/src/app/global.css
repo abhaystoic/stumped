@@ -8,7 +8,7 @@
 }
 
 .news-content > div > a {
-  color: #ffff00
+  color: #fcc500
 }
 
 .news-li-style {
@@ -179,4 +179,16 @@ input:checked + .slider:before {
   .login-btn-txt {
     display: none;
   }
+}
+
+.creative-header {
+  font-family: 'Oleo Script', cursive;
+  color:#fcc500;
+  font-size: 45px;
+}
+
+.creative-header-sm {
+  font-family: 'Oleo Script', cursive;
+  color:#fcc500;
+  font-size: 30px;
 }
