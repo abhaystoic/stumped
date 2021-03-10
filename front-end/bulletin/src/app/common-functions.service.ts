@@ -29,11 +29,16 @@ export class CommonFunctionsService {
       savedNewsSentiments = response['saved_news_sentiments'];
     }
     newsArticles.forEach((article, index) => {
-      newsArticles[index]['savedArticle'] = false;
       newsArticles[index]['sentiment'] = savedNewsSentiments[article['url']];
+      newsArticles[index]['savedArticle'] = false;
       if (savedNewsArticlesIds.includes(article['url'])) {
         newsArticles[index]['savedArticle'] = true;
       }
+    });
+    newsArticles.sort( (a, b) => {
+      if (a.publishedAt > b.publishedAt) return -1;
+      if (a.publishedAt < b.publishedAt) return 1;
+      return 0;
     });
     console.log('newsArticles===', newsArticles);
     return newsArticles;

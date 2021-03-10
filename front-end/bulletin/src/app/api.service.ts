@@ -42,6 +42,24 @@ export class ApiService {
     return this.httpClient.get('/fetch-technology');
   }
 
+  public getSavedNewsArticles(
+    email: string, provider: string, pageName: string) {
+    let headers = {
+      'Content-Type': 'application/json',
+    }
+    let body = {
+      'email': email,
+      'provider': provider,
+      'page-name': pageName,
+    }
+    return this.httpClient.post<any>(
+      'http://172.18.0.4:5000/get-saved-news-articles', body, {headers}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Failed to get saved news for the user.');
+        }));
+  }
+
   public getSavedNewsAndSentiments(
     email: string, provider: string, newsArticleIds: string[],
     pageName: string, newsId: string) {
@@ -59,7 +77,8 @@ export class ApiService {
       'http://172.18.0.4:5000/get-saved-news-and-sentiments', body, {headers}).pipe(
         catchError(err => {
           console.log(err);
-          return throwError('Failed to get saved news for the user.');
+          return throwError(
+            'Failed to get saved news and sentiments for the user.');
         }));
   }
 
