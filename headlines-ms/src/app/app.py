@@ -63,6 +63,42 @@ def getSavedNewsAndSentiments():
     'saved_news_sentiments': saved_news_sentiments,
   }
 
+@app.route('/get-saved-news-articles', methods = ['POST'])
+def getSavedNewsArticles():
+  mongo_client = MongoClient('mongodb://localhost:27017')
+  db_user = mongo_client.user
+  db_news = mongo_client.news
+  collection_user_headlines = db_user['user_headlines']
+  collection_headlines = db_news['headline']
+  params = request.get_json()
+  user_id = params['email'] + '-' + params['provider']
+
+  saved_news_articles_info = collection_user_headlines.find(
+    {'user_id': user_id}).sort('last_updated')
+
+  all_news = {}
+  collection_headlines_records = [
+    document for document in collection_headlines.aggregate(
+      [
+        {'$sort':{'created_time':-1}},
+      ],
+      allowDiskUse=True)]
+  for news_group in collection_headlines_records:
+    for news in news_group.get('articles') or []:
+      all_news[news['url']] = news
+  print(len(all_news))
+  saved_news_articles = []
+  for doc in saved_news_articles_info:
+    found_news = all_news.get(doc['news_article_id'])
+    if found_news:
+      saved_news_articles.append(found_news)
+  # print('saved_news_articles==', saved_news_articles)
+
+  return json_util.dumps({
+    'success': True,
+    'saved_news_articles': saved_news_articles,
+  })
+
 @app.route('/save-news', methods = ['POST'])
 def saveNews():
   mongo_client = MongoClient('mongodb://localhost:27017')

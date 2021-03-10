@@ -2,59 +2,12 @@
     padding: 5%;
   }
 
-.btn-social-auth {
-  font-size: 80%;
-  border-radius: 5rem;
-  letter-spacing: .1rem;
-  font-weight: bold;
-  padding: 1rem;
-  transition: all 0.2s;
-}
-
-.btn-google {
-  color: white;
-  background-color: #ea4335;
-}
-
-.btn-google:hover {
-  color: #211e1e;
-}
-
-.btn-facebook {
-  color: white;
-  background-color: #3b5998;
-}
-
-.btn-facebook:hover {
-  color: #211e1e;
-}
-
-.btn-social-container {
-  max-width: 30%;
-  min-width: 30%;
-  margin: auto;
-  text-align: center;
-}
-
-.col-content {
-  margin: auto;
-  padding: 5px;
-  text-align: center;
-}
-
 .profile-pic {
   height: 120px;
   width: 120px;
   border-radius: 50%;
 }
 
-@media screen and (max-width: 1024px) {
-  .btn-social-container {
-    max-width: 100%;
-    min-width: 100%;
-  }
-
-  .login-btn-txt {
-    display: none;
-  }
+.saved-news-link {
+  color: #ffff00
 }

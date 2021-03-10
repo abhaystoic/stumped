@@ -40,24 +40,24 @@
           </span>
         </div>
         <div>
-          <span (click)="saveUserNews(news)" class="user-interaction-element">
+          <span (click)="saveUserNews(news, loginModal)" class="user-interaction-element">
             <i class="far fa-bookmark fa-lg fa-fw" aria-hidden="true" *ngIf="!loggedIn || (loggedIn && !news.savedArticle)"></i>
           </span>
           <span (click)="unSaveUserNews(news)" class="user-interaction-element">
             <i class="fas fa-bookmark fa-lg fa-fw" aria-hidden="true" *ngIf="loggedIn && news.savedArticle"></i>
           </span>
           <label class="fancy-radio user-interaction-element">
-            <input type="radio" (change)="saveUserSentiment(news.url, 'smile')" name="news-sentiment-{{i}}" [ngModel]="news.sentiment" value="smile"/>
+            <input type="radio" (change)="saveUserSentiment(news.url, 'smile', loginModal)" name="news-sentiment-{{i}}" [ngModel]="news.sentiment" value="smile"/>
             <i class="far fa-smile fa-lg fa-fw unchecked" aria-hidden="true"></i>
             <i class="fas fa-smile fa-lg fa-fw checked" aria-hidden="true"></i>
           </label>
           <label class="fancy-radio user-interaction-element">
-            <input type="radio" (change)="saveUserSentiment(news.url, 'meh')" name="news-sentiment-{{i}}" [ngModel]="news.sentiment" value="meh"/>
+            <input type="radio" (change)="saveUserSentiment(news.url, 'meh', loginModal)" name="news-sentiment-{{i}}" [ngModel]="news.sentiment" value="meh"/>
             <i class="far fa-meh fa-lg fa-fw unchecked" aria-hidden="true"></i>
             <i class="fas fa-meh fa-lg fa-fw checked" aria-hidden="true"></i>
           </label>
           <label class="fancy-radio user-interaction-element">
-            <input type="radio" (change)="saveUserSentiment(news.url, 'frown')" name="news-sentiment-{{i}}" [ngModel]="news.sentiment" value="frown"/>
+            <input type="radio" (change)="saveUserSentiment(news.url, 'frown', loginModal)" name="news-sentiment-{{i}}" [ngModel]="news.sentiment" value="frown"/>
             <i class="far fa-frown fa-lg fa-fw unchecked" aria-hidden="true"></i>
             <i class="fas fa-frown fa-lg fa-fw checked" aria-hidden="true"></i>
           </label>
@@ -83,3 +83,30 @@
     </li>
   </ul>
 </div>
+<!-- START: Modal for login purposes. -->
+<ng-template #loginModal let-modal>
+  <div class="modal-header">
+      <span class="modal-title" id="modal-basic-title">Please login to continue...</span>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+      </button>
+  </div>
+  <div class="modal-body">
+    <div class="btn-social-container-modal">
+      <button class="btn-social-auth btn-lg btn-google btn-block text-uppercase"
+              (click)="signInWithGoogle()">
+              <i class="fab fa-google fa-lg fa-fw"></i>
+              <span class="login-btn-txt"> Sign in with Google </span>
+      </button>
+      <button class="btn-social-auth btn-lg btn-facebook btn-block text-uppercase"
+              (click)="signInWithFB()">
+              <i class="fab fa-facebook fa-lg fa-fw"></i>
+              <span class="login-btn-txt"> Sign in with Facebook </span>
+      </button>
+    </div>
+  </div>
+  <div class="modal-footer">
+      <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')" ngbAutofocus>Ok</button> -->
+  </div>
+</ng-template>
+<!-- END: Modal for login purposes. -->

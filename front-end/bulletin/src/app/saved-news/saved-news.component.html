@@ -1,0 +1,27 @@
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<div class="saved-news-container" *ngIf="!user">
+  <div *ngIf="!hideEverythingUntilVerified" class="card flex-row flex-wrap">
+    <div class="flex-wrap card-body news-li-style news-content">
+      <div class="btn-social-container">
+        <p>Please login to check out your saved news.</p>
+        <button class="btn-social-auth btn-lg btn-google btn-block text-uppercase"
+                (click)="signInWithGoogle()">
+                <i class="fab fa-google fa-lg fa-fw"></i>
+                <span class="login-btn-txt"> Sign in with Google </span>
+        </button>
+        <button class="btn-social-auth btn-lg btn-facebook btn-block text-uppercase"
+                (click)="signInWithFB()">
+                <i class="fab fa-facebook fa-lg fa-fw"></i>
+                <span class="login-btn-txt"> Sign in with Facebook </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-article-card [allArticles]="savedNewsArticles"
+                  (saveNews)="saveNews($event[0])"
+                  (unSaveNews)="unSaveNews($event[0])"
+                  (saveSentiment)="saveNewsSentiment($event[0], $event[1])"
+                  *ngIf="user">
+</app-article-card>

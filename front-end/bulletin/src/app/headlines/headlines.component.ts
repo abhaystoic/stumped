@@ -29,7 +29,7 @@ export class HeadlinesComponent implements OnInit {
         console.log('HeadlinesComponent===========>', user);
         this.fetchHeadlines();
       });
-    }
+  }
 
   ngOnInit(): void {}
 

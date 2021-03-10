@@ -1,5 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
+
+import { 
+  FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser 
+} from "angularx-social-login";
+
+import { ApiService } from '../../api.service';
 import { SplashService } from '../../splash.service';
 
 @Component({
@@ -19,8 +26,40 @@ export class ArticleCardComponent implements OnInit {
   @Output() unSaveNews: EventEmitter<any> = new EventEmitter();
   @Output() saveSentiment: EventEmitter<any> = new EventEmitter();
   showSplash = true;
+  preferences: object;
+  user: SocialUser;
+  closeResult: string;
+  modalOptions:NgbModalOptions;
 
-  constructor(private splashService:SplashService) { }
+  constructor(
+    private apiService: ApiService, private authService: SocialAuthService,
+    private modalService: NgbModal, private splashService:SplashService) {
+      this.authService.authState.subscribe((user) => {
+        this.user = user;
+        this.loggedIn = (user != null);
+        console.log("ArticleCardComponent user===>", user);
+        if (this.loggedIn) {
+          /**
+           * Updates user info if the user already exists.
+           */
+          this.apiService.saveUser(user).subscribe((data) => {
+            let userInfo = data['user'];
+            if (userInfo.hasOwnProperty('preferences')) {
+              this.preferences = userInfo['preferences'];
+            }
+          });
+          this.modalService.dismissAll('User logged in successfully.');
+        }
+      });
+      /**
+       * Define options for auth modal (login overlay).
+       */
+      this.modalOptions = {
+        ariaLabelledBy: 'modal-basic-title',
+        backdropClass:'customBackdrop',
+        centered: true,
+      }
+    }
 
   ngOnInit(): void {
     this.splashService.getSplashState().subscribe(
@@ -48,15 +87,53 @@ export class ArticleCardComponent implements OnInit {
     setTimeout(() =>this.splashService.updateSplashState(false), 200);
   }
 
-  saveUserSentiment(newsUrl: string, sentiment: string): void {
-    console.log('saveUserSentiment==>', sentiment);
-    this.saveSentiment.emit([newsUrl, sentiment]);
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
-  saveUserNews(news): void {
+  saveUserSentiment(newsUrl: string, sentiment: string, loginModal): void {
+    console.log('saveUserSentiment==>', sentiment);
+    if (!this.loggedIn) {
+      this.modalService.open(loginModal, this.modalOptions).result.then(
+        (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+      console.log('closeResult saveUserSentiment==> ', this.closeResult);
+    } else {
+      this.saveSentiment.emit([newsUrl, sentiment]);
+    }
+  }
+
+  saveUserNews(news, loginModal): void {
     console.log('saveUserNews==>', news);
-    this.saveNews.emit([news['url']]);
-    news['savedArticle'] = true;
+    if (!this.loggedIn) {
+      this.modalService.open(loginModal, this.modalOptions).result.then(
+        (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+      console.log('closeResult saveUserNews==> ', this.closeResult);
+    } else {
+      this.saveNews.emit([news['url']]);
+      news['savedArticle'] = true;
+    }
+  }
+
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
   unSaveUserNews(news): void {
