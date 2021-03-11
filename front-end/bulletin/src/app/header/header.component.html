@@ -15,4 +15,14 @@
             <i class="fa fa-search"></i>
     </button>
   </div>
+  <div class="col-xs-6">
+    <a routerLink="/my-profile">
+      <img class="profile-pic-header"
+          *ngIf="user && user.provider==='GOOGLE'"
+          src="{{ user.photoUrl }}" />
+      <img class="profile-pic-header"
+          *ngIf="user && user.provider==='FACEBOOK'"
+          src="{{ user.response.picture.data.url }}" />
+    </a>
+  </div>
 </div>

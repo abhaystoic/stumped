@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
-import { SplashService } from '../splash.service';
+
+import { SocialAuthService, SocialUser } from "angularx-social-login";
 
 @Component({
   selector: 'app-header',
@@ -10,13 +11,20 @@ import { SplashService } from '../splash.service';
 })
 export class HeaderComponent implements OnInit {
 
+  loggedIn: boolean = false;
   searchResults: object = [];
   searchInput: string = '';
+  user: SocialUser;
 
   constructor(
-    private apiService: ApiService, private router: Router){}
+    private apiService: ApiService, private router: Router,
+    private authService: SocialAuthService){}
 
   ngOnInit(): void {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+    });
   }
 
   openNav():void {

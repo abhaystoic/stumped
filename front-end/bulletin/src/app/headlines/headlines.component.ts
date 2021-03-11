@@ -26,7 +26,6 @@ export class HeadlinesComponent implements OnInit {
       this.authService.authState.subscribe(user => {
         this.user = user;
         this.loggedIn = (user != null);
-        console.log('HeadlinesComponent===========>', user);
         this.fetchHeadlines();
       });
   }
@@ -42,7 +41,6 @@ export class HeadlinesComponent implements OnInit {
           await this.commonFunctionsService.addSavedArticlesDetailsToNews(
             this.user.email, this.user.provider, this.pageName,
             data['articles']);
-        console.log('this.headlines==', this.headlines);
       }
       else {
         this.headlines = data['articles'];
@@ -55,7 +53,6 @@ export class HeadlinesComponent implements OnInit {
   }
 
   async saveHeadlines(newsId: string) {
-    console.log('saveHeadlines====>', newsId);
     let response = await this.apiService.saveNews(
       this.user.email, this.user.provider, newsId).toPromise();
     if (response['success']) {
@@ -65,7 +62,6 @@ export class HeadlinesComponent implements OnInit {
   }
 
   async unSaveHeadlines(newsId: string) {
-    console.log('unSaveHeadlines====>', newsId);
     let response = await this.apiService.unSaveNews(
       this.user.email, this.user.provider, newsId).toPromise();
     if (response['success']) {
@@ -75,7 +71,6 @@ export class HeadlinesComponent implements OnInit {
   }
 
   async saveHeadlinesSentiment(newsId: string, sentiment: string) {
-    console.log('saveHeadlinesSentiment==>', newsId, sentiment);
     let response = await this.apiService.saveSentiment(
       this.user.email, this.user.provider, newsId, sentiment).toPromise();
     if (response['success']) {
