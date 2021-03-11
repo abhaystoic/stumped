@@ -4,33 +4,84 @@
     <div id="contact">
         <div class="section-content">
           <h2 class="section-header"><span class="creative-header">Get in Touch with us</span></h2>
-          <h5>Feel free to give a feedback to us</h5>
+          <h5 *ngIf="!formSubmitted">Feel free to give us a feedback.</h5>
+          <h5 *ngIf="formSubmitted" class="intro-txt-animate">Thanks for sharing your thoughts. We will keep you posted.</h5>
         </div>
         <div class="contact-section">
           <div class="container">
-            <form>
+            <form #feedbackForm="ngForm" (ngSubmit)="feedbackForm.form.valid && saveFeedback(feedbackForm)">
               <div class="col-md-6 form-line">
-                <div class="form-group">
-                  <label class="contact-us-label"for="exampleInputUsername">Your name</label>
-                  <input type="text" class="form-control" id="" placeholder=" Enter Name">
+                <div class="form-group form-group-spc">
+                  <label class="contact-us-label" for="inputUsername">Your Name</label>
+                  <input type="text"
+                         class="form-control"
+                         id="inputUsername"
+                         name="name"
+                         placeholder=" Enter Name"
+                         [(ngModel)]="feedbackModel.name"
+                         [ngClass]="{ 'is-invalid': feedbackForm.submitted && name.invalid }"
+                         #name="ngModel"
+                         required />
+                  <div class="invalid-feedback" *ngIf="feedbackForm.submitted && name.invalid">
+                    <p *ngIf="name.errors.required">Name is required</p>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label class="contact-us-label"for="exampleInputEmail">Email Address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail" placeholder=" Enter Email id">
+                <div class="form-group form-group-spc">
+                  <label class="contact-us-label" for="inputEmail">Email Address</label>
+                  <input type="email"
+                         class="form-control"
+                         id="inputEmail"
+                         name="email"
+                         placeholder=" Enter Email id"
+                         [email]="true"
+                         [(ngModel)]="feedbackModel.email"
+                         [ngClass]="{ 'is-invalid': feedbackForm.submitted && email.invalid }"
+                         #email="ngModel"
+                         required />
+                  <div class="invalid-feedback" *ngIf="feedbackForm.submitted && email.invalid">
+                    <p *ngIf="email.errors.required">Email is required</p>
+                  </div>  
                 </div>	
-                <div class="form-group">
-                  <label class="contact-us-label"for="telephone">Mobile No.</label>
-                  <input type="tel" class="form-control" id="telephone" placeholder=" Enter 10-digit mobile no.">
+                <div class="form-group form-group-spc">
+                  <label class="contact-us-label" for="inputMobile">Mobile No.</label>
+                  <input type="tel"
+                         class="form-control"
+                         id="inputMobile"
+                         name="mobile"
+                         placeholder=" Enter 10-digit mobile no."
+                         [(ngModel)]="feedbackModel.mobile"
+                         [ngClass]="{ 'is-invalid': feedbackForm.submitted && mobile.invalid }"
+                         [pattern]="mobNumberPattern"
+                         #mobile="ngModel" />
+                  <div class="invalid-feedback" *ngIf="feedbackForm.submitted && mobile.errors && mobile.errors.pattern">
+                    <p>Mobile number not valid</p>
+                  </div>
                 </div>
                 </div>
                 <div class="col-md-6 form-line">
-                <div class="form-group">
-                  <label class="contact-us-label"for ="description"> Message</label>
-                  <textarea  class="form-control" id="description" placeholder="Enter Your Message"></textarea>
+                <div class="form-group form-group-spc">
+                  <label class="contact-us-label" for ="description">Message</label>
+                  <textarea  class="form-control txtarea"
+                             id="description"
+                             name="message"
+                             placeholder="Enter Your Message"
+                             [(ngModel)]="feedbackModel.message"
+                             [ngClass]="{ 'is-invalid': feedbackForm.submitted && message.invalid }"
+                             #message="ngModel"
+                             required>
+                  </textarea>
+                  <div class="invalid-feedback" *ngIf="feedbackForm.submitted && message.invalid">
+                    <p *ngIf="message.errors.required">Message is required</p>
+                  </div> 
                 </div>
-                <div class="btn-grp">
-                  <button type="button" class="btn btn-default submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Send Message</button>
-                </div>   
+                <div class="form-group btn-grp">
+                  <button type="submit"
+                          class="btn btn-default submit">
+                          <i class="fa fa-paper-plane"
+                             aria-hidden="true">
+                          </i>  Send Message
+                  </button>
+                </div>
               </div>
             </form>
           </div>

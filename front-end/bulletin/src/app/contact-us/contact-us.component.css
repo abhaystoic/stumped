@@ -54,3 +54,15 @@ textarea.form-control {
 .btn-grp {
   text-align: center;
 }
+
+.is-invalid {
+  border: 1px solid #dc3545;
+}
+
+/* TODO: Not working, need to fix this later. */
+.intro-txt-animate {
+  transition-duration: 2s;
+  transition-delay: 1s;
+  font-weight: bold;
+  color: #dc3545;
+}

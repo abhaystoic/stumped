@@ -210,5 +210,19 @@ def saveUser():
     print('Data inserted with record id= ', rec_id)
   return {'success': True, 'user': user}
 
+@app.route('/save-feedback', methods = ['POST'])
+def saveFeedback():
+  mongo_client = MongoClient('mongodb://localhost:27017')
+  db = mongo_client.user
+  collection_feedback = db['user_feedback']
+  feedback = request.get_json()
+  tz = pytz.timezone('Asia/Kolkata')
+  feedback['last_updated'] = datetime.now(tz)
+  print('feedback===>', feedback)
+  rec_id = collection_feedback.insert_one(feedback)
+  if (rec_id):
+    print('Data inserted with record id= ', rec_id)
+  return {'success': True}
+
 if __name__ == '__main__':
   app.run(host='0.0.0.0')
