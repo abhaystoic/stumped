@@ -56,6 +56,12 @@ export class SearchComponent implements OnInit {
           this.searchResults[index]['savedArticle'] = false;
         });
       }
+      /**
+       * Works for all practical purposes.
+       * TODO: Sort the results from Elasticsearch engine by the
+       * 'publishedAt' property.
+       */
+      this.searchResults = this.searchResults.reverse()
       // TODO: Implement pagination for search results.
       this.maxPages = 1;//data['max_pages'];
       // setTimeout(() =>this.splashService.updateSplashState(false), 200);

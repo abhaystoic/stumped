@@ -9,7 +9,7 @@ body {
 }
 
 .content-style {
-  background: #feb645;
+  background: #bfa882;
   margin-left: 44px;
   margin-right: 44px;
   margin-top: 2%;
@@ -67,7 +67,7 @@ body {
 }
 .btn_get_two:hover {
   background: transparent;
-  color: #feb645;
+  color: #bfa882;
 }
 .btn_get:hover {
   color: #fff;
@@ -82,7 +82,7 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 }
 
 .new_footer_top .f_widget.about-widget .f_list li a:hover {
-  color: #feb645;
+  color: #bfa882;
 }
 .new_footer_top .f_widget.about-widget .f_list li {
   margin-bottom: 11px;
@@ -134,19 +134,19 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 .btn_get_two {
   -webkit-box-shadow: none;
   box-shadow: none;
-  background: #feb645;
-  border-color: #feb645;
+  background: #bfa882;
+  border-color: #bfa882;
   color: #211e1e;
 }
 
 .btn_get_two:hover {
   background: transparent;
-  color: #feb645;
+  color: #bfa882;
 }
 
 .new_footer_top .f_social_icon a:hover {
-  background: #feb645;
-  border-color: #feb645;
+  background: #bfa882;
+  border-color: #bfa882;
   color:white;
 }
 .new_footer_top .f_social_icon a + a {

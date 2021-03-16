@@ -43,7 +43,7 @@ def getHeadlines():
   return json.dumps(
     results, sort_keys=True, indent=4, default=json_util.default)
 
-@app.route('/get-saved-news-and-sentiments', methods = ['POST'])
+@app.route('/user/get-saved-news-and-sentiments', methods = ['POST'])
 def getSavedNewsAndSentiments():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
@@ -77,7 +77,7 @@ def getSavedNewsAndSentiments():
     'saved_news_sentiments': saved_news_sentiments,
   }
 
-@app.route('/get-saved-news-articles', methods = ['POST'])
+@app.route('/user/get-saved-news-articles', methods = ['POST'])
 def getSavedNewsArticles():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db_user = mongo_client.user
@@ -113,7 +113,7 @@ def getSavedNewsArticles():
     'saved_news_articles': saved_news_articles,
   })
 
-@app.route('/save-news', methods = ['POST'])
+@app.route('/user/save-news', methods = ['POST'])
 def saveNews():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
@@ -134,7 +134,7 @@ def saveNews():
     print('Data inserted with record id= ', rec_id)
   return {'success': True}
 
-@app.route('/save-sentiments', methods = ['POST'])
+@app.route('/user/save-sentiments', methods = ['POST'])
 def saveSentiments():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
@@ -158,7 +158,7 @@ def saveSentiments():
     print('Data inserted with record id= ', rec_id)
   return {'success': True}
 
-@app.route('/unsave-news', methods = ['POST'])
+@app.route('/user/unsave-news', methods = ['POST'])
 def unSaveNews():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
@@ -172,7 +172,7 @@ def unSaveNews():
     print(rec_deleted.deleted_count, " documents deleted.")
   return {'success': True}
 
-@app.route('/save-user', methods = ['POST'])
+@app.route('/user/save-user', methods = ['POST'])
 def saveUser():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
@@ -224,7 +224,7 @@ def saveUser():
     print('Data inserted with record id= ', rec_id)
   return {'success': True, 'user': user}
 
-@app.route('/save-feedback', methods = ['POST'])
+@app.route('/user/save-feedback', methods = ['POST'])
 def saveFeedback():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
