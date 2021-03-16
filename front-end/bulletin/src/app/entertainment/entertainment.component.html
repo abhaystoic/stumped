@@ -1,1 +1,7 @@
-<app-article-card [allArticles]="entertainmentNews"></app-article-card>
+<app-article-card [allArticles]="entertainmentNews"
+                  (getArticlesForCurrentPage)="fetchEntertainmentNews($event[0])"
+                  [maxPages]="maxPages"
+                  (saveNews)="saveEntertainmentNews($event[0])"
+                  (saveSentiment)="saveEntertainmentNewsSentiment($event[0], $event[1])"
+                  (unSaveNews)="unSaveEntertainmentNews($event[0])">
+</app-article-card>

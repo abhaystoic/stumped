@@ -1,4 +1,9 @@
 <app-article-card [allArticles]="searchResults"
+                  (getArticlesForCurrentPage)="fetchSearchNews($event[0])"
+                  [maxPages]="maxPages"
                   [source]="'search'"
-                  [query]="query">
+                  [query]="query"
+                  (saveNews)="saveSearchNews($event[0])"
+                  (saveSentiment)="saveSearchNewsSentiment($event[0], $event[1])"
+                  (unSaveNews)="unsaveSearchNews($event[0])">
 </app-article-card>

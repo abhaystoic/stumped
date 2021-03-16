@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
@@ -10,36 +10,92 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getBusinessNews() {
-    return this.httpClient.get('/fetch-business');
+  public getBusinessNews(page: number = 1) {
+    let params = new HttpParams(); //TODO: Initialize once, reset every time.
+    params = params.append('page', page.toString());
+    return this.httpClient.get<any>(
+      'http://localhost/fetch-business', {params: params}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Failed to get business news.');
+        }));
   }
 
-  public getCovid19News() {
-    return this.httpClient.get('/fetch-covid19');
+  public getCovid19News(page: number = 1) {
+    let params = new HttpParams();
+    params = params.append('page', page.toString());
+    return this.httpClient.get<any>(
+      'http://localhost/fetch-covid19', {params: params}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Failed to get covid19 news.');
+        }));
   }
 
-  public getEntertainmentNews() {
-    return this.httpClient.get('/fetch-entertainment');
+  public getEntertainmentNews(page: number = 1) {
+    let params = new HttpParams();
+    params = params.append('page', page.toString());
+    return this.httpClient.get<any>(
+      'http://localhost/fetch-entertainment', {params: params}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Failed to get entertainment news.');
+        }));
   }
 
-  public getHeadlines() {
-  	return this.httpClient.get('http://localhost/fetch-headlines');
+  public getHeadlines(page: number = 1) {
+    let params = new HttpParams();
+    params = params.append('page', page.toString());
+    return this.httpClient.get<any>(
+      'http://localhost/fetch-headlines', {params: params}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Failed to get headlines.');
+        }));
   }
 
-  public getHealthNews() {
-    return this.httpClient.get('/fetch-health');
+  public getHealthNews(page: number = 1) {
+    let params = new HttpParams();
+    params = params.append('page', page.toString());
+    return this.httpClient.get<any>(
+      'http://localhost/fetch-health', {params: params}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Failed to get health news.');
+        }));
   }
 
-  public getScienceNews() {
-    return this.httpClient.get('/fetch-science');
+  public getScienceNews(page: number = 1) {
+    let params = new HttpParams();
+    params = params.append('page', page.toString());
+    return this.httpClient.get<any>(
+      'http://localhost/fetch-science', {params: params}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Failed to get science news.');
+        }));
   }
 
-  public getSportsNews() {
-    return this.httpClient.get('/fetch-sports');
+  public getSportsNews(page: number = 1) {
+    let params = new HttpParams();
+    params = params.append('page', page.toString());
+    return this.httpClient.get<any>(
+      'http://localhost/fetch-sports', {params: params}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Failed to get sports news.');
+        }));
   }
 
-  public getTechnologyNews() {
-    return this.httpClient.get('/fetch-technology');
+  public getTechnologyNews(page: number = 1) {
+    let params = new HttpParams();
+    params = params.append('page', page.toString());
+    return this.httpClient.get<any>(
+      'http://localhost/fetch-technology', {params: params}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Failed to get technology news.');
+        }));
   }
 
   public getSavedNewsArticles(
@@ -101,7 +157,7 @@ export class ApiService {
       'Content-Type': 'application/json',
     }
     return this.httpClient.post<any>(
-      '/search-news', body, {headers}).pipe(
+      'http://localhost/search-news', body, {headers}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Elastic Search MS returned no results.');

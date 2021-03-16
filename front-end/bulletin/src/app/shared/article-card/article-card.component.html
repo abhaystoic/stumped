@@ -82,6 +82,28 @@
       </div>
     </li>
   </ul>
+  <!-- START: Buttons to navigate back and forth. -->
+  <div class="prev-nxt-btn-grp" *ngIf="allArticles && allArticles.length > 0">
+    <button (click)="getPreviousArticles()"
+            [disabled]="currentPage == 1"
+            type="button"
+            class="btn btn-default common-site-btn">
+            <i class="fa fa-arrow-left"
+               aria-hidden="true">
+            </i>  Prev
+    </button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button (click)="getNextArticles()"
+            [disabled]="currentPage >= maxPages"
+            type="button"
+            class="btn btn-default common-site-btn">
+            Next  
+            <i class="fa fa-arrow-right"
+               aria-hidden="true">
+            </i>
+    </button>
+  </div>
+  <!-- END: Buttons to navigate back and forth. -->
 </div>
 <!-- START: Modal for login purposes. -->
 <ng-template #loginModal let-modal>

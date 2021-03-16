@@ -1,1 +1,7 @@
-<app-article-card [allArticles]="businessNews"></app-article-card>
+<app-article-card [allArticles]="businessNews"
+                  (getArticlesForCurrentPage)="fetchBusinessNews($event[0])"
+                  [maxPages]="maxPages"
+                  (saveNews)="saveBusinessNews($event[0])"
+                  (saveSentiment)="saveBusinessNewsSentiment($event[0], $event[1])"
+                  (unSaveNews)="unSaveBusinessNews($event[0])">
+</app-article-card>

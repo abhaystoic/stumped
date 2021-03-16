@@ -2,7 +2,7 @@
 
 mongod --bind_ip_all &
 rabbitmq-server start &
-# Create separate config file for gunicorn.
+# TODO: Create separate config file for gunicorn.
 gunicorn --bind 0.0.0.0:5000 wsgi:app --access-logfile /flask_app/src/app/gunicorn_access.log --log-level debug --error-logfile /flask_app/src/app/gunicorn_error.log --capture-output &
 
 echo "Starting supervisord..."

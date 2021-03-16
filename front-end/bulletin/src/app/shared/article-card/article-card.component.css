@@ -118,3 +118,7 @@ body {
 .fancy-radio input[type="radio"]:checked ~ .unchecked {
     display: none;
 }
+
+.prev-nxt-btn-grp {
+  text-align: center;
+}

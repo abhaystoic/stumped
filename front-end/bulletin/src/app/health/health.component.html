@@ -1,1 +1,7 @@
-<app-article-card [allArticles]="healthNews"></app-article-card>
+<app-article-card [allArticles]="healthNews"
+                  (getArticlesForCurrentPage)="fetchHealthNews($event[0])"
+                  [maxPages]="maxPages"
+                  (saveNews)="saveHealthNews($event[0])"
+                  (saveSentiment)="saveHealthNewsSentiment($event[0], $event[1])"
+                  (unSaveNews)="unSaveHealthNews($event[0])">
+</app-article-card>

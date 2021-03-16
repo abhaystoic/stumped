@@ -19,21 +19,35 @@ def getHeadlines():
   collection = db['headline']
   total_docs = collection.count_documents({})
   print(total_docs, ' total documents.')
+  params = request.args
+  current_page = int(params['page'])
+  if (current_page > total_docs):
+    results = {
+      'records': [],
+      'max_page': total_docs,
+    }
+    return json.dumps(
+      results, sort_keys=True, indent=4, default=json_util.default)
+  record_index_as_per_page = current_page - 1
   records = [
     document for document in collection.aggregate(
       [
         {'$sort':{'created_time':-1}},
-        {'$limit': 1}
+        {'$limit': current_page}
       ],
-      allowDiskUse=True)][0]
+      allowDiskUse=True)][record_index_as_per_page]
+  results = {
+    'records': records,
+    'max_page': total_docs,
+  }
   return json.dumps(
-    records, sort_keys=True, indent=4, default=json_util.default)
+    results, sort_keys=True, indent=4, default=json_util.default)
 
 @app.route('/get-saved-news-and-sentiments', methods = ['POST'])
 def getSavedNewsAndSentiments():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
-  collection_user_headlines = db['user_headlines']
+  collection_user_saved_news = db['user_saved_news']
   collection_user_sentiments = db['user_sentiments']
   params = request.get_json()
   user_id = params['email'] + '-' + params['provider']
@@ -43,7 +57,7 @@ def getSavedNewsAndSentiments():
   saved_news_sentiments = {}
   for article_url in news_article_urls:
     # Saved news articles.
-    article = collection_user_headlines.find_one(
+    article = collection_user_saved_news.find_one(
       {'user_id': user_id, 'news_article_id': article_url})
     if (article):
       saved_news_ids.append(article_url)
@@ -68,12 +82,12 @@ def getSavedNewsArticles():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db_user = mongo_client.user
   db_news = mongo_client.news
-  collection_user_headlines = db_user['user_headlines']
+  collection_user_saved_news = db_user['user_saved_news']
   collection_headlines = db_news['headline']
   params = request.get_json()
   user_id = params['email'] + '-' + params['provider']
 
-  saved_news_articles_info = collection_user_headlines.find(
+  saved_news_articles_info = collection_user_saved_news.find(
     {'user_id': user_id}).sort('last_updated')
 
   all_news = {}
@@ -103,7 +117,7 @@ def getSavedNewsArticles():
 def saveNews():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
-  collection_user_headlines = db['user_headlines']
+  collection_user_saved_news = db['user_saved_news']
   params = request.get_json()
   user_id = params['email'] + '-' + params['provider']
   tz = pytz.timezone('Asia/Kolkata')
@@ -115,7 +129,7 @@ def saveNews():
     'news_article_id': params['news-article-id'],
     'last_updated': datetime.now(tz),
   }
-  rec_id = collection_user_headlines.insert_one(user_news)
+  rec_id = collection_user_saved_news.insert_one(user_news)
   if (rec_id):
     print('Data inserted with record id= ', rec_id)
   return {'success': True}
@@ -148,11 +162,11 @@ def saveSentiments():
 def unSaveNews():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
-  collection_user_headlines = db['user_headlines']
+  collection_user_saved_news = db['user_saved_news']
   params = request.get_json()
   user_id = params['email'] + '-' + params['provider']
 
-  rec_deleted = collection_user_headlines.delete_one(
+  rec_deleted = collection_user_saved_news.delete_one(
       {'user_id': user_id, 'news_article_id': params['news-article-id']})
   if (rec_deleted):
     print(rec_deleted.deleted_count, " documents deleted.")

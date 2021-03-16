@@ -1,1 +1,7 @@
-<app-article-card [allArticles]="scienceNews"></app-article-card>
+<app-article-card [allArticles]="scienceNews"
+                  (getArticlesForCurrentPage)="fetchScienceNews($event[0])"
+                  [maxPages]="maxPages"
+                  (saveNews)="saveScienceNews($event[0])"
+                  (saveSentiment)="saveScienceNewsSentiment($event[0], $event[1])"
+                  (unSaveNews)="unSaveScienceNews($event[0])">
+</app-article-card>

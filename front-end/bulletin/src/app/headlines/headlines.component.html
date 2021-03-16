@@ -1,5 +1,7 @@
 <app-article-card [allArticles]="headlines"
+                  (getArticlesForCurrentPage)="fetchHeadlines($event[0])"
+                  [maxPages]="maxPages"
                   (saveNews)="saveHeadlines($event[0])"
-                  (unSaveNews)="unSaveHeadlines($event[0])"
-                  (saveSentiment)="saveHeadlinesSentiment($event[0], $event[1])">
+                  (saveSentiment)="saveHeadlinesSentiment($event[0], $event[1])"
+                  (unSaveNews)="unSaveHeadlines($event[0])">
 </app-article-card>

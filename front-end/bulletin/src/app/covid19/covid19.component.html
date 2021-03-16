@@ -1,1 +1,7 @@
-<app-article-card [allArticles]="covid19News"></app-article-card>
+<app-article-card [allArticles]="covid19News"
+                  (getArticlesForCurrentPage)="fetchCovid19News($event[0])"
+                  [maxPages]="maxPages"
+                  (saveNews)="saveCovid19News($event[0])"
+                  (saveSentiment)="saveCovid19NewsSentiment($event[0], $event[1])"
+                  (unSaveNews)="unSaveCovid19News($event[0])">
+</app-article-card>

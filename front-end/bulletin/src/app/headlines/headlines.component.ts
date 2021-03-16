@@ -14,7 +14,8 @@ import { SplashService } from '../splash.service';
 export class HeadlinesComponent implements OnInit {
   headlines;
   loggedIn: boolean;
-  pageName: string = 'headlines';
+  maxPages: number = 1;
+  pageName: string = 'covid19';
   showSplash: boolean = true;
   user: SocialUser;
 
@@ -32,23 +33,25 @@ export class HeadlinesComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  fetchHeadlines() {
-    setTimeout(() =>this.splashService.updateSplashState(true), 0);
-  	this.apiService.getHeadlines().subscribe( async (data) => {
+  fetchHeadlines(page: number = 1) {
+    this.splashService.updateSplashState(true);
+    // setTimeout(() =>this.splashService.updateSplashState(true), 0);
+  	this.apiService.getHeadlines(page).subscribe( async (data) => {
       if (this.user) {
         // Add articles that were saved by the user earlier.
         this.headlines = 
           await this.commonFunctionsService.addSavedArticlesDetailsToNews(
             this.user.email, this.user.provider, this.pageName,
-            data['articles']);
-      }
-      else {
-        this.headlines = data['articles'];
+            data['records']['articles']);
+      } else {
+        this.headlines = data['records']['articles'];
         this.headlines.forEach((article, index) => {
           this.headlines[index]['savedArticle'] = false;
         });
       }
-      setTimeout(() =>this.splashService.updateSplashState(false), 200);
+      this.maxPages = data['max_pages'];
+      // setTimeout(() =>this.splashService.updateSplashState(false), 200);
+      this.splashService.updateSplashState(false);
     });
   }
 

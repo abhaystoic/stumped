@@ -20,8 +20,10 @@
   </div>
 </div>
 <app-article-card [allArticles]="savedNewsArticles"
+                  (getArticlesForCurrentPage)="fetchSavedNews($event[0])"
+                  [maxPages]="maxPages"
                   (saveNews)="saveNews($event[0])"
-                  (unSaveNews)="unSaveNews($event[0])"
                   (saveSentiment)="saveNewsSentiment($event[0], $event[1])"
+                  (unSaveNews)="unsaveNews($event[0])"
                   *ngIf="user">
 </app-article-card>

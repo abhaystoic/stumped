@@ -20,16 +20,19 @@ export class ArticleCardComponent implements OnInit {
   @Input() allOriginalArticles;
   @Input() displayPositiveNews = false;
   @Input() loggedIn;
-  @Input() source = '';
+  @Input() maxPages: number;
   @Input() query = '';
+  @Input() source = '';
+  @Output() getArticlesForCurrentPage: EventEmitter<any> = new EventEmitter();
   @Output() saveNews: EventEmitter<any> = new EventEmitter();
   @Output() unSaveNews: EventEmitter<any> = new EventEmitter();
   @Output() saveSentiment: EventEmitter<any> = new EventEmitter();
-  showSplash = true;
-  preferences: object;
-  user: SocialUser;
   closeResult: string;
+  currentPage: number = 1;
   modalOptions:NgbModalOptions;
+  preferences: object;
+  showSplash = true;
+  user: SocialUser;
 
   constructor(
     private apiService: ApiService, private authService: SocialAuthService,
@@ -37,7 +40,6 @@ export class ArticleCardComponent implements OnInit {
       this.authService.authState.subscribe((user) => {
         this.user = user;
         this.loggedIn = (user != null);
-        console.log("ArticleCardComponent user===>", user);
         if (this.loggedIn) {
           /**
            * Updates user info if the user already exists.
@@ -74,6 +76,14 @@ export class ArticleCardComponent implements OnInit {
     return `--percent:${ percentage };`;
   }
 
+  getPreviousArticles() {
+    this.currentPage--;
+    if (this.currentPage == 0) {
+      this.currentPage = 1;
+    }
+    this.getArticlesForCurrentPage.emit([this.currentPage]);
+  }
+
   filterNews() {
     setTimeout(() =>this.splashService.updateSplashState(true), 0);
     this.displayPositiveNews = !this.displayPositiveNews;
@@ -84,7 +94,7 @@ export class ArticleCardComponent implements OnInit {
     } else {
       this.allArticles = this.allOriginalArticles;
     }
-    setTimeout(() =>this.splashService.updateSplashState(false), 200);
+    setTimeout(() =>this.splashService.updateSplashState(false), 100);
   }
 
   private getDismissReason(reason: any): string {
@@ -97,8 +107,15 @@ export class ArticleCardComponent implements OnInit {
     }
   }
 
+  getNextArticles() {
+    this.currentPage++;
+    if (this.currentPage > this.maxPages) {
+      this.currentPage = this.maxPages;  
+    }
+    this.getArticlesForCurrentPage.emit([this.currentPage]);
+  }
+
   saveUserSentiment(newsUrl: string, sentiment: string, loginModal): void {
-    console.log('saveUserSentiment==>', sentiment);
     if (!this.loggedIn) {
       this.modalService.open(loginModal, this.modalOptions).result.then(
         (result) => {
@@ -113,7 +130,6 @@ export class ArticleCardComponent implements OnInit {
   }
 
   saveUserNews(news, loginModal): void {
-    console.log('saveUserNews==>', news);
     if (!this.loggedIn) {
       this.modalService.open(loginModal, this.modalOptions).result.then(
         (result) => {
@@ -137,7 +153,6 @@ export class ArticleCardComponent implements OnInit {
   }
 
   unSaveUserNews(news): void {
-    console.log('unSaveUserNews==>', news);
     this.unSaveNews.emit([news['url']]);
     news['savedArticle'] = false;
   }

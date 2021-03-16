@@ -17,8 +17,10 @@ export class SavedNewsComponent implements OnInit {
 
   hideEverythingUntilVerified: boolean;
   loggedIn: boolean;
+  maxPages: number = 1;
   pageName: string = 'saved-news';
   savedNewsArticles: object[];
+  showSplash: boolean = true;
   user: SocialUser;
   
   constructor(
@@ -41,12 +43,12 @@ export class SavedNewsComponent implements OnInit {
         /**
          * Fetches saved news articles for the user.
          */
-        this.fetchNewsArticles();
+        this.fetchSavedNews();
       }
     });
   }
 
-  fetchNewsArticles() {
+  fetchSavedNews(page: number = 1) {
     setTimeout(() =>this.splashService.updateSplashState(true), 0);
     this.apiService.getSavedNewsArticles(
       this.user.email, this.user.provider, 'saved-news').subscribe(
@@ -79,7 +81,7 @@ export class SavedNewsComponent implements OnInit {
     return false;
   }
 
-  async unSaveNews(newsId: string) {
+  async unsaveNews(newsId: string) {
     console.log('unSaveNews====>', newsId);
     let response = await this.apiService.unSaveNews(
       this.user.email, this.user.provider, newsId).toPromise();
