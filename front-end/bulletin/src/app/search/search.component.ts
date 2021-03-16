@@ -28,6 +28,7 @@ export class SearchComponent implements OnInit {
     private commonFunctionsService: CommonFunctionsService,
     private route:ActivatedRoute,
     private splashService: SplashService) {
+      this.query = this.route.snapshot.params['query'];
       this.authService.authState.subscribe(user => {
         this.user = user;
         this.loggedIn = (user != null);
@@ -35,38 +36,46 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {
-    console.log('in ngOnInit of SearchComponent');
-    this.query = this.route.snapshot.params['query'];  
-  }
+  ngOnInit(): void {}
 
   fetchSearchNews(page: number = 1) {
     this.splashService.updateSplashState(true);
     // setTimeout(() =>this.splashService.updateSplashState(true), 0);
-  	this.apiService.getSearchResults(this.query)
-                   .subscribe( async (data)=>{
-                     for (let news of data['hits']['hits']) {
-                       this.searchResults.push(news['_source']);
-                      }
-                      this.searchResults = await this.commonFunctionsService.addSavedArticlesDetailsToNews(
-                        this.user.email, this.user.provider, this.pageName,
-                        this.searchResults);
-                      this.splashService.updateSplashState(false);
-                      // setTimeout(() =>this.splashService.updateSplashState(false), 200);
-                    },
-                    (error) => {
-                      console.log(error);
-                      this.searchResults = [];
-                      this.splashService.updateSplashState(false);
-                      // setTimeout(() =>this.splashService.updateSplashState(false), 200);
-                    });
+    this.apiService.getSearchResults(this.query).subscribe( async (data) => {
+      for (let news of data['hits']['hits']) {
+        this.searchResults.push(news['_source']);
+      }
+      if (this.user) {
+        // Add articles that were saved by the user earlier.
+        this.searchResults = 
+          await this.commonFunctionsService.addSavedArticlesDetailsToNews(
+            this.user.email, this.user.provider, this.pageName,
+            this.searchResults);
+      } else {
+        this.searchResults.forEach((article, index) => {
+          this.searchResults[index]['savedArticle'] = false;
+        });
+      }
+      // TODO: Implement pagination for search results.
+      this.maxPages = 1;//data['max_pages'];
+      // setTimeout(() =>this.splashService.updateSplashState(false), 200);
+      this.splashService.updateSplashState(false);
+    },
+    (error) => {
+      console.log(error);
+      this.searchResults = [];
+      this.splashService.updateSplashState(false);
+      // setTimeout(() =>this.splashService.updateSplashState(false), 200);
+    });
   }
 
   async saveSearchNews(newsId: string) {
-    let response = await this.apiService.saveNews(
-      this.user.email, this.user.provider, newsId).toPromise();
-    if (response['success']) {
-      return true;
+    if (this.user) {
+      let response = await this.apiService.saveNews(
+        this.user.email, this.user.provider, newsId).toPromise();
+      if (response['success']) {
+        return true;
+      }
     }
     return false;
   }
