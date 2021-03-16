@@ -5,14 +5,14 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background: #e6e2ac;
-  background: -moz-linear-gradient(left, #e6e2ac 0%, #bfa882 100%);
-  background: -webkit-gradient(left top, right top, color-stop(0%, #e6e2ac), color-stop(100%, #bfa882));
-  background: -webkit-linear-gradient(left, #e6e2ac 0%, #bfa882 100%);
-  background: -o-linear-gradient(left, #e6e2ac 0%, #bfa882 100%);
-  background: -ms-linear-gradient(left, #e6e2ac 0%, #bfa882 100%);
-  background: linear-gradient(to right, #e6e2ac 0%, #bfa882 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6e2ac', endColorstr='#bfa882', GradientType=1 );
+  background: #fffbc4;
+  background: -moz-linear-gradient(left, #fffbc4 0%, #ffeed2 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, #fffbc4), color-stop(100%, #ffeed2));
+  background: -webkit-linear-gradient(left, #fffbc4 0%, #ffeed2 100%);
+  background: -o-linear-gradient(left, #fffbc4 0%, #ffeed2 100%);
+  background: -ms-linear-gradient(left, #fffbc4 0%, #ffeed2 100%);
+  background: linear-gradient(to right, #fffbc4 0%, #ffeed2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffbc4', endColorstr='#ffeed2', GradientType=1 );
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 65px;
@@ -30,6 +30,7 @@
 
 .sidenav a:hover {
   color: #fffff0;
+  background-color: #434343;
 }
 
 .sidenav .closebtn {
