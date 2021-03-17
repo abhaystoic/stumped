@@ -47,11 +47,6 @@
   width: 400px;
 }
 
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 14px;}
-}
-
 /* Custom scrollbar starts. */
 /* width */
 ::-webkit-scrollbar {
@@ -86,4 +81,22 @@
 
 .saved-news {
   margin-left: 20px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .sidenav a {
+    font-size: 10px;
+  }
+  .sidenav .closebtn {
+    font-size: 18px;
+  }
 }

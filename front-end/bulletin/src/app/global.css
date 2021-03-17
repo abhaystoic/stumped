@@ -4,7 +4,7 @@
 
 .news-content {
   width:50%;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .news-content > div > a {
@@ -23,6 +23,7 @@
 
 .center-img {
   padding-top: 14px;
+  padding-left: 14px;
 }
 
 .news-img {
@@ -152,22 +153,29 @@ input:checked + .slider:before {
   text-align: center;
 }
 
-@media screen and (max-width: 1024px) {
-  .btn-social-container {
-    max-width: 100%;
-    min-width: 100%;
-  }
-
-  .login-btn-txt {
-    display: none;
-  }
-}
-
 .btn-social-container-modal {
   max-width: 80%;
   min-width: 80%;
   margin: auto;
   text-align: center;
+}
+
+.creative-header {
+  font-family: 'Oleo Script', cursive;
+  color:#fcc500;
+  font-size: 20px;
+}
+
+.creative-header-sm {
+  font-family: 'Oleo Script', cursive;
+  color:#fcc500;
+  font-size: 14px;
+}
+
+.common-site-btn {
+  font-size: 18px;
+  background-color: #dc3545;
+  color: #fff;
 }
 
 @media screen and (max-width: 1024px) {
@@ -177,24 +185,57 @@ input:checked + .slider:before {
   }
 
   .login-btn-txt {
-    display: none;
+    font-size: 10px;
   }
-}
 
-.creative-header {
-  font-family: 'Oleo Script', cursive;
-  color:#fcc500;
-  font-size: 45px;
-}
+  .btn-social-container {
+    max-width: 100%;
+    min-width: 100%;
+  }
 
-.creative-header-sm {
-  font-family: 'Oleo Script', cursive;
-  color:#fcc500;
-  font-size: 30px;
-}
+  .news-title {
+    font-size: 10px;
+  }
+  
+  .news-content {
+    font-size: 10px;
+  }
 
-.common-site-btn {
-  font-size: 18px;
-  background-color: #dc3545;
-  color: #fff;
+  .news-img {
+    border-radius: 15%;
+    padding: 4%;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .filters-container {
+    font-size: 10px;
+  }
+
+  .switch {
+    width: 20px;
+    height: 15px;
+  }
+
+  .slider {
+    top: 2px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 0;
+    bottom: 1px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(8px);
+    -ms-transform: translateX(8px);
+    transform: translateX(8px);
+  }
 }

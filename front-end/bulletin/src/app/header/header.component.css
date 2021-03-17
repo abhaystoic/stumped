@@ -22,13 +22,13 @@
   float: right;
   margin-left: 10%;
   margin-top: 5px;
-  width: 70%;
+  width: 60%;
 }
 
 .topnav input[type=text] {
   padding: 4px;
   border: none;
-  width: 80%;
+  width: 70%;
 }
 
 .topnav .search-container button {
@@ -47,20 +47,38 @@
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  margin-left: -30px;
+  margin-left: 30px;
 }
 
-@media screen and (max-width: 1200px) {
+.main-site-title {
+  text-decoration: none;
+  color: inherit;
+  font-family: 'Oleo Script', cursive;
+  font-size: 30px;
+}
+
+@media screen and (max-width: 700px) {
+  .main-site-title {
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Oleo Script', cursive;
+    font-size: 18px;
+  }
+
   .profile-pic-header {
     display: None;
   }
-}
 
-@media screen and (max-width: 600px) {
   .topnav .search-container {
-    float: none;
+    font-size: 8px;
   }
-  
+
+  .hamburger {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  /* 
   .topnav input[type=text], .topnav .search-container button {
     float: none;
     display: block;
@@ -72,12 +90,11 @@
   
   .topnav input[type=text] {
     border: 1px solid #ccc;
-  }
+  } */
 }
 
-.main-site-title {
-  text-decoration: none;
-  color: inherit;
-  font-family: 'Oleo Script', cursive;
-  font-size: 30px;
+@media screen and (max-width: 1024px) {
+  .topnav .search-container {
+    width: inherit;
+  }
 }

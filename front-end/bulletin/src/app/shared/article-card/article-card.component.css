@@ -41,6 +41,10 @@
   text-shadow: none;
 }
 
+.pie-grp {
+  margin-right: 5px;
+}
+
 /* demo styles
 ----------------------------------------------------- */
 body::before {
@@ -64,7 +68,7 @@ body {
 .pie {
   /* border: .15em solid #fff; */
   box-shadow: 0 .075em .2em .05em rgba(0,0,0,.25);
-  margin: .75rem;
+  margin: 5px;
 }
 
 .pie:nth-child(1) {
@@ -80,17 +84,11 @@ body {
 }
 
 .sml {
-  font-size: 80%;
-}
-
-@media screen and (max-width: 450px) {
-  .sml {
-    font-size: 40%;
-  }
+  font-size: 10px;
 }
 
 .card-title {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .search-res-indicator-txt {
@@ -121,4 +119,14 @@ body {
 
 .prev-nxt-btn-grp {
   text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .sml {
+    font-size: 40%;
+  }
+
+  .card-title {
+    font-size: 12px;
+  }
 }
