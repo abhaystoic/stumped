@@ -10,6 +10,7 @@ import { HeadlinesComponent } from './headlines/headlines.component';
 import { HealthComponent } from './health/health.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 import { SavedNewsComponent } from './saved-news/saved-news.component';
 import { ScienceComponent } from './science/science.component';
 import { SearchComponent } from './search/search.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'headlines', component: HeadlinesComponent },
   { path: 'health', component: HealthComponent },
   { path: 'my-profile', component: MyProfileComponent },
+  { path: 'privacy', component: PrivacyComponent },
   { path: 'saved-news', component: SavedNewsComponent },
   { path: 'science', component: ScienceComponent },
   { path: 'search/:query', component: SearchComponent },

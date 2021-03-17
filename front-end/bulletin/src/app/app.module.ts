@@ -26,6 +26,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { SearchComponent } from './search/search.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 /**
  * Social Login.
@@ -55,7 +56,8 @@ import { SavedNewsComponent } from './saved-news/saved-news.component';
     AboutUsComponent,
     SearchComponent,
     MyProfileComponent,
-    SavedNewsComponent
+    SavedNewsComponent,
+    PrivacyComponent
   ],
   imports: [
     AppRoutingModule,
