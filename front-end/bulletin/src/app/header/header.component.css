@@ -6,6 +6,10 @@
   z-index: 10000;
 }
 
+.hamburger-container {
+  margin-top: 4px;
+}
+
 .hamburger {
   cursor: pointer;
   font-size: 20px;
