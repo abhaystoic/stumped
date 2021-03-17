@@ -7,36 +7,53 @@ server {
 	    try_files $uri $uri/ /index.html;
     }
     location /fetch-business {
-	    proxy_pass http://172.18.0.4:5000/business;
+	    proxy_pass http://172.25.0.104:5000/business;
     }
     location /fetch-covid19 {
 	    rewrite /fetch-covid19 /$1  break;
-	    proxy_pass http://172.18.0.2:5000;
+	    proxy_pass http://172.25.0.103:5000;
     }
     location /fetch-entertainment {
-	    proxy_pass http://172.18.0.4:5000/entertainment;
+	    proxy_pass http://172.25.0.104:5000/entertainment;
     }
     location /fetch-headlines {
 	    rewrite /fetch-headlines /$1  break;
-	    proxy_pass http://172.18.0.3:5000;
-    }
-    location /save-user {
-	    rewrite /save-user /$1  break;
-	    proxy_pass http://172.18.0.3:5000/save-user;
+	    proxy_pass http://172.25.0.102:5000;
     }
     location /fetch-health {
-	    proxy_pass http://172.18.0.4:5000/health;
+	    proxy_pass http://172.25.0.104:5000/health;
     }
     location /fetch-science {
-	    proxy_pass http://172.18.0.4:5000/science;
+	    proxy_pass http://172.25.0.104:5000/science;
     }
     location /fetch-sports {
-	    proxy_pass http://172.18.0.4:5000/sports;
+	    proxy_pass http://172.25.0.104:5000/sports;
     }
     location /fetch-technology {
-	    proxy_pass http://172.18.0.4:5000/technology;
+	    proxy_pass http://172.25.0.104:5000/technology;
     }
     location /search-news {
-        proxy_pass http://172.18.0.2:9200/news-search/news/_search;
+        proxy_pass http://172.25.0.105:9200/news-search/news/_search;
+    }
+    location /user/get-saved-news-articles {
+            proxy_pass http://172.25.0.102:5000/user/get-saved-news-articles;
+    }
+    location /user/get-saved-news-and-sentiments {
+            proxy_pass http://172.25.0.102:5000/user/get-saved-news-and-sentiments;
+    }
+    location /user/save-news {
+            proxy_pass http://172.25.0.102:5000/user/save-news;
+    }
+    location /user/save-sentiments {
+            proxy_pass http://172.25.0.102:5000/user/save-sentiments;
+    }
+    location /user/unsave-news {
+            proxy_pass http://172.25.0.102:5000/user/unsave-news;
+    }
+    location /user/save-feedback {
+            proxy_pass http://172.25.0.102:5000/user/save-feedback;
+    }
+    location /user/save-user {
+            proxy_pass http://172.25.0.102:5000/user/save-user;
     }
 }

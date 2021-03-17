@@ -20,7 +20,8 @@ services:
       - 5673:5672
       - 15673:15672
     networks:
-      - stumped-back
+      stumped-back:
+        ipv4_address: 172.25.0.101
     depends_on: 
       - headlines-ms
       - covid19-ms
@@ -46,7 +47,8 @@ services:
       - 5004:5000
       - 27019:27017
     networks:
-      - stumped-back
+      stumped-back:
+        ipv4_address: 172.25.0.102
   
   covid19-ms:
     container_name: covid19-ms-container
@@ -68,7 +70,8 @@ services:
       - 5006:5000
       - 27020:27017
     networks:
-      - stumped-back
+      stumped-back:
+        ipv4_address: 172.25.0.103
   
   all-news-ms:
     container_name: all-news-ms-container
@@ -90,7 +93,8 @@ services:
       - 5007:5000
       - 27021:27017
     networks:
-      - stumped-back
+      stumped-back:
+        ipv4_address: 172.25.0.104
   
   elastic-search-ms:
     container_name: elastic-search-ms-container
@@ -116,8 +120,12 @@ services:
     ports:
       - 9200:9200
     networks:
-      - stumped-back
+      stumped-back:
+        ipv4_address: 172.25.0.105
 
 networks:
   stumped-back:
     driver: bridge
+    ipam:
+      config:
+      - subnet: 172.25.0.0/24
