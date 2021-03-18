@@ -21,6 +21,6 @@ beat_schedule = {
     "task": "fetch-covid19-news-task",
     "options": {"queue": "covid19"},
     "schedule": crontab(minute=0, hour='*/1'), # Every hour.
-    # "schedule": crontab(minute='*/5'), # Every 5 minutes.
+    # "schedule": crontab(minute='*/15'), # Every 15 minutes.
   }
 }

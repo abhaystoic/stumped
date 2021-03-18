@@ -29,6 +29,8 @@ export class ArticleCardComponent implements OnInit {
   @Output() saveSentiment: EventEmitter<any> = new EventEmitter();
   closeResult: string;
   currentPage: number = 1;
+  linkToShare: string;
+  titleToShare: string;
   modalOptions:NgbModalOptions;
   preferences: object;
   showSplash = true;
@@ -142,6 +144,19 @@ export class ArticleCardComponent implements OnInit {
       this.saveNews.emit([news['url']]);
       news['savedArticle'] = true;
     }
+  }
+
+  shareThisArticle(news, linkShareModal): void {
+    this.linkToShare = 
+      window.location.origin + '/' + news.slug + '/' + this.source;
+    this.titleToShare = news.title;
+    this.modalService.open(linkShareModal, this.modalOptions).result.then(
+      (result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+    console.log('shareThisArticle closeResult==> ', this.closeResult);
   }
 
   signInWithGoogle(): void {

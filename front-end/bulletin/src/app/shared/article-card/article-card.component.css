@@ -102,6 +102,7 @@ body {
 
 .user-interaction-element {
   cursor: pointer;
+  color: #fcc500;
 }
 
 .fancy-radio input[type="radio"],
@@ -124,6 +125,51 @@ body {
 .title-link {
   cursor: pointer;
 }
+ 
+.social .fbtn {
+    width: 100px;
+    display: inline-block;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25px;
+}
+
+.social .fa {
+    padding: 15px 0px
+}
+
+.facebook-share-btn {
+    background-color: #3b5998;
+}
+
+.twitter-share-btn {
+    background-color: #55acee;
+}
+
+.pinterest-share-btn {
+    background-color: #cc2127;
+}
+
+.linkedin-share-btn {
+    background-color: #0077b5;
+}
+
+.whatsapp-share-btn {
+  background-color: #00e676;
+}
+
+.telegram {
+  background-color: #31a9dd;
+}
+
+.share-square {
+  margin-left: 5px;
+}
+
+.social-link-share {
+  text-align: center;
+}
 
 @media screen and (max-width: 1024px) {
   .sml {
@@ -132,5 +178,9 @@ body {
 
   .card-title {
     font-size: 12px;
+  }
+
+  .social .fbtn {
+    width: 50px;
   }
 }
