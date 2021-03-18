@@ -9,6 +9,7 @@ import { EntertainmentComponent } from './entertainment/entertainment.component'
 import { HeadlinesComponent } from './headlines/headlines.component';
 import { HealthComponent } from './health/health.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { NewsArticleComponent } from './news-article/news-article.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { SavedNewsComponent } from './saved-news/saved-news.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'headlines', component: HeadlinesComponent },
   { path: 'health', component: HealthComponent },
   { path: 'my-profile', component: MyProfileComponent },
+  { path: 'news-article/:slug/:source', component: NewsArticleComponent},
   { path: 'privacy', component: PrivacyComponent },
   { path: 'saved-news', component: SavedNewsComponent },
   { path: 'science', component: ScienceComponent },

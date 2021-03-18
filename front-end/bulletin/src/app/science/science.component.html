@@ -3,5 +3,6 @@
                   [maxPages]="maxPages"
                   (saveNews)="saveScienceNews($event[0])"
                   (saveSentiment)="saveScienceNewsSentiment($event[0], $event[1])"
+                  [source]="'science'"
                   (unSaveNews)="unSaveScienceNews($event[0])">
 </app-article-card>

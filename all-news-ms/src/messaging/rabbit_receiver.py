@@ -24,6 +24,7 @@ def callback(ch, method, properties, body):
   body = json.loads(body)
   print(' [x] Received %r' % body)
   body = classifier.classify(body)
+  body['articles'] = create_unique_links(db, body['articles'])
   try:
     elasticsearch_indexer.create_es_index(body)
   except Exception:
@@ -38,6 +39,28 @@ def callback(ch, method, properties, body):
       })
     print('Data inserted with record id= ',rec_id)
 
+def create_unique_links(db, articles):
+  collection = db['article_slugs']
+  tz = pytz.timezone('Asia/Kolkata')
+  created_time = datetime.now(tz)
+  articles_with_slugs = []
+  for article in articles:
+    article['created_time'] = created_time
+    slug = get_slug(article['title'])
+    article['slug'] = slug
+    articles_with_slugs.append(article)
+    article['_id'] = slug
+    try:
+      rec_id = collection.insert_one(article)
+      print('Unique link inserted with record id= ', rec_id)
+    except Exception as e:
+      print("An exception occurred while creating unique slug::", e)
+      pass
+  return articles_with_slugs
+
+def get_slug(title):
+  # TODO: Append timestamp to the slug to avoid duplicate entries.
+  return slugify(title)
 
 channel.basic_consume(
     queue='all_news', on_message_callback=callback, auto_ack=True)

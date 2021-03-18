@@ -23,6 +23,27 @@ server {
     location /fetch-health {
 	    proxy_pass http://172.25.0.104:5000/health;
     }
+    location /fetch-news-article-business {
+            proxy_pass http://172.25.0.104:5000/fetch-news-article;
+    }
+    location /fetch-news-article-covid19 {
+            proxy_pass http://172.25.0.103:5000/fetch-news-article;
+    }
+    location /fetch-news-article-entertainment {
+            proxy_pass http://172.25.0.104:5000/fetch-news-article;
+    }
+    location /fetch-news-article-headlines {
+            proxy_pass http://172.25.0.102:5000/fetch-news-article;
+    }
+    location /fetch-news-article-science {
+            proxy_pass http://172.25.0.104:5000/fetch-news-article;
+    }
+    location /fetch-news-article-sports {
+            proxy_pass http://172.25.0.104:5000/fetch-news-article;
+    }
+    location /fetch-news-article-technology {
+            proxy_pass http://172.25.0.104:5000/fetch-news-article;
+    }
     location /fetch-science {
 	    proxy_pass http://172.25.0.104:5000/science;
     }

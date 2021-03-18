@@ -121,6 +121,10 @@ body {
   text-align: center;
 }
 
+.title-link {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1024px) {
   .sml {
     font-size: 40%;

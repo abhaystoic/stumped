@@ -1,3 +1,8 @@
 <app-article-card [allArticles]="technologyNews"
-                  [displayPositiveNews]="displayPositiveNews">
+                  (getArticlesForCurrentPage)="fetchTechnologyNews($event[0])"
+                  [maxPages]="maxPages"
+                  (saveNews)="saveTechnologyNews($event[0])"
+                  (saveSentiment)="saveTechnologyNewsSentiment($event[0], $event[1])"
+                  [source]="'technology'"
+                  (unSaveNews)="unSaveTechnologyNews($event[0])">
 </app-article-card>

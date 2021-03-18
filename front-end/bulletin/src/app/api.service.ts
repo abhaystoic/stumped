@@ -65,6 +65,17 @@ export class ApiService {
         }));
   }
 
+  public getNewsArticle(slug: string, source: string) {
+    let url = 'http://localhost/fetch-news-article-' + source;
+    let params = new HttpParams();
+    params = params.append('slug', slug);
+    return this.httpClient.get<any>(url, {params: params}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Failed to get news article.');
+        }));
+  }
+
   public getScienceNews(page: number = 1) {
     let params = new HttpParams();
     params = params.append('page', page.toString());

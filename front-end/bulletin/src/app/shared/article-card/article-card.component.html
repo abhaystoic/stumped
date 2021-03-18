@@ -11,7 +11,7 @@
       </div>
     </div>
   </div>
-  <div class="filters-container" *ngIf="allArticles && allArticles.length > 0">
+  <div class="filters-container" *ngIf="allArticles && allArticles.length > 0 && source !== 'news-article'">
     <span class="toggle-text">Display positive News</span>
     <label class="switch">
       <input type="checkbox"
@@ -31,10 +31,17 @@
       </div>
       <div class="card-body news-content">
         <div>
-          <a href="{{ news.url }}" target="_new">
+          <a href="/news-article/{{ news.slug }}/{{source}}" target="_blank" *ngIf="source !== 'news-article'">
             <p class="card-title"><b>{{ news.title }}</b></p>
           </a>
+          <a href="{{ news.url }}" target="_blank" *ngIf="source === 'news-article'">
+            <p class="card-title"><b>{{ news.title }}</b>&nbsp;&nbsp;&nbsp;<i class="fas fa-external-link-alt"></i></p>
+          </a>
           <p class="card-text"><span [innerHTML]="news.description"></span></p>
+          <p class="card-text" *ngIf="source === 'news-article'">
+            <span [innerHTML]="news.content"></span>
+            ... <a href="{{ news.url }}" target="_blank" *ngIf="source === 'news-article'"> read more</a>
+          </p>
           <span>
             <b>Source: </b>{{ news.source.name }}
           </span>
@@ -83,7 +90,7 @@
     </li>
   </ul>
   <!-- START: Buttons to navigate back and forth. -->
-  <div class="prev-nxt-btn-grp" *ngIf="allArticles && allArticles.length > 0">
+  <div class="prev-nxt-btn-grp" *ngIf="allArticles && allArticles.length > 0 && source !== 'news-article'">
     <button (click)="getPreviousArticles()"
             [disabled]="currentPage == 1"
             type="button"

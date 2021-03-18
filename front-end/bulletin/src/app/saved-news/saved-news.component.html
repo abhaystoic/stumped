@@ -24,6 +24,7 @@
                   [maxPages]="maxPages"
                   (saveNews)="saveNews($event[0])"
                   (saveSentiment)="saveNewsSentiment($event[0], $event[1])"
+                  [source]="'savedNews'"
                   (unSaveNews)="unsaveNews($event[0])"
                   *ngIf="user">
 </app-article-card>

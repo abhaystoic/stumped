@@ -36,6 +36,7 @@ import {
 import {
   GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 import { SavedNewsComponent } from './saved-news/saved-news.component';
+import { NewsArticleComponent } from './news-article/news-article.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { SavedNewsComponent } from './saved-news/saved-news.component';
     SearchComponent,
     MyProfileComponent,
     SavedNewsComponent,
-    PrivacyComponent
+    PrivacyComponent,
+    NewsArticleComponent
   ],
   imports: [
     AppRoutingModule,

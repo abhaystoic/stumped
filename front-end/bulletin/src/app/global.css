@@ -7,7 +7,7 @@
   font-size: 16px;
 }
 
-.news-content > div > a {
+.news-content > div > a, .news-content > div > p > a  {
   color: #fcc500
 }
 

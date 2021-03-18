@@ -3,5 +3,6 @@
                   [maxPages]="maxPages"
                   (saveNews)="saveHealthNews($event[0])"
                   (saveSentiment)="saveHealthNewsSentiment($event[0], $event[1])"
+                  [source]="'health'"
                   (unSaveNews)="unSaveHealthNews($event[0])">
 </app-article-card>

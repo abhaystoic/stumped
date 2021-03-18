@@ -3,5 +3,6 @@
                   [maxPages]="maxPages"
                   (saveNews)="saveCovid19News($event[0])"
                   (saveSentiment)="saveCovid19NewsSentiment($event[0], $event[1])"
+                  [source]="'covid19'"
                   (unSaveNews)="unSaveCovid19News($event[0])">
 </app-article-card>

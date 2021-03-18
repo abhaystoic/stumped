@@ -35,7 +35,6 @@ export class HeadlinesComponent implements OnInit {
 
   fetchHeadlines(page: number = 1) {
     this.splashService.updateSplashState(true);
-    // setTimeout(() =>this.splashService.updateSplashState(true), 0);
   	this.apiService.getHeadlines(page).subscribe( async (data) => {
       if (this.user) {
         // Add articles that were saved by the user earlier.
@@ -50,7 +49,6 @@ export class HeadlinesComponent implements OnInit {
         });
       }
       this.maxPages = data['max_pages'];
-      // setTimeout(() =>this.splashService.updateSplashState(false), 200);
       this.splashService.updateSplashState(false);
     });
   }
