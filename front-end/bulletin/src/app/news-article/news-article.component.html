@@ -1,0 +1,6 @@
+<app-article-card [allArticles]="newsArticle"
+                  (saveNews)="saveNewsArticle($event[0])"
+                  (saveSentiment)="saveNewsArticleSentiment($event[0], $event[1])"
+                  [source]="'news-article'"
+                  (unSaveNews)="unSaveNewsArticle($event[0])">
+</app-article-card>
