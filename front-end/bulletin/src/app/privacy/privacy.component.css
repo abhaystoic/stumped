@@ -1,5 +1,5 @@
 .privacy-container {
-    padding: 5% 5% 5% 15%;
+    padding-left: 40px;
 }
 
 .privacy-section-header {
@@ -8,5 +8,9 @@
 
 .privacy-content {
     margin-top: 50px;
+}
+
+.privacy-content h6 {
+    font-style: italic;
 }
   

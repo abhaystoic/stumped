@@ -1,5 +1,5 @@
 .contact-us-container {
-  padding: 5% 5% 5% 15%;
+  padding-left: 40px;
 }
 
 /* Contact section */
@@ -30,13 +30,13 @@
 }
 
 .contact-us-label {
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1em;
   font-weight: normal;
 }
 
 .form-control {
-  font-size: 18px;
+  font-size: 14px;
   color: #080808;
 }
 
@@ -46,7 +46,7 @@ textarea.form-control {
 }
 
 .submit {
-  font-size: 18px;
+  font-size: 14px;
   background-color: #dc3545;
   color: #fff;
 }

@@ -29,8 +29,6 @@
 .news-img {
   border-radius: 15%;
   padding: 4%;
-  width: 100%;
-  max-width: 200px;
 }
 
 /* Styling for Filters: toggle switches etc. */
@@ -163,7 +161,7 @@ input:checked + .slider:before {
 .creative-header {
   font-family: 'Oleo Script', cursive;
   color:#fcc500;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .creative-header-sm {
@@ -173,7 +171,7 @@ input:checked + .slider:before {
 }
 
 .common-site-btn {
-  font-size: 18px;
+  font-size: 14px;
   background-color: #dc3545;
   color: #fff;
 }
@@ -204,8 +202,6 @@ input:checked + .slider:before {
   .news-img {
     border-radius: 15%;
     padding: 4%;
-    width: 100%;
-    max-width: 200px;
   }
 
   .filters-container {
