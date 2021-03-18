@@ -19,7 +19,7 @@
         <div class="splash" [hidden]="!showSplash">
           <img width="100" height="20" src="../../assets/images/loading.gif"/>
         </div>
-        <router-outlet [hidden]="showSplash"></router-outlet>
+        <router-outlet [hidden]="showSplash" (activate)="onActivate()"></router-outlet>
       </div>
     </div>
   </div>
