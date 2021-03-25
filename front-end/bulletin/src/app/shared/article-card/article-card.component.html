@@ -27,7 +27,9 @@
         <img src="{{ news.urlToImage }}" alt="{{ news.title }}"
              width="200" height="120"
              onerror="this.src='assets/images/default.jpg'"
-             class="news-img">
+             class="news-img"
+             loading="lazy"
+             alt="{{ news.title }}">
       </div>
       <div class="card-body news-content">
         <div>
