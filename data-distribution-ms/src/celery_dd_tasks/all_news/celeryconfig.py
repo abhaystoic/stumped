@@ -17,10 +17,10 @@ mongodb_backend_settings = {
   'taskmeta_collection': 'all_news',
 }
 beat_schedule = {
-  "every_hour": {
-    "task": "fetch-all-news-task",
-    "options": {"queue": "all-news"},
-    "schedule": crontab(minute=0, hour='*/1'), # Every hour.
-    # "schedule": crontab(minute='*/15'), # Every 15 minutes.
+  'every_hour': {
+    'task': 'fetch-all-news-task',
+    'options': {'queue': 'all-news'},
+    'schedule': crontab(minute=0, hour='*/1'), # Every hour.
+    # 'schedule': crontab(minute='*/15'), # Every 15 minutes.
   }
 }
