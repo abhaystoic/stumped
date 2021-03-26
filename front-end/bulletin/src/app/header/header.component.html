@@ -3,7 +3,7 @@
     <span class="hamburger" (click)="openNav()">&#9776;</span>
   </div>
   <div class="col-xs-6">
-    <h4><a href="/" class="main-site-title">Deep Journals</a></h4>
+    <h4><a href="/" class="main-site-title">iBot News</a></h4>
   </div>
   <div class="col-xs-6 search-container">
     <input type="text"
@@ -11,6 +11,7 @@
            [(ngModel)]="searchInput"
            (keyup.enter)="showAllSearchResults()">
     <button type="button"
+            aria-label="search-btn"
             (click)="showAllSearchResults()">
             <i class="fa fa-search"></i>
     </button>

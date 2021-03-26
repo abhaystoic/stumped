@@ -49,7 +49,8 @@ export class SavedNewsComponent implements OnInit {
   }
 
   fetchSavedNews(page: number = 1) {
-    setTimeout(() =>this.splashService.updateSplashState(true), 0);
+    // setTimeout(() =>this.splashService.updateSplashState(true), 0);
+    this.splashService.updateSplashState(true);
     this.apiService.getSavedNewsArticles(
       this.user.email, this.user.provider, 'saved-news').subscribe(
         async (data) => {
@@ -67,7 +68,8 @@ export class SavedNewsComponent implements OnInit {
               this.savedNewsArticles[index]['savedArticle'] = false;
             });
           }
-          setTimeout(() =>this.splashService.updateSplashState(false), 200);
+          // setTimeout(() =>this.splashService.updateSplashState(false), 200);
+          this.splashService.updateSplashState(false);
     });
   }
 
