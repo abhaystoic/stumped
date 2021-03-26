@@ -12,7 +12,7 @@ echo "supervisord scheduled the tasks succesfully"
 # Sleeping, so that rabbitmq-server starts properly.
 (sleep 30;
 rabbitmqctl add_user admin admin123 2>/dev/null ; \
-rabbitmqctl add_vhost headlinesvhost;
+rabbitmqctl add_vhost headlinesvhost; \
 rabbitmqctl set_user_tags admin administrator ; \
 rabbitmqctl set_permissions -p headlinesvhost admin  ".*" ".*" ".*" ; \
 echo "User 'admin' has been created") & rabbitmq-server
