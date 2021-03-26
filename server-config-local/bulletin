@@ -1,8 +1,22 @@
+# Expires map
+map $sent_http_content_type $expires {
+    default                    off;
+    text/html                  epoch; # Always ask the server if the file has been modified.
+    text/css                   max; # Cache for maximum time.
+    text/javascript	       max;
+    application/javascript     max;
+    image/x-icon	       max;
+    ~image/                    max;
+    ~font/                     max;
+}
+
 server {
     listen  80 default_server;
     listen  [::]:80 default_server;
+    expires $expires;
     root    /home/ubuntu/stumped/front-end/bulletin/dist/bulletin;
     index   index.html;
+
     location / {
 	    try_files $uri $uri/ /index.html;
     }
