@@ -147,8 +147,13 @@ export class ArticleCardComponent implements OnInit {
   }
 
   shareThisArticle(news, linkShareModal): void {
-    this.linkToShare = 
-      window.location.origin + '/' + news.slug + '/' + this.source;
+    if (this.source == 'news-article') {
+      this.linkToShare = window.location.href;
+    } else {
+      this.linkToShare = 
+        window.location.origin + '/news-article/' + news.slug + '/' +
+        this.source;
+    }
     this.titleToShare = news.title;
     this.modalService.open(linkShareModal, this.modalOptions).result.then(
       (result) => {
