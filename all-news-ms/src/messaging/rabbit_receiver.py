@@ -6,6 +6,7 @@ from datetime import datetime
 from pymongo import MongoClient
 from search import elasticsearch_indexer
 from sentiment_analyzer import classifier
+from slugify import slugify
 
 
 credentials = pika.PlainCredentials('admin', 'admin123')
@@ -24,7 +25,9 @@ def callback(ch, method, properties, body):
   body = json.loads(body)
   print(' [x] Received %r' % body)
   body = classifier.classify(body)
-  body['articles'] = create_unique_links(db, body['articles'])
+  for topic, categ_news in body.items():
+    for index, rec in enumerate(categ_news):
+      body[topic][index]['articles'] = create_unique_links(db, rec['articles'])
   try:
     elasticsearch_indexer.create_es_index(body)
   except Exception:

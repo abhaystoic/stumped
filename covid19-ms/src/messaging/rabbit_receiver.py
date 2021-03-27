@@ -6,6 +6,7 @@ from datetime import datetime
 from pymongo import MongoClient
 from search import elasticsearch_indexer
 from sentiment_analyzer import classifier
+from slugify import slugify
 
 
 credentials = pika.PlainCredentials('admin', 'admin123')
