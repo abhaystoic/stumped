@@ -13,7 +13,7 @@ CORS(app)
 
 
 @app.route('/', methods = ['GET'])
-def getHeadlines():
+def get_headlines():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.news
   collection = db['headline']
@@ -44,7 +44,7 @@ def getHeadlines():
     results, sort_keys=True, indent=4, default=json_util.default)
 
 @app.route('/fetch-news-article', methods = ['GET'])
-def getNewsArticle():
+def get_news_article():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.news
   collection = db['article_slugs']
@@ -57,7 +57,7 @@ def getNewsArticle():
     article, sort_keys=True, indent=4, default=json_util.default)
 
 @app.route('/user/get-saved-news-and-sentiments', methods = ['POST'])
-def getSavedNewsAndSentiments():
+def get_saved_news_and_sentiments():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
   collection_user_saved_news = db['user_saved_news']
@@ -91,7 +91,7 @@ def getSavedNewsAndSentiments():
   }
 
 @app.route('/user/get-saved-news-articles', methods = ['POST'])
-def getSavedNewsArticles():
+def get_saved_news_articles():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db_user = mongo_client.user
   db_news = mongo_client.news
@@ -127,7 +127,7 @@ def getSavedNewsArticles():
   })
 
 @app.route('/user/save-news', methods = ['POST'])
-def saveNews():
+def save_news():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
   collection_user_saved_news = db['user_saved_news']
@@ -148,7 +148,7 @@ def saveNews():
   return {'success': True}
 
 @app.route('/user/save-sentiments', methods = ['POST'])
-def saveSentiments():
+def save_sentiments():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
   collection_user_sentiments = db['user_sentiments']
@@ -172,7 +172,7 @@ def saveSentiments():
   return {'success': True}
 
 @app.route('/user/unsave-news', methods = ['POST'])
-def unSaveNews():
+def un_save_news():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
   collection_user_saved_news = db['user_saved_news']
@@ -186,7 +186,7 @@ def unSaveNews():
   return {'success': True}
 
 @app.route('/user/save-user', methods = ['POST'])
-def saveUser():
+def save_user():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
   collection_preferences = db['user_preferences']
@@ -238,7 +238,7 @@ def saveUser():
   return {'success': True, 'user': user}
 
 @app.route('/user/save-feedback', methods = ['POST'])
-def saveFeedback():
+def save_feedback():
   mongo_client = MongoClient('mongodb://localhost:27017')
   db = mongo_client.user
   collection_feedback = db['user_feedback']

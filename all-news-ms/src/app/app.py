@@ -244,6 +244,18 @@ def get_technology_news():
   return json.dumps(
     results, sort_keys=True, indent=4, default=json_util.default)
 
+@app.route('/fetch-news-article', methods = ['GET'])
+def get_news_article():
+  mongo_client = MongoClient('mongodb://localhost:27017')
+  db = mongo_client.news
+  collection = db['article_slugs']
+  total_docs = collection.count_documents({})
+  print(total_docs, ' total documents.')
+  params = request.args
+  slug = params['slug']
+  article = collection.find_one({'_id': slug})
+  return json.dumps(
+    article, sort_keys=True, indent=4, default=json_util.default)
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0')
