@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 import { SocialAuthService, SocialUser } from "angularx-social-login";
 
@@ -27,7 +28,8 @@ export class SearchComponent implements OnInit {
     private apiService: ApiService,
     private commonFunctionsService: CommonFunctionsService,
     private route:ActivatedRoute,
-    private splashService: SplashService) {
+    private splashService: SplashService, public title: Title) {
+      this.title.setTitle('iBot News | Search Results');
       this.query = this.route.snapshot.params['query'];
       this.authService.authState.subscribe(user => {
         this.user = user;

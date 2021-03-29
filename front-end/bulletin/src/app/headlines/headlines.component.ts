@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { SocialAuthService, SocialUser } from "angularx-social-login";
 
@@ -23,7 +24,8 @@ export class HeadlinesComponent implements OnInit {
     private apiService: ApiService,
     private authService: SocialAuthService,
     private commonFunctionsService: CommonFunctionsService,
-    private splashService: SplashService) {
+    private splashService: SplashService, public title: Title) {
+      this.title.setTitle('iBot News | Headlines');
       this.authService.authState.subscribe(user => {
         this.user = user;
         this.loggedIn = (user != null);

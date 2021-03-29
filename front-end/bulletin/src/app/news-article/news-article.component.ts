@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 import { SocialAuthService, SocialUser } from "angularx-social-login";
 
@@ -14,7 +15,7 @@ import { SplashService } from '../splash.service';
 })
 export class NewsArticleComponent implements OnInit {
 
-  newsArticle: [];
+  newsArticle;
   slug: string;
   source: string;
   loggedIn: boolean;
@@ -25,8 +26,8 @@ export class NewsArticleComponent implements OnInit {
     private apiService: ApiService,
     private authService: SocialAuthService,
     private commonFunctionsService: CommonFunctionsService,
-    private route:ActivatedRoute,
-    private splashService: SplashService) {
+    private route: ActivatedRoute, private splashService: SplashService,
+    public title: Title) {
       this.slug = this.route.snapshot.params['slug'];
       this.source = this.route.snapshot.params['source'];
       this.authService.authState.subscribe(user => {
@@ -50,6 +51,9 @@ export class NewsArticleComponent implements OnInit {
       } else {
         data[0]['savedArticle'] = false;
         this.newsArticle = data;
+      }
+      if (this.newsArticle.length > 0) {
+        this.title.setTitle('iBot News | ' + this.newsArticle[0].title);
       }
       this.splashService.updateSplashState(false);
     });

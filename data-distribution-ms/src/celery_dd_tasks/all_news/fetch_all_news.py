@@ -21,6 +21,7 @@ class FetchAllNews(Task):
   def __init__(self):
     # TODO: Find ways to securely store the API key.
     self.api_key = '6e5fa01bbed34f2cbeb90498cc84792a'
+    # self.api_key = '6fd5d00487734e67865343a92ca35903'
     self.configure_news_api()
 
   def configure_news_api(self):

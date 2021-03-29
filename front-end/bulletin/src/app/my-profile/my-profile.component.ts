@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { 
   FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser 
@@ -21,7 +22,8 @@ export class MyProfileComponent implements OnInit {
 
   constructor(
     private apiService: ApiService, private authService: SocialAuthService,
-    private splashService:SplashService) {
+    private splashService:SplashService, public title: Title) {
+      this.title.setTitle('iBot News | My Profile');
       this.preferences = {
         "activist": false,
         "adventure": false,

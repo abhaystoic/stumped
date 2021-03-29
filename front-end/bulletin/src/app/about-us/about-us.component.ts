@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about-us',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutUsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public title: Title) {
+    this.title.setTitle('iBot News | About Us');
+  }
 
   ngOnInit(): void {
   }

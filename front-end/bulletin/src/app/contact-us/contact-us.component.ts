@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { ApiService } from '../api.service';
 import { SplashService } from '../splash.service';
@@ -23,7 +24,10 @@ export class ContactUsComponent implements OnInit {
   mobNumberPattern: string = '^((\\+91-?)|0)?[0-9]{10}$';
 
   constructor(
-    private apiService: ApiService, private splashService: SplashService) { }
+    private apiService: ApiService, private splashService: SplashService,
+    public title: Title) {
+      this.title.setTitle('iBot News | Contact Us');
+    }
 
   ngOnInit(): void {
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { SocialAuthService, SocialUser } from "angularx-social-login";
 
@@ -24,7 +25,8 @@ export class HealthComponent implements OnInit {
     private authService: SocialAuthService,
     private apiService: ApiService,
     private commonFunctionsService: CommonFunctionsService,
-    private splashService: SplashService) {
+    private splashService: SplashService, public title: Title) {
+      this.title.setTitle('iBot News | Health News');
       this.authService.authState.subscribe(user => {
         this.user = user;
         this.loggedIn = (user != null);

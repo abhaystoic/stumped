@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { 
   FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser 
@@ -26,8 +27,8 @@ export class SavedNewsComponent implements OnInit {
   constructor(
     private apiService: ApiService, private authService: SocialAuthService,
     private commonFunctionsService: CommonFunctionsService,
-    private splashService:SplashService) {
-
+    private splashService:SplashService, public title: Title) {
+      this.title.setTitle('iBot News | My Saved News');
   }
 
   ngOnInit(): void {
