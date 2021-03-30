@@ -42,7 +42,7 @@ class FetchAllNews(Task):
         try:
           news_res = self.news_api.get_everything(
             q=cat, language='en', page_size=100)
-          if news_res['status'] == 'ok':
+          if news_res and news_res['status'] == 'ok':
             if topic in all_news:
               all_news[topic].append(news_res)
             else:

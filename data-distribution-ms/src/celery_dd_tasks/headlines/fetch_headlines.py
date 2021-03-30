@@ -51,8 +51,10 @@ class FetchHeadlinesTask(Task):
       print('Exception occurred==', err)
       return None
     headlines = {}
-    if top_headlines_res['status'] == 'ok':
+    if top_headlines_res and top_headlines_res['status'] == 'ok':
       headlines = top_headlines_res
+    else:
+      headlines = None
     return headlines
 
 app = Celery('headlines.fetch_headlines', broker='amqp://')

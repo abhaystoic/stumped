@@ -51,8 +51,10 @@ class FetchCovid19NewsTask(Task):
       print('Exception occurred==', err)
       return None
     covid19_news = {}
-    if covid19_news_res['status'] == 'ok':
+    if covid19_news_res and covid19_news_res['status'] == 'ok':
       covid19_news = covid19_news_res
+    else:
+      covid19_news = None
     return covid19_news
 
 app = Celery('covid19.fetch_covid19_news', broker='amqp://')
