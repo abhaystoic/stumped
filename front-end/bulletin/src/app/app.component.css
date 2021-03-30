@@ -186,8 +186,8 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   bottom: 0;
   left: 30%;
-  -webkit-animation: myfirst 22s linear infinite;
-  animation: myfirst 22s linear infinite;
+  -webkit-animation: myfirst 8s linear infinite;
+  animation: myfirst 8s linear infinite;
 }
 
 .new_footer_top .footer_bg .footer_bg_two {
@@ -198,8 +198,8 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 0;
   left: 38%;
   position: absolute;
-  -webkit-animation: myfirst 30s linear infinite;
-  animation: myfirst 30s linear infinite;
+  -webkit-animation: myfirst 11s linear infinite;
+  animation: myfirst 11s linear infinite;
 }
 
 .make-in-india-footer {
