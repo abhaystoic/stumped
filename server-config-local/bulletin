@@ -11,8 +11,6 @@ map $sent_http_content_type $expires {
 }
 
 server {
-    listen  80 default_server;
-    listen  [::]:80 default_server;
     expires $expires;
     root    /home/ubuntu/stumped/front-end/bulletin/dist/bulletin;
     index   index.html;
@@ -91,4 +89,28 @@ server {
     location /user/save-user {
             proxy_pass http://172.25.0.102:5000/user/save-user;
     }
+
+    server_name ibotnews.com; # managed by Certbot
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/ibotnews.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/ibotnews.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+server {
+    if ($host = ibotnews.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen  80 ;
+    listen  [::]:80 ;
+    server_name ibotnews.com;
+    return 404; # managed by Certbot
+
+
 }
