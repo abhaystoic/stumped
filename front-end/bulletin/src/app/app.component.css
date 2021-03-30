@@ -9,7 +9,7 @@ body {
 }
 
 .content-style {
-  background: #fcc500;
+  background: #ffeed2;
   margin-left: 44px;
   margin-right: 44px;
   margin-top: 2%;
@@ -134,8 +134,8 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 .btn_get_two {
   -webkit-box-shadow: none;
   box-shadow: none;
-  background: #fcc500;
-  border-color: #fcc500;
+  background: #ffeed2;
+  border-color: #ffeed2;
   color: #211e1e;
 }
 
