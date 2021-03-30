@@ -90,7 +90,7 @@ server {
             proxy_pass http://172.25.0.102:5000/user/save-user;
     }
 
-    server_name ibotnews.com; # managed by Certbot
+    server_name www.ibotnews.com; # managed by Certbot
 
     listen [::]:443 ssl http2 ipv6only=on; # managed by Certbot
     listen 443 ssl http2; # managed by Certbot
@@ -102,15 +102,12 @@ server {
 }
 
 server {
-    if ($host = ibotnews.com) {
+    if ($host = www.ibotnews.com) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
-
     listen  80 ;
     listen  [::]:80 ;
-    server_name ibotnews.com;
+    server_name www.ibotnews.com;
     return 404; # managed by Certbot
-
-
 }
