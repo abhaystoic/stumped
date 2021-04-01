@@ -37,7 +37,7 @@
 
 .topnav .search-container button {
   padding: 4px 10px;
-  margin-right: 16px;
+  /* margin-right: 16px; */
   background: #ddd;
   border: none;
   cursor: pointer;
@@ -48,8 +48,8 @@
 }
 
 .profile-pic-header {
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
   margin-left: 30px;
 }
@@ -59,6 +59,16 @@
   color: inherit;
   font-family: 'system-ui';
   font-size: 30px;
+  margin-left: 5px;
+}
+
+.brand-logo {
+  height: 40px;
+  width: 40px;
+}
+
+.brading-container {
+  margin-left: 0;
 }
 
 @media screen and (max-width: 700px) {
@@ -82,6 +92,12 @@
     padding: 14px;
   }
 
+  .brand-logo {
+    height: 20px;
+    width: 20px;
+    margin-top: 5px;
+  }
+
   /* 
   .topnav input[type=text], .topnav .search-container button {
     float: none;
@@ -99,6 +115,6 @@
 
 @media screen and (max-width: 1024px) {
   .topnav .search-container {
-    width: inherit;
+    width: 35%;
   }
 }
