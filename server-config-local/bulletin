@@ -18,6 +18,9 @@ server {
     location / {
 	    try_files $uri $uri/ /index.html;
     }
+    location /robots.txt {
+            alias /home/ubuntu/stumped/front-end/bulletin/dist/bulletin/robots.txt;
+    }
     location /fetch-business {
 	    proxy_pass http://172.25.0.104:5000/business;
     }
