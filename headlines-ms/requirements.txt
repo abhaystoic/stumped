@@ -31,7 +31,7 @@ pika==1.1.0
 prompt-toolkit==3.0.5
 ptyprocess==0.6.0
 pycrypto==2.6.1
-Pygments==2.6.1
+Pygments==2.7.4
 #PyGObject==3.26.1
 pymongo==3.10.1
 pyparsing==2.4.7
