@@ -1,4 +1,5 @@
 import json
+import os
 
 from bson import json_util
 from datetime import datetime
@@ -6,6 +7,11 @@ from flask import Flask, request
 from flask_cors import CORS
 from pymongo import MongoClient
 
+MONGO_USER = os.getenv('MONGO_USER')
+MONGO_PWD = os.getenv('MONGO_PWD')
+MONGODB_PORT = os.getenv('MONGODB_PORT')
+MONGO_CONNECTION_STRING = (
+  f'mongodb://{MONGO_USER}:{MONGO_PWD}@localhost:{MONGODB_PORT}')
 
 app = Flask(__name__)
 CORS(app)
@@ -13,7 +19,7 @@ CORS(app)
 
 @app.route('/')
 def get_covid19_news():
-  mongo_client = MongoClient('mongodb://localhost:27017')
+  mongo_client = MongoClient(MONGO_CONNECTION_STRING)
   db = mongo_client.news
   collection = db['covid19']
   total_docs = collection.count_documents({})
@@ -44,7 +50,7 @@ def get_covid19_news():
 
 @app.route('/fetch-news-article', methods = ['GET'])
 def get_news_article():
-  mongo_client = MongoClient('mongodb://localhost:27017')
+  mongo_client = MongoClient(MONGO_CONNECTION_STRING)
   db = mongo_client.news
   collection = db['article_slugs']
   total_docs = collection.count_documents({})

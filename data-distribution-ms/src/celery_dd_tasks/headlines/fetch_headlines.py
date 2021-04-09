@@ -2,6 +2,7 @@
 
 import json
 import newsapi
+import os
 
 from celery import Celery
 from celery import Task
@@ -18,9 +19,8 @@ class FetchHeadlinesTask(Task):
   name = 'fetch-headlines-task'
 
   def __init__(self):
-    # TODO: Find ways to securely store the API key.
-    self.api_key = '6e5fa01bbed34f2cbeb90498cc84792a'
-    # self.api_key = '6fd5d00487734e67865343a92ca35903'
+    # self.api_key = os.getenv('NEWS_API_KEY_PROD')
+    self.api_key = os.getenv('NEWS_API_KEY_DEV')
     self.configure_news_api()
   
   def configure_news_api(self):
@@ -30,7 +30,9 @@ class FetchHeadlinesTask(Task):
   def run(self):
     headlines = self.fetch_headlines()
     if headlines:
+      print('Headlines received, sending it to other MS...')
       rabbit_sender.send_headlines(headlines)
+    print('Saving a copy of headlines...')
     return headlines
 
   def fetch_headlines(self, retry=False):
@@ -42,7 +44,7 @@ class FetchHeadlinesTask(Task):
       print('NewsAPI Exception==', err)
       if not retry:
         print('Retrying with another key...')
-        self.api_key = '420b05784fe64997b5e8f5b23c0a7b72'
+        self.api_key = os.getenv(NEWS_API_KEY_BACKUP)
         self.configure_news_api()
         self.fetch_headlines(retry=True)
       else:
@@ -58,6 +60,6 @@ class FetchHeadlinesTask(Task):
     return headlines
 
 app = Celery('headlines.fetch_headlines', broker='amqp://')
-app.config_from_object('headlines.celeryconfig')
+app.config_from_object('celery_dd_tasks.headlines.celeryconfig')
 headlines_task = app.register_task(FetchHeadlinesTask())
 headlines_task.delay()

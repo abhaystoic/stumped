@@ -12,16 +12,29 @@ services:
       - ~/docker-data/data-distribution-ms/data/mongoconfig:/data/configdb
       - ~/docker-data/data-distribution-ms/celery-beat-logs:/celery-beat-logs
     environment:
+      - NEWS_API_KEY_BACKUP=$NEWS_API_KEY_BACKUP
+      - NEWS_API_KEY_DEV=$NEWS_API_KEY_DEV
+      - NEWS_API_KEY_PROD=$NEWS_API_KEY_PROD
+      - MONGODB_PORT=$MONGODB_PORT
       - MONGO_INITDB_DATABASE=news
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=admin123
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_INITDB_ROOT_PASSWORD
+      - MONGO_USER=$MONGO_USER
+      - MONGO_PWD=$MONGO_PWD
+      - PIKA_USER_HEADLINES_MS_CONTAINER=$PIKA_USER_HEADLINES_MS_CONTAINER
+      - PIKA_PWD_HEADLINES_MS_CONTAINER=$PIKA_PWD_HEADLINES_MS_CONTAINER
+      - PIKA_USER_COVID19_MS_CONTAINER=$PIKA_USER_COVID19_MS_CONTAINER
+      - PIKA_PWD_COVID19_MS_CONTAINER=$PIKA_PWD_COVID19_MS_CONTAINER
+      - PIKA_USER_ALL_NEWS_MS_CONTAINER=$PIKA_USER_ALL_NEWS_MS_CONTAINER
+      - PIKA_PWD_ALL_NEWS_MS_CONTAINER=$PIKA_PWD_ALL_NEWS_MS_CONTAINER
+    env_file: .env
     ports:
-      - 27018:27017
+      - 27018:$MONGODB_PORT
       - 5673:5672
       - 15673:15672
     networks:
       stumped-back:
-        ipv4_address: 172.25.0.101
+        ipv4_address: $IPV4_ADDRESS_DATA_DISTRIBUTION_MS_CONTAINER
     depends_on: 
       - headlines-ms
       - covid19-ms
@@ -39,16 +52,22 @@ services:
       - ~/docker-data/headlines-ms/data/mongodb:/data/db
       - ~/docker-data/headlines-ms/data/mongoconfig:/data/configdb
     environment:
+      - MONGODB_PORT=$MONGODB_PORT
       - MONGO_INITDB_DATABASE=headline
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=admin123
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_INITDB_ROOT_PASSWORD
+      - MONGO_USER=$MONGO_USER
+      - MONGO_PWD=$MONGO_PWD
+      - PIKA_USER_HEADLINES_MS_CONTAINER=$PIKA_USER_HEADLINES_MS_CONTAINER
+      - PIKA_PWD_HEADLINES_MS_CONTAINER=$PIKA_PWD_HEADLINES_MS_CONTAINER
+    env_file: .env
     ports:
       - 5001:80
       - 5004:5000
-      - 27019:27017
+      - 27019:$MONGODB_PORT
     networks:
       stumped-back:
-        ipv4_address: 172.25.0.102
+        ipv4_address: $IPV4_ADDRESS_HEADLINES_MS_CONTAINER
   
   covid19-ms:
     container_name: covid19-ms-container
@@ -62,16 +81,22 @@ services:
       - ~/docker-data/covid19-ms/data/mongodb:/data/db
       - ~/docker-data/covid19-ms/data/mongoconfig:/data/configdb
     environment:
+      - MONGODB_PORT=$MONGODB_PORT
       - MONGO_INITDB_DATABASE=covid19
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=admin123
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_INITDB_ROOT_PASSWORD
+      - MONGO_USER=$MONGO_USER
+      - MONGO_PWD=$MONGO_PWD
+      - PIKA_USER_COVID19_MS_CONTAINER=$PIKA_USER_COVID19_MS_CONTAINER
+      - PIKA_PWD_COVID19_MS_CONTAINER=$PIKA_PWD_COVID19_MS_CONTAINER
+    env_file: .env
     ports:
       - 5002:80
       - 5006:5000
-      - 27020:27017
+      - 27020:$MONGODB_PORT
     networks:
       stumped-back:
-        ipv4_address: 172.25.0.103
+        ipv4_address: $IPV4_ADDRESS_COVID19_MS_CONTAINER
   
   all-news-ms:
     container_name: all-news-ms-container
@@ -85,16 +110,22 @@ services:
       - ~/docker-data/all-news-ms/data/mongodb:/data/db
       - ~/docker-data/all-news-ms/data/mongoconfig:/data/configdb
     environment:
+      - MONGODB_PORT=$MONGODB_PORT
       - MONGO_INITDB_DATABASE=all_news
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=admin123
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_INITDB_ROOT_PASSWORD
+      - MONGO_USER=$MONGO_USER
+      - MONGO_PWD=$MONGO_PWD
+      - PIKA_USER_ALL_NEWS_MS_CONTAINER=$PIKA_USER_ALL_NEWS_MS_CONTAINER
+      - PIKA_PWD_ALL_NEWS_MS_CONTAINER=$PIKA_PWD_ALL_NEWS_MS_CONTAINER
+    env_file: .env
     ports:
       - 5003:80
       - 5007:5000
-      - 27021:27017
+      - 27021:$MONGODB_PORT
     networks:
       stumped-back:
-        ipv4_address: 172.25.0.104
+        ipv4_address: $IPV4_ADDRESS_ALL_NEWS_MS_CONTAINER
   
   elastic-search-ms:
     container_name: elastic-search-ms-container
@@ -117,15 +148,16 @@ services:
         hard: -1
     volumes:
       - ~/docker-data/elastic-search:/usr/share/elasticsearch/data
+    env_file: .env
     ports:
       - 9200:9200
     networks:
       stumped-back:
-        ipv4_address: 172.25.0.105
+        ipv4_address: $IPV4_ADDRESS_ELASTIC_SEARCH_MS_CONTAINER
 
 networks:
   stumped-back:
     driver: bridge
     ipam:
       config:
-      - subnet: 172.25.0.0/24
+      - subnet: $BRIDGE_SUBNET

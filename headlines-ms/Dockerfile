@@ -34,7 +34,7 @@ RUN mkdir -p /data/db
 RUN mkdir -p /data/code
 
 # Expose ports from the container to the host
-EXPOSE 27017 80 443
+EXPOSE ${MONGODB_PORT} 80 443
 
 COPY . /flask_app
 

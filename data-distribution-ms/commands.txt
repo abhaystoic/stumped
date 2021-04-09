@@ -61,6 +61,9 @@ docker stop $(docker ps -aq)
 the followig to rebuild it:
 docker-compose build
 
+- Create and start a specific container
+docker-compose  up -d --build covid19-ms
+
 - Start a specific container/service
 docker-compose start elastic-search-ms
 
@@ -111,6 +114,10 @@ sudo service nginx restart
 - mongodb get last inserted record:
 db.headline.find({}).sort({$natural:-1}).limit(1)
 
+- Connect with mongo
+mongo admin --host localhost --port $MONGODB_PORT -u $MONGO_USER -p $MONGO_PWD
+mongo admin --host localhost --port $MONGODB_PORT -u $MONGO_INITDB_ROOT_USERNAME -p $MONGO_INITDB_ROOT_PASSWORD
+
 - supervisord
 supervisord -n --configuration=supervisord.conf --directory=~/github/stumped/all-news-ms/src/app --logfile=supervisord.log --loglevel=trace
 
@@ -126,7 +133,7 @@ sudo env FLASK_APP=app.py python3 -m flask run
 - Running Elasticsearch using Docker Compose
 check with the vm.max_map_count setting in /etc/sysctl.conf: Apply new count as elasticsearch expects
 sysctl -w vm.max_map_count=262144 (make a permanent entry in /etc/sysctl.conf)
-Also, don't forget to run the following command for docker container:
+Also, don't forget to run the following command for docker container otherwise we will get permission denied error:
 sudo chown 1000:1000 ~/docker-data/elastic-search
 
 https://medium.com/@JinnaBalu/elasticsearch-on-docker-b7854f116062

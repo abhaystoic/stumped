@@ -1,7 +1,9 @@
 """Celery task for fetching news highlights."""
 
+import datetime
 import json
 import newsapi
+import os
 
 from celery import Celery
 from celery import Task
@@ -18,9 +20,8 @@ class FetchCovid19NewsTask(Task):
   name = 'fetch-covid19-news-task'
 
   def __init__(self):
-    # TODO: Find ways to securely store the API key.
-    self.api_key = '6e5fa01bbed34f2cbeb90498cc84792a'
-    # self.api_key = '6fd5d00487734e67865343a92ca35903'
+    # self.api_key = os.getenv('NEWS_API_KEY_PROD')
+    self.api_key = os.getenv('NEWS_API_KEY_DEV')
     self.configure_news_api()
 
   def configure_news_api(self):
@@ -35,14 +36,17 @@ class FetchCovid19NewsTask(Task):
 
   def fetch_covid19_news(self, retry=False):
     """Celery task to fetch covid19 news and save in the database."""
+    today = datetime.date.today()
+    yesterday = today - datetime.timedelta(days = 1)
     try:
       covid19_news_res = self.news_api.get_everything(
-        q='covid19 AND coronavirus', language='en', page_size=100)
+        q='covid19 AND coronavirus', language='en', page_size=100,
+        from_param=yesterday, to=today, sort_by='publishedAt')
     except newsapi.newsapi_exception.NewsAPIException as err:
       print('NewsAPI Exception==', err)
       if not retry:
         print('Retrying with another key...')
-        self.api_key = '420b05784fe64997b5e8f5b23c0a7b72'
+        self.api_key = os.getenv(NEWS_API_KEY_BACKUP)
         self.configure_news_api()
         self.fetch_covid19_news(retry=True)
       else:
@@ -58,6 +62,6 @@ class FetchCovid19NewsTask(Task):
     return covid19_news
 
 app = Celery('covid19.fetch_covid19_news', broker='amqp://')
-app.config_from_object('covid19.celeryconfig')
+app.config_from_object('celery_dd_tasks.covid19.celeryconfig')
 covid19_news_task = app.register_task(FetchCovid19NewsTask())
 covid19_news_task.delay()

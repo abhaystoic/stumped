@@ -1,4 +1,5 @@
 import json
+import os
 import pytz
 
 from bson import json_util
@@ -7,6 +8,11 @@ from flask import Flask, request
 from flask_cors import CORS
 from pymongo import MongoClient
 
+MONGO_USER = os.getenv('MONGO_USER')
+MONGO_PWD = os.getenv('MONGO_PWD')
+MONGODB_PORT = os.getenv('MONGODB_PORT')
+MONGO_CONNECTION_STRING = (
+  f'mongodb://{MONGO_USER}:{MONGO_PWD}@localhost:{MONGODB_PORT}')
 
 app = Flask(__name__)
 CORS(app)
@@ -14,7 +20,7 @@ CORS(app)
 
 @app.route('/', methods = ['GET'])
 def get_headlines():
-  mongo_client = MongoClient('mongodb://localhost:27017')
+  mongo_client = MongoClient(MONGO_CONNECTION_STRING)
   db = mongo_client.news
   collection = db['headline']
   total_docs = collection.count_documents({})
@@ -45,7 +51,7 @@ def get_headlines():
 
 @app.route('/fetch-news-article', methods = ['GET'])
 def get_news_article():
-  mongo_client = MongoClient('mongodb://localhost:27017')
+  mongo_client = MongoClient(MONGO_CONNECTION_STRING)
   db = mongo_client.news
   collection = db['article_slugs']
   total_docs = collection.count_documents({})
@@ -58,7 +64,7 @@ def get_news_article():
 
 @app.route('/user/get-saved-news-and-sentiments', methods = ['POST'])
 def get_saved_news_and_sentiments():
-  mongo_client = MongoClient('mongodb://localhost:27017')
+  mongo_client = MongoClient(MONGO_CONNECTION_STRING)
   db = mongo_client.user
   collection_user_saved_news = db['user_saved_news']
   collection_user_sentiments = db['user_sentiments']
@@ -92,7 +98,7 @@ def get_saved_news_and_sentiments():
 
 @app.route('/user/get-saved-news-articles', methods = ['POST'])
 def get_saved_news_articles():
-  mongo_client = MongoClient('mongodb://localhost:27017')
+  mongo_client = MongoClient(MONGO_CONNECTION_STRING)
   db_user = mongo_client.user
   db_news = mongo_client.news
   collection_user_saved_news = db_user['user_saved_news']
@@ -128,7 +134,7 @@ def get_saved_news_articles():
 
 @app.route('/user/save-news', methods = ['POST'])
 def save_news():
-  mongo_client = MongoClient('mongodb://localhost:27017')
+  mongo_client = MongoClient(MONGO_CONNECTION_STRING)
   db = mongo_client.user
   collection_user_saved_news = db['user_saved_news']
   params = request.get_json()
@@ -149,7 +155,7 @@ def save_news():
 
 @app.route('/user/save-sentiments', methods = ['POST'])
 def save_sentiments():
-  mongo_client = MongoClient('mongodb://localhost:27017')
+  mongo_client = MongoClient(MONGO_CONNECTION_STRING)
   db = mongo_client.user
   collection_user_sentiments = db['user_sentiments']
   params = request.get_json()
@@ -173,7 +179,7 @@ def save_sentiments():
 
 @app.route('/user/unsave-news', methods = ['POST'])
 def un_save_news():
-  mongo_client = MongoClient('mongodb://localhost:27017')
+  mongo_client = MongoClient(MONGO_CONNECTION_STRING)
   db = mongo_client.user
   collection_user_saved_news = db['user_saved_news']
   params = request.get_json()
@@ -187,7 +193,7 @@ def un_save_news():
 
 @app.route('/user/save-user', methods = ['POST'])
 def save_user():
-  mongo_client = MongoClient('mongodb://localhost:27017')
+  mongo_client = MongoClient(MONGO_CONNECTION_STRING)
   db = mongo_client.user
   collection_preferences = db['user_preferences']
   user = request.get_json()
@@ -239,7 +245,7 @@ def save_user():
 
 @app.route('/user/save-feedback', methods = ['POST'])
 def save_feedback():
-  mongo_client = MongoClient('mongodb://localhost:27017')
+  mongo_client = MongoClient(MONGO_CONNECTION_STRING)
   db = mongo_client.user
   collection_feedback = db['user_feedback']
   feedback = request.get_json()

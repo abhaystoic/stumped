@@ -16,7 +16,6 @@ import seaborn as sns
 
 from IPython import display
 from nltk.sentiment.vader import SentimentIntensityAnalyzer as SIA
-from pprint import pprint
 
 
 def classify(all_news):

@@ -31,8 +31,8 @@ RUN mkdir -p /data/code
 # Create a directory to hold Celery Beat logs
 RUN mkdir -p /app/celery-beat-logs/
 
-# Expose port #27017 from the container to the host
-EXPOSE 27017
+# Expose Mongo DB port  from the container to the host
+EXPOSE ${MONGODB_PORT}
 
 COPY . /app
 

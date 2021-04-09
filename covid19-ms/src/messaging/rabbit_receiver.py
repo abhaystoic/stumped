@@ -1,4 +1,5 @@
 import json
+import os
 import pika
 import pytz
 
@@ -8,8 +9,15 @@ from search import elasticsearch_indexer
 from sentiment_analyzer import classifier
 from slugify import slugify
 
+MONGO_USER = os.getenv('MONGO_USER')
+MONGO_PWD = os.getenv('MONGO_PWD')
+MONGODB_PORT = os.getenv('MONGODB_PORT')
+MONGO_CONNECTION_STRING = (
+  f'mongodb://{MONGO_USER}:{MONGO_PWD}@localhost:{MONGODB_PORT}')
 
-credentials = pika.PlainCredentials('admin', 'admin123')
+credentials = pika.PlainCredentials(
+  os.getenv('PIKA_USER_COVID19_MS_CONTAINER'),
+  os.getenv('PIKA_PWD_COVID19_MS_CONTAINER'))
 connection = pika.BlockingConnection(
     pika.ConnectionParameters(
       host='localhost', virtual_host='covid19vhost', credentials=credentials))
@@ -20,7 +28,7 @@ channel.queue_declare(queue='covid19_news')
 
 
 def callback(ch, method, properties, body):
-  mongo_client = MongoClient('mongodb://localhost:27017')
+  mongo_client = MongoClient(MONGO_CONNECTION_STRING)
   db = mongo_client.news
   collection = db['covid19']
   total_docs = collection.count_documents({})
@@ -31,8 +39,9 @@ def callback(ch, method, properties, body):
   body['articles'] = create_unique_links(db, body['articles'])
   try:
     elasticsearch_indexer.create_es_index(body['articles'])
-  except Exception:
+  except Exception as exc:
     print('Failed to create elastic search index.')
+    print(exc)
     pass
   tz = pytz.timezone('Asia/Kolkata')
   body['created_time'] = datetime.now(tz)
