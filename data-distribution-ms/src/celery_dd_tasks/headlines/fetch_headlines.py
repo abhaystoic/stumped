@@ -19,8 +19,8 @@ class FetchHeadlinesTask(Task):
   name = 'fetch-headlines-task'
 
   def __init__(self):
-    # self.api_key = os.getenv('NEWS_API_KEY_PROD')
-    self.api_key = os.getenv('NEWS_API_KEY_DEV')
+    self.api_key = os.getenv('NEWS_API_KEY_PROD')
+    # self.api_key = os.getenv('NEWS_API_KEY_DEV')
     self.configure_news_api()
   
   def configure_news_api(self):

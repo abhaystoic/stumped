@@ -5,7 +5,7 @@ from celery.schedules import crontab
 MONGO_USER = os.getenv('MONGO_USER')
 MONGO_PWD = os.getenv('MONGO_PWD')
 MONGODB_PORT = os.getenv('MONGODB_PORT')
-MONGO_CONNECTION_STRING = (f'mongodb://{MONGO_USER}:{MONGO_PWD}@localhost')
+MONGO_CONNECTION_STRING = (f'mongodb://{MONGO_USER}:{MONGO_PWD}@localhost/?authSource=admin')
 
 # TODO: Use environment variables wherever possible.
 enable_utc = True
@@ -16,7 +16,7 @@ backend = 'amqp'
 task_serializer = 'json'
 accept_content = ['json']  # Ignore other content
 result_serializer = 'json'
-result_backend = 'mongodb'
+result_backend = MONGO_CONNECTION_STRING
 mongodb_backend_settings = {
   'host': 'localhost',
   'port': MONGODB_PORT,
@@ -24,6 +24,9 @@ mongodb_backend_settings = {
   'taskmeta_collection': 'all_news',
   'user': MONGO_USER,
   'password': MONGO_PWD,
+  'options': {
+      'authSource': 'admin',
+  },
 }
 beat_schedule = {
   'every_hour': {
