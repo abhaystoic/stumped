@@ -29,7 +29,7 @@ def get_business_news():
   if (current_page > total_docs):
     results = {
       'records': [],
-      'max_page': total_docs,
+      'max_pages': total_docs,
     }
     return json.dumps(
       results, sort_keys=True, indent=4, default=json_util.default)
@@ -50,7 +50,7 @@ def get_business_news():
       final_results['articles'].append(article)
   results = {
     'records': final_results,
-    'max_page': total_docs,
+    'max_pages': total_docs,
   }
   return json.dumps(
     results, sort_keys=True, indent=4, default=json_util.default)
@@ -68,7 +68,7 @@ def get_entertainment_news():
   if (current_page > total_docs):
     results = {
       'records': [],
-      'max_page': total_docs,
+      'max_pages': total_docs,
     }
     return json.dumps(
       results, sort_keys=True, indent=4, default=json_util.default)
@@ -89,7 +89,7 @@ def get_entertainment_news():
       final_results['articles'].append(article)
   results = {
     'records': final_results,
-    'max_page': total_docs,
+    'max_pages': total_docs,
   }
   return json.dumps(
     results, sort_keys=True, indent=4, default=json_util.default)
@@ -107,7 +107,7 @@ def get_health_news():
   if (current_page > total_docs):
     results = {
       'records': [],
-      'max_page': total_docs,
+      'max_pages': total_docs,
     }
     return json.dumps(
       results, sort_keys=True, indent=4, default=json_util.default)
@@ -128,7 +128,7 @@ def get_health_news():
       final_results['articles'].append(article)
   results = {
     'records': final_results,
-    'max_page': total_docs,
+    'max_pages': total_docs,
   }
   return json.dumps(
     results, sort_keys=True, indent=4, default=json_util.default)
@@ -146,7 +146,7 @@ def get_science_news():
   if (current_page > total_docs):
     results = {
       'records': [],
-      'max_page': total_docs,
+      'max_pages': total_docs,
     }
     return json.dumps(
       results, sort_keys=True, indent=4, default=json_util.default)
@@ -167,7 +167,7 @@ def get_science_news():
       final_results['articles'].append(article)
   results = {
     'records': final_results,
-    'max_page': total_docs,
+    'max_pages': total_docs,
   }
   return json.dumps(
     results, sort_keys=True, indent=4, default=json_util.default)
@@ -185,7 +185,7 @@ def get_sports_news():
   if (current_page > total_docs):
     results = {
       'records': [],
-      'max_page': total_docs,
+      'max_pages': total_docs,
     }
     return json.dumps(
       results, sort_keys=True, indent=4, default=json_util.default)
@@ -206,7 +206,7 @@ def get_sports_news():
       final_results['articles'].append(article)
   results = {
     'records': final_results,
-    'max_page': total_docs,
+    'max_pages': total_docs,
   }
   return json.dumps(
     results, sort_keys=True, indent=4, default=json_util.default)
@@ -224,7 +224,7 @@ def get_technology_news():
   if (current_page > total_docs):
     results = {
       'records': [],
-      'max_page': total_docs,
+      'max_pages': total_docs,
     }
     return json.dumps(
       results, sort_keys=True, indent=4, default=json_util.default)
@@ -245,7 +245,7 @@ def get_technology_news():
       final_results['articles'].append(article)
   results = {
     'records': final_results,
-    'max_page': total_docs,
+    'max_pages': total_docs,
   }
   return json.dumps(
     results, sort_keys=True, indent=4, default=json_util.default)

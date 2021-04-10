@@ -91,7 +91,7 @@ body {
   font-size: 16px;
 }
 
-.search-res-indicator-txt {
+.indicator-txt {
   color: #000000;
   margin-left: 40px;
 }
@@ -174,10 +174,6 @@ body {
 @media screen and (max-width: 1024px) {
   .sml {
     font-size: 40%;
-  }
-
-  .card-title {
-    font-size: 12px;
   }
 
   .social .fbtn {

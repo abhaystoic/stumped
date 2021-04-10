@@ -29,7 +29,7 @@ def get_covid19_news():
   if (current_page > total_docs):
     results = {
       'records': [],
-      'max_page': total_docs,
+      'max_pages': total_docs,
     }
     return json.dumps(
       results, sort_keys=True, indent=4, default=json_util.default)
@@ -43,7 +43,7 @@ def get_covid19_news():
       allowDiskUse=True)][record_index_as_per_page]
   results = {
     'records': records,
-    'max_page': total_docs,
+    'max_pages': total_docs,
   }
   return json.dumps(
     results, sort_keys=True, indent=4, default=json_util.default)

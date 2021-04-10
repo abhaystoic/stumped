@@ -1,5 +1,5 @@
 <div [hidden]="showSplash">
-  <div class="search-res-indicator-txt" *ngIf="source === 'search'">
+  <div class="indicator-txt" *ngIf="source === 'search'">
     <div class="card flex-row flex-wrap" *ngIf="allArticles && allArticles.length > 0">
       <div class="flex-wrap card-body news-li-style news-content search-text-adjust">
         Search results for <i><b>"{{query}}"</b></i>
@@ -19,6 +19,13 @@
              (change)="filterNews()">
       <span class="slider round"></span>
     </label>
+  </div>
+  <div class="indicator-txt" *ngIf="allArticles && allArticles.length == 0">
+    <div class="card flex-row flex-wrap news-li-style">
+      <div class="flex-wrap card-body news-content">
+        No results found.
+      </div>
+    </div>
   </div>
   <ul>
     <li *ngFor="let news of allArticles; index as i;"
