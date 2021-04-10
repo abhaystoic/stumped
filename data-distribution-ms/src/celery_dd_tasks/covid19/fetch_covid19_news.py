@@ -38,6 +38,7 @@ class FetchCovid19NewsTask(Task):
     """Celery task to fetch covid19 news and save in the database."""
     today = datetime.date.today()
     yesterday = today - datetime.timedelta(days = 1)
+    covid19_news_res = None
     try:
       covid19_news_res = self.news_api.get_everything(
         q='covid19 AND coronavirus', language='en', page_size=100,
@@ -48,7 +49,7 @@ class FetchCovid19NewsTask(Task):
         print('Retrying with another key...')
         self.api_key = os.getenv('NEWS_API_KEY_BACKUP')
         self.configure_news_api()
-        self.fetch_covid19_news(retry=True)
+        covid19_news_res = self.fetch_covid19_news(retry=True)
       else:
         return None
     except Exception as err:

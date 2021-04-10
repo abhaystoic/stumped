@@ -37,6 +37,7 @@ class FetchHeadlinesTask(Task):
 
   def fetch_headlines(self, retry=False):
     """Celery task to fetch headlines and save in the database."""
+    top_headlines_res = None
     try:
       top_headlines_res = self.news_api.get_top_headlines(
         country='in', page_size=100)
@@ -46,7 +47,7 @@ class FetchHeadlinesTask(Task):
         print('Retrying with another key...')
         self.api_key = os.getenv('NEWS_API_KEY_BACKUP')
         self.configure_news_api()
-        self.fetch_headlines(retry=True)
+        top_headlines_res = self.fetch_headlines(retry=True)
       else:
         return None
     except Exception as err:

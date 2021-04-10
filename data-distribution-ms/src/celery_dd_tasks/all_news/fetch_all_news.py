@@ -57,7 +57,7 @@ class FetchAllNews(Task):
             print('Retrying with another key...')
             self.api_key = os.getenv('NEWS_API_KEY_BACKUP')
             self.configure_news_api()
-            self.fetch_all_news(retry=True)
+            all_news = self.fetch_all_news(retry=True)
           else:
             return None
         except Exception as err:
