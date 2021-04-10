@@ -4,7 +4,6 @@ mongod --bind_ip_all --port $MONGODB_PORT &
 sleep 10
 echo "###########################################################################################################################"
 echo "Creating app users..."
-# mongo admin --host localhost --port $MONGODB_PORT --eval "db.createUser({user: '$MONGO_USER', pwd: '$MONGO_PWD',roles: [{role: 'readWriteAnyDatabase', db: 'news'}]});"
 mongo admin --host localhost --port $MONGODB_PORT --eval "db.createUser({user: '$MONGO_INITDB_ROOT_USERNAME', pwd: '$MONGO_INITDB_ROOT_PASSWORD',roles: ['root', 'userAdminAnyDatabase','userAdmin','readWrite','dbAdmin','clusterAdmin','readWriteAnyDatabase','dbAdminAnyDatabase']});"
 echo "App users created..."
 mongo admin --host localhost --port $MONGODB_PORT --eval "db.getSiblingDB('admin').shutdownServer()"
