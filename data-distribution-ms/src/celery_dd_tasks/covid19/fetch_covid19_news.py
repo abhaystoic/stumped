@@ -46,7 +46,7 @@ class FetchCovid19NewsTask(Task):
       print('NewsAPI Exception==', err)
       if not retry:
         print('Retrying with another key...')
-        self.api_key = os.getenv(NEWS_API_KEY_BACKUP)
+        self.api_key = os.getenv('NEWS_API_KEY_BACKUP')
         self.configure_news_api()
         self.fetch_covid19_news(retry=True)
       else:
