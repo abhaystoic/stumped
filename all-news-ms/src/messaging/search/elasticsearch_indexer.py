@@ -7,6 +7,9 @@ def create_es_index(all_news):
   for topic, categ_news in all_news.values():
     for rec in categ_news:
       for article in rec['articles']:
+        # Elasticsearch won't index _id field as it is a reserved word.
+        if '_id' in article:
+          del article['_id']
         res = es.index(
           index='news-search', doc_type='news', id=article['url'], body=article)
 # es = Elasticsearch([{'host': '172.18.0.2','port': 9200}])
