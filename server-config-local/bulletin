@@ -21,6 +21,9 @@ server {
     location /robots.txt {
             alias /home/ubuntu/stumped/front-end/bulletin/dist/bulletin/robots.txt;
     }
+    location /sitemap.xml {
+            alias /home/ubuntu/stumped/front-end/bulletin/dist/bulletin/sitemap.xml;
+    }
     location /fetch-business {
 	    proxy_pass http://172.25.0.104:5000/business;
     }

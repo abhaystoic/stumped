@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<url>
+  <loc>https://ibotnews.com/</loc>
+  <lastmod>2021-04-10T08:20:42+00:00</lastmod>
+  <changefreq>hourly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://ibotnews.com/headlines</loc>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>https://ibotnews.com/covid19</loc>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>https://ibotnews.com/entertainment</loc>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>https://ibotnews.com/business</loc>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>https://ibotnews.com/technology</loc>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>https://ibotnews.com/sports</loc>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>https://ibotnews.com/health</loc>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>https://ibotnews.com/science</loc>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>https://ibotnews.com/about-us</loc>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>https://ibotnews.com/privacy</loc>
+  <changefreq>hourly</changefreq>
+</url>
+
+</urlset>
