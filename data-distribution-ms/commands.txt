@@ -97,6 +97,9 @@ rabbitmqctl list_users
 - Docker logs:
 docker-compose logs -f -t
 
+- Docker copy file from container:
+docker cp <container ID>:/var/lib/rabbitmq/mongodb_backup .
+
 - Setting up Ubuntu server:
 https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04
 
@@ -117,6 +120,8 @@ db.headline.find({}).sort({$natural:-1}).limit(1)
 - Connect with mongo
 mongo admin --host localhost --port $MONGODB_PORT -u $MONGO_USER -p $MONGO_PWD
 mongo admin --host localhost --port $MONGODB_PORT -u $MONGO_INITDB_ROOT_USERNAME -p $MONGO_INITDB_ROOT_PASSWORD
+
+- mongodump --host localhost --port $MONGODB_PORT -u $MONGO_INITDB_ROOT_USERNAME -p $MONGO_INITDB_ROOT_PASSWORD --out ~/mongodb_backup
 
 - supervisord
 supervisord -n --configuration=supervisord.conf --directory=~/github/stumped/all-news-ms/src/app --logfile=supervisord.log --loglevel=trace

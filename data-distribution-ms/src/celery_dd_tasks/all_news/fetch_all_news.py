@@ -21,8 +21,10 @@ class FetchAllNews(Task):
   name = 'fetch-all-news-task'
 
   def __init__(self):
-    self.api_key = os.getenv('NEWS_API_KEY_PROD')
-    # self.api_key = os.getenv('NEWS_API_KEY_DEV')
+    if os.getenv('ENVIRONMENT') == 'DEV':
+      self.api_key = os.getenv('NEWS_API_KEY_DEV')
+    else:
+      self.api_key = os.getenv('NEWS_API_KEY_PROD')
     self.configure_news_api()
 
   def configure_news_api(self):
