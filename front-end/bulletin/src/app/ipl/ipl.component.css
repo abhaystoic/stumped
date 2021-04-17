@@ -1,0 +1,54 @@
+.ipl-score-section-header {
+  text-align: center;
+}
+
+.ipl-score-frame-container {
+  background: url(/assets/images/loading.gif) center center no-repeat;
+}
+
+.ipl-iframe {
+  width:100%;
+  min-height: 460px;
+}
+
+.ring-container {
+  position: relative;
+}
+
+.circle {
+  width: 15px;
+  height: 15px;
+  background-color: #dc3545;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.ringring {
+  border: 3px solid #dc3545;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  animation: pulsate 1s ease-out;
+  animation-iteration-count: infinite;
+  -webkit-animation: pulsate 1s ease-out;
+  -webkit-animation-iteration-count: infinite;
+  opacity: 0.0;
+}
+
+@keyframes pulsate {
+  0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+  50% {opacity: 1.0;}
+  100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+}
+
+@-webkit-keyframes pulsate {
+  0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+  50% {opacity: 1.0;}
+  100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+}

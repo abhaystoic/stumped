@@ -8,6 +8,7 @@ import { BusinessComponent } from './business/business.component';
 import { EntertainmentComponent } from './entertainment/entertainment.component';
 import { HeadlinesComponent } from './headlines/headlines.component';
 import { HealthComponent } from './health/health.component';
+import { IplComponent } from './ipl/ipl.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { NewsArticleComponent } from './news-article/news-article.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'entertainment', component: EntertainmentComponent },
   { path: 'headlines', component: HeadlinesComponent },
   { path: 'health', component: HealthComponent },
+  { path: 'ipl', component: IplComponent },
   { path: 'my-profile', component: MyProfileComponent },
   { path: 'news-article/:slug/:source', component: NewsArticleComponent},
   { path: 'privacy', component: PrivacyComponent },

@@ -176,6 +176,10 @@ input:checked + .slider:before {
   color: #fff;
 }
 
+.standalone-page-container {
+  padding-left: 40px;
+}
+
 @media screen and (max-width: 1024px) {
   .btn-social-container-modal {
     max-width: 100%;
