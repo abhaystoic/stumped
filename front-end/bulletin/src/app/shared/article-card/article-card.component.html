@@ -12,13 +12,29 @@
     </div>
   </div>
   <div class="filters-container" *ngIf="allArticles && allArticles.length > 0 && source !== 'news-article'">
-    <span class="toggle-text">Display positive News</span>
-    <label class="switch">
-      <input type="checkbox"
-             [checked]="displayPositiveNews"
-             (change)="filterNews()">
-      <span class="slider round"></span>
-    </label>
+    <div class="row">
+      <div class="col-lg-4 col-sm-7">
+        <!-- IPL LIVE Link Starts-->
+        <span class="filters-text">IPL LIVE Score</span>
+        <span class="ring-container">
+          <span class="ringring"></span>
+          <span class="circle"></span>
+        </span>
+        <!-- IPL LIVE Link Ends-->
+      </div>
+      <div class="col-lg-4 col-sm-7">
+        <span class="filters-text">Subscribe</span>
+      </div>
+      <div class="col-lg-4 col-sm-7">
+        <span class="filters-text">Display positive News</span>
+        <label class="switch">
+          <input type="checkbox"
+                [checked]="displayPositiveNews"
+                (change)="filterNews()">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
   </div>
   <div class="indicator-txt" *ngIf="allArticles && allArticles.length == 0">
     <div class="card flex-row flex-wrap news-li-style">
