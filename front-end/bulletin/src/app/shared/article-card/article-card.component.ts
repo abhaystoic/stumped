@@ -9,6 +9,10 @@ import {
 import { ApiService } from '../../api.service';
 import { SplashService } from '../../splash.service';
 
+export class SubscriptionForm {
+  public email: string;
+}
+
 @Component({
   selector: 'app-article-card',
   templateUrl: './article-card.component.html',
@@ -33,7 +37,9 @@ export class ArticleCardComponent implements OnInit {
   titleToShare: string;
   modalOptions:NgbModalOptions;
   preferences: object;
-  showSplash = true;
+  showSplash: boolean = true;
+  subscriptionModel = new SubscriptionForm();
+  subscriptionFormSubmitted: boolean = false;
   user: SocialUser;
 
   constructor(
@@ -73,6 +79,15 @@ export class ArticleCardComponent implements OnInit {
     );
   }
 
+  displaySubscriptionForm(subscribeFreeModal): void {
+    this.modalService.open(subscribeFreeModal, this.modalOptions).result.then(
+      (result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
   getPercentageStyle(percentage: number): string {
     var percentage:number = Math.round(percentage * 100);
     return `--percent:${ percentage };`;
@@ -100,6 +115,7 @@ export class ArticleCardComponent implements OnInit {
   }
 
   private getDismissReason(reason: any): string {
+    this.subscriptionFormSubmitted = false;
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -162,6 +178,13 @@ export class ArticleCardComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
     console.log('shareThisArticle closeResult==> ', this.closeResult);
+  }
+
+  subscribeUser(form): void {
+    this.apiService.subscribeUser(form.value).subscribe((data) => {
+      form.resetForm();
+      this.subscriptionFormSubmitted = true;
+    });
   }
 
   signInWithGoogle(): void {

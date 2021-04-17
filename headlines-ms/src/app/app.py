@@ -253,9 +253,26 @@ def save_feedback():
   feedback['last_updated'] = datetime.now(tz)
   print('feedback===>', feedback)
   rec_id = collection_feedback.insert_one(feedback)
-  if (rec_id):
+  if rec_id:
     print('Data inserted with record id= ', rec_id)
   return {'success': True}
+
+@app.route('/user/subscribe-user', methods = ['PUT'])
+def subscribe_user():
+  mongo_client = MongoClient(MONGO_CONNECTION_STRING)
+  db = mongo_client.user
+  collection_subscribers = db['user_subscribers']
+  user = request.get_json()
+  mongodb_id = user['email']
+  user['_id'] = mongodb_id
+  tz = pytz.timezone('Asia/Kolkata')
+  user['last_updated'] = datetime.now(tz)
+  user['_id'] = mongodb_id
+  rec_id = collection_subscribers.update(
+    {'_id': mongodb_id}, user, upsert=True)
+  if rec_id:
+    print('Data inserted/updated with record id= ', rec_id)
+  return {'success': True, 'user': user}
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0')

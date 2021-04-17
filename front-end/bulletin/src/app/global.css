@@ -34,13 +34,17 @@
 /* Styling for Filters: toggle switches etc. */
 
 .filters-container {
-  /* text-align: right; */
   color: #000000;
   margin-left: 10%;
 }
 
 .filters-text {
   padding: 2%;
+}
+
+.filters-text a {
+  color: #000000;
+  text-decoration: underline;
 }
 
 .switch {
@@ -182,6 +186,10 @@ input:checked + .slider:before {
 }
 
 @media screen and (max-width: 1024px) {
+  .common-site-btn {
+    font-size: 10px;
+  }
+
   .btn-social-container-modal {
     max-width: 100%;
     min-width: 100%;

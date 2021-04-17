@@ -15,7 +15,16 @@
     <div class="row">
       <div class="col-lg-4 col-sm-7">
         <!-- IPL LIVE Link Starts-->
-        <span class="filters-text">IPL LIVE Score</span>
+        <span class="filters-text">
+          <a routerLink="/ipl">
+            <button type="button"
+                    class="btn btn-default common-site-btn filter-interaction-btn ipl-btn">
+                    <i class="fa fa-bullhorn"
+                       aria-hidden="true">
+                    </i>&nbsp;&nbsp;&nbsp;&nbsp;IPL LIVE Score
+            </button>
+          </a>
+        </span>
         <span class="ring-container">
           <span class="ringring"></span>
           <span class="circle"></span>
@@ -23,7 +32,15 @@
         <!-- IPL LIVE Link Ends-->
       </div>
       <div class="col-lg-4 col-sm-7">
-        <span class="filters-text">Subscribe</span>
+        <span class="filters-text">
+          <button type="button"
+                  class="btn btn-default common-site-btn filter-interaction-btn"
+                  (click)="displaySubscriptionForm(subscribeFreeModal)">
+                  <i class="fa fa-bell"
+                     aria-hidden="true">
+                  </i>&nbsp;&nbsp;&nbsp;&nbsp;Subscribe for FREE!
+          </button>
+        </span>
       </div>
       <div class="col-lg-4 col-sm-7">
         <span class="filters-text">Display positive News</span>
@@ -172,7 +189,7 @@
   <div class="modal-header">
       <span class="modal-title" id="modal-basic-title">Select to share</span>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">×</span>
+        <span aria-hidden="true">×</span>
       </button>
   </div>
   <div class="modal-body social-link-share">
@@ -196,6 +213,59 @@
         </div>
     </div>
     </div>
+  </div>
+</ng-template>
+<!-- END: Modal for link sharing purposes. -->
+<!-- START: Modal for link sharing purposes. -->
+<ng-template #subscribeFreeModal let-modal>
+  <div class="modal-header">
+    <span class="modal-title" id="modal-basic-title">
+      Limited Period Offer! Subscribe for Free!
+    </span>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="early-bird">
+      <i class="fab fa-earlybirds"></i>
+    </div>
+    <p *ngIf="!subscriptionFormSubmitted">
+      Subscribe now and avail the early bird <b>FREE</b> subscription!
+      <br/> Unlock all the paid featues (Yes! We will move to a subscription based model soon).
+      <br/> We will also provide you with the relevant news articles, based on your <a routerLink="/my-profile" target="_blank">preferences</a>, for free in your inbox.
+      <br/><br/><b> HURRY! Grab the offer before we move to a subscription based model.</b>
+    </p>
+    <h5 *ngIf="subscriptionFormSubmitted" class="subscribe-success">Thanks for subscribing! </h5>
+  </div>
+  <div *ngIf="!subscriptionFormSubmitted">
+    <form #subscriptionForm="ngForm" (ngSubmit)="subscriptionForm.form.valid && subscribeUser(subscriptionForm)">
+      <div class="col-md-6 subscribe-form-container">
+        <div class="form-group form-group-spc">
+          <input type="text"
+                 class="form-control subscribe-form-email"
+                 id="inputEmail"
+                 name="email"
+                 placeholder=" email"
+                 [email]="true"
+                 [(ngModel)]="subscriptionModel.email"
+                 [ngClass]="{ 'is-invalid': subscriptionForm.submitted && email.invalid }"
+                 #email="ngModel"
+required />
+          <div class="invalid-email" *ngIf="subscriptionForm.submitted && email.invalid">
+            <p *ngIf="email.errors.required">email is required</p>
+          </div>
+        </div>
+        <div class="form-group btn-grp">
+          <button type="submit"
+                  class="btn btn-default common-site-btn">
+                  <i class="fa fa-bell"
+                      aria-hidden="true">
+                  </i>  Subscribe
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </ng-template>
 <!-- END: Modal for link sharing purposes. -->

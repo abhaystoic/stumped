@@ -254,4 +254,15 @@ export class ApiService {
         }));
   }
 
+  public subscribeUser(user) {
+    let headers = {
+      'Content-Type': 'application/json',
+    }
+    return this.httpClient.put<any>(
+      '/user/subscribe-user', user, {headers}).pipe(
+        catchError(err => {
+          console.log(err);
+          return throwError('Failed to subscribe user.');
+        }));
+  }
 }

@@ -189,8 +189,6 @@ body {
   background-color: #dc3545;
   border-radius: 50%;
   position: absolute;
-  top: 2px;
-  left: 10px;
 }
 
 .ringring {
@@ -200,12 +198,20 @@ body {
   height: 25px;
   width: 25px;
   position: absolute;
-  left: 5px;
+  left: -5px;
+  top: -8px;
   animation: pulsate 1s ease-out;
   animation-iteration-count: infinite;
   -webkit-animation: pulsate 1s ease-out;
   -webkit-animation-iteration-count: infinite;
   opacity: 0.0;
+}
+
+.filter-interaction-btn {
+  width: 175px;
+  height: 30px;
+  padding: 0;
+  margin-top: -8px;
 }
 
 @keyframes pulsate {
@@ -220,6 +226,19 @@ body {
   100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
 }
 
+.subscribe-form-container {
+  max-width: 100%;
+  text-align: center;
+}
+
+.early-bird {
+  font-size: 50px;
+  text-align: center;
+}
+
+.subscribe-success {
+  text-align: center;
+}
 
 @media screen and (max-width: 1024px) {
   .sml {
@@ -233,7 +252,7 @@ body {
   .circle {
     width: 10px;
     height: 10px;
-    top: 0px;
+    top: -9px;
     left: 0px;
   }
 
@@ -241,7 +260,19 @@ body {
     height: 20px;
     width: 20px;
     left: -5px;
-    right: 2px;
-    top: -5px;
+    top: -14px;
+  }
+
+  .filter-interaction-btn {
+    width: 120px;
+    margin-bottom: 10px;
+  }
+
+  .modal-title {
+    font-size: 14px !important;
+  }
+
+  .subscribe-form-email, .subscribe-success, .modal-body {
+    font-size: 10px;
   }
 }

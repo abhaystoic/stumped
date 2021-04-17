@@ -95,6 +95,9 @@ server {
     location /user/save-user {
             proxy_pass http://172.25.0.102:5000/user/save-user;
     }
+    location /user/subscribe-user {
+            proxy_pass http://172.25.0.102:5000/user/subscribe-user;
+    }
 
     server_name www.ibotnews.com; # managed by Certbot
 
