@@ -11,7 +11,7 @@
       </div>
     </div>
   </div>
-  <div class="filters-container" *ngIf="allArticles && allArticles.length > 0 && source !== 'news-article'">
+  <div class="filters-container">
     <div class="row">
       <div class="col-lg-4 col-sm-7">
         <!-- IPL LIVE Link Starts-->
@@ -251,7 +251,7 @@
                  [(ngModel)]="subscriptionModel.email"
                  [ngClass]="{ 'is-invalid': subscriptionForm.submitted && email.invalid }"
                  #email="ngModel"
-required />
+                 required />
           <div class="invalid-email" *ngIf="subscriptionForm.submitted && email.invalid">
             <p *ngIf="email.errors.required">email is required</p>
           </div>
