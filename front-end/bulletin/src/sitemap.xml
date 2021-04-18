@@ -19,6 +19,10 @@
   <changefreq>hourly</changefreq>
 </url>
 <url>
+  <loc>https://ibotnews.com/ipl</loc>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
   <loc>https://ibotnews.com/entertainment</loc>
   <changefreq>hourly</changefreq>
 </url>

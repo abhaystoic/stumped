@@ -68,7 +68,7 @@ def create_unique_links(db, articles):
   return articles_with_slugs
 
 def get_slug(title):
-  # TODO: Append timestamp to the slug to avoid duplicate entries.
+  # TODO: Append a unique hash to the slug to avoid duplicate entries.
   return slugify(title)
 
 channel.basic_consume(

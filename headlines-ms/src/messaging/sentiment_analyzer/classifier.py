@@ -7,12 +7,12 @@ nltk.download('vader_lexicon')
 
 
 import json
-import nltk
-import numpy as np
-import math
-import matplotlib.pyplot as plt
-import pandas as pd
-import seaborn as sns
+# import nltk
+# import numpy as np
+# import math
+# import matplotlib.pyplot as plt
+# import pandas as pd
+# import seaborn as sns
 
 from IPython import display
 from nltk.sentiment.vader import SentimentIntensityAnalyzer as SIA

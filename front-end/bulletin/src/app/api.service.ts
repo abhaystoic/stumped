@@ -1,20 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+  urlPrefix: string;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    this.urlPrefix = '';
+    if (environment.production === false) {
+      this.urlPrefix = 'https://localhost';
+    }
+  }
 
   public getBusinessNews(page: number = 1) {
     let params = new HttpParams(); //TODO: Initialize once, reset every time.
     params = params.append('page', page.toString());
     return this.httpClient.get<any>(
-      '/fetch-business', {params: params}).pipe(
+      this.urlPrefix + '/fetch-business', {params: params}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to get business news.');
@@ -25,7 +32,7 @@ export class ApiService {
     let params = new HttpParams();
     params = params.append('page', page.toString());
     return this.httpClient.get<any>(
-      '/fetch-covid19', {params: params}).pipe(
+      this.urlPrefix + '/fetch-covid19', {params: params}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to get covid19 news.');
@@ -36,7 +43,7 @@ export class ApiService {
     let params = new HttpParams();
     params = params.append('page', page.toString());
     return this.httpClient.get<any>(
-      '/fetch-entertainment', {params: params}).pipe(
+      this.urlPrefix + '/fetch-entertainment', {params: params}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to get entertainment news.');
@@ -47,7 +54,7 @@ export class ApiService {
     let params = new HttpParams();
     params = params.append('page', page.toString());
     return this.httpClient.get<any>(
-      '/fetch-headlines', {params: params}).pipe(
+      this.urlPrefix + '/fetch-headlines', {params: params}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to get headlines.');
@@ -58,7 +65,7 @@ export class ApiService {
     let params = new HttpParams();
     params = params.append('page', page.toString());
     return this.httpClient.get<any>(
-      '/fetch-health', {params: params}).pipe(
+      this.urlPrefix + '/fetch-health', {params: params}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to get health news.');
@@ -66,7 +73,7 @@ export class ApiService {
   }
 
   public getNewsArticle(slug: string, source: string) {
-    let url = '/fetch-news-article-' + source;
+    let url = this.urlPrefix + '/fetch-news-article-' + source;
     let params = new HttpParams();
     params = params.append('slug', slug);
     return this.httpClient.get<any>(url, {params: params}).pipe(
@@ -80,7 +87,7 @@ export class ApiService {
     let params = new HttpParams();
     params = params.append('page', page.toString());
     return this.httpClient.get<any>(
-      '/fetch-science', {params: params}).pipe(
+      this.urlPrefix + '/fetch-science', {params: params}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to get science news.');
@@ -91,7 +98,7 @@ export class ApiService {
     let params = new HttpParams();
     params = params.append('page', page.toString());
     return this.httpClient.get<any>(
-      '/fetch-sports', {params: params}).pipe(
+      this.urlPrefix + '/fetch-sports', {params: params}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to get sports news.');
@@ -102,7 +109,7 @@ export class ApiService {
     let params = new HttpParams();
     params = params.append('page', page.toString());
     return this.httpClient.get<any>(
-      '/fetch-technology', {params: params}).pipe(
+      this.urlPrefix + '/fetch-technology', {params: params}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to get technology news.');
@@ -120,7 +127,7 @@ export class ApiService {
       'page-name': pageName,
     }
     return this.httpClient.post<any>(
-      '/user/get-saved-news-articles', body, {headers}).pipe(
+      this.urlPrefix + '/user/get-saved-news-articles', body, {headers}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to get saved news for the user.');
@@ -141,7 +148,7 @@ export class ApiService {
       'page-name': pageName,
     }
     return this.httpClient.post<any>(
-      '/user/get-saved-news-and-sentiments', body, {headers}).pipe(
+      this.urlPrefix + '/user/get-saved-news-and-sentiments', body, {headers}).pipe(
         catchError(err => {
           console.log(err);
           return throwError(
@@ -168,7 +175,7 @@ export class ApiService {
       'Content-Type': 'application/json',
     }
     return this.httpClient.post<any>(
-      '/search-news', body, {headers}).pipe(
+      this.urlPrefix + '/search-news', body, {headers}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Elastic Search MS returned no results.');
@@ -186,7 +193,7 @@ export class ApiService {
       'provider': provider,
     }
     return this.httpClient.post<any>(
-      '/user/save-news', body, {headers}).pipe(
+      this.urlPrefix + '/user/save-news', body, {headers}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to save news for the user.');
@@ -205,7 +212,7 @@ export class ApiService {
       'sentiment': sentiment,
     }
     return this.httpClient.post<any>(
-      '/user/save-sentiments', body, {headers}).pipe(
+      this.urlPrefix + '/user/save-sentiments', body, {headers}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to save news for the user.');
@@ -223,7 +230,7 @@ export class ApiService {
       'news-article-id': newsId,
     }
     return this.httpClient.post<any>(
-      '/user/unsave-news', body, {headers}).pipe(
+      this.urlPrefix + '/user/unsave-news', body, {headers}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to unsave news for the user.');
@@ -235,7 +242,7 @@ export class ApiService {
       'Content-Type': 'application/json',
     }
     return this.httpClient.post<any>(
-      '/user/save-feedback', feedback, {headers}).pipe(
+      this.urlPrefix + '/user/save-feedback', feedback, {headers}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to save user feedback.');
@@ -247,7 +254,7 @@ export class ApiService {
       'Content-Type': 'application/json',
     }
     return this.httpClient.post<any>(
-      '/user/save-user', user, {headers}).pipe(
+      this.urlPrefix + '/user/save-user', user, {headers}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to save user info.');
@@ -259,7 +266,7 @@ export class ApiService {
       'Content-Type': 'application/json',
     }
     return this.httpClient.put<any>(
-      '/user/subscribe-user', user, {headers}).pipe(
+      this.urlPrefix + '/user/subscribe-user', user, {headers}).pipe(
         catchError(err => {
           console.log(err);
           return throwError('Failed to subscribe user.');
