@@ -13,7 +13,7 @@ export class ApiService {
   constructor(private httpClient: HttpClient) {
     this.urlPrefix = '';
     if (environment.production === false) {
-      this.urlPrefix = 'https://localhost';
+      this.urlPrefix = 'http://localhost';
     }
   }
 
