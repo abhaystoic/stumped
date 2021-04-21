@@ -1,9 +1,9 @@
 import json
 import os
-import pytz
-
-from bson import json_util
 from datetime import datetime
+
+import pytz
+from bson import json_util
 from flask import Flask, request
 from flask_cors import CORS
 from pymongo import MongoClient
@@ -17,6 +17,17 @@ MONGO_CONNECTION_STRING = (
 app = Flask(__name__)
 CORS(app)
 
+def _sanitize(data: dict) -> dict:
+  if not isinstance(data, dict):
+    return data
+  for key in tuple(data):
+    old_key = key
+    if isinstance(key, str) and ('$' in key or '.' in key):
+      key = key.replace('$', 'DOLLAR')
+      key = key.replace('.', 'DOT')
+      data[key] = data[old_key]
+      del data[old_key]
+  return data
 
 @app.route('/', methods = ['GET'])
 def get_headlines():
@@ -119,7 +130,6 @@ def get_saved_news_articles():
   for news_group in collection_headlines_records:
     for news in news_group.get('articles') or []:
       all_news[news['url']] = news
-  print(len(all_news))
   saved_news_articles = []
   for doc in saved_news_articles_info:
     found_news = all_news.get(doc['news_article_id'])
@@ -234,11 +244,11 @@ def save_user():
     else:
       user['preferences'] = default_preferences
     rec_id = collection_preferences.update(
-      {'_id': mongodb_id}, user, upsert=True)
+      {'_id': mongodb_id}, _sanitize(user), upsert=True)
   else:
     user['_id'] = mongodb_id
     user['preferences'] = default_preferences
-    rec_id = collection_preferences.insert_one(user)
+    rec_id = collection_preferences.insert_one(_sanitize(user))
   if (rec_id):
     print('Data inserted with record id= ', rec_id)
   return {'success': True, 'user': user}
@@ -269,7 +279,7 @@ def subscribe_user():
   user['last_updated'] = datetime.now(tz)
   user['_id'] = mongodb_id
   rec_id = collection_subscribers.update(
-    {'_id': mongodb_id}, user, upsert=True)
+    {'_id': mongodb_id}, _sanitize(user), upsert=True)
   if rec_id:
     print('Data inserted/updated with record id= ', rec_id)
   return {'success': True, 'user': user}
