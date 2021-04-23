@@ -27,6 +27,9 @@ def _sanitize(data: dict) -> dict:
       key = key.replace('.', 'DOT')
       data[key] = data[old_key]
       del data[old_key]
+  # Remove the 'response' key as it is having redundant data.
+  if 'response' in data:
+      del data['response']
   return data
 
 @app.route('/', methods = ['GET'])
