@@ -9,6 +9,10 @@ services:
     build:
       context: data-distribution-ms/.
     image: abhaystoic/data-distribution-ms:latest
+    deploy:
+      resources:
+        limits:
+          memory: 200M
     restart: 'unless-stopped'
     volumes:
       - ~/docker-data/data-distribution-ms/data/mongodb:/data/db
@@ -52,6 +56,10 @@ services:
     build:
       context: headlines-ms/.                                                                                                                                                                                                                                                                                                                                 
     image: abhaystoic/headlines-ms:latest
+    deploy:
+      resources:
+        limits:
+          memory: 200M
     restart: 'unless-stopped'
     volumes:
       - ~/docker-data/headlines-ms/www:/var/www
@@ -84,6 +92,10 @@ services:
     build:
       context: covid19-ms/.                                                                                                                                                                                                                                                                                                                                 
     image: abhaystoic/covid19-ms:latest
+    deploy:
+      resources:
+        limits:
+          memory: 200M
     restart: 'unless-stopped'
     volumes:
       - ~/docker-data/covid19-ms/www:/var/www
@@ -116,6 +128,10 @@ services:
     build:
       context: all-news-ms/.                                                                                                                                                                                                                                                                                                                                 
     image: abhaystoic/all-news-ms:latest
+    deploy:
+      resources:
+        limits:
+          memory: 200M
     restart: 'unless-stopped'
     volumes:
       - ~/docker-data/all-news-ms/www:/var/www
@@ -148,6 +164,10 @@ services:
     build:
       context: elastic-search-ms/.
     image: abhaystoic/elastic-search-ms:latest
+    deploy:
+      resources:
+        limits:
+          memory: 200M
     restart: 'unless-stopped'
     environment:
       - node.name=elastic-search

@@ -100,6 +100,9 @@ docker-compose logs -f -t
 - Docker copy file from container:
 docker cp <container ID>:/var/lib/rabbitmq/mongodb_backup .
 
+- Docker memory usage, CPU usage etc.
+docker stats --all
+
 - Setting up Ubuntu server:
 https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04
 
