@@ -12,7 +12,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 200M
+          memory: 500M
     restart: 'unless-stopped'
     volumes:
       - ~/docker-data/data-distribution-ms/data/mongodb:/data/db
@@ -59,7 +59,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 200M
+          memory: 500M
     restart: 'unless-stopped'
     volumes:
       - ~/docker-data/headlines-ms/www:/var/www
@@ -95,7 +95,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 200M
+          memory: 500M
     restart: 'unless-stopped'
     volumes:
       - ~/docker-data/covid19-ms/www:/var/www
@@ -131,7 +131,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 200M
+          memory: 500M
     restart: 'unless-stopped'
     volumes:
       - ~/docker-data/all-news-ms/www:/var/www
