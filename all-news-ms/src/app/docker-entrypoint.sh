@@ -1,6 +1,7 @@
 #!/bin/sh
 
-mongod --bind_ip_all --port $MONGODB_PORT --smallFiles &
+# Remove --nojournal when the system grows big.
+mongod --bind_ip_all --port $MONGODB_PORT --nojournal &
 sleep 10
 echo "###########################################################################################################################"
 echo "Creating app users..."
@@ -10,7 +11,7 @@ mongo admin --host localhost --port $MONGODB_PORT --eval "db.getSiblingDB('admin
 sleep 10
 echo "---------------------------------------------------------------------------------------------"
 echo "Starting mongo again with auth enabled..."
-mongod --bind_ip_all --port $MONGODB_PORT --auth &
+mongod --bind_ip_all --port $MONGODB_PORT --auth --nojournal &
 sleep 10
 mongo admin --host localhost --port $MONGODB_PORT --eval "db.createUser({user: '$MONGO_USER', pwd: '$MONGO_PWD',roles: ['readWriteAnyDatabase']});" -u $MONGO_INITDB_ROOT_USERNAME -p $MONGO_INITDB_ROOT_PASSWORD
 rabbitmq-server start &
