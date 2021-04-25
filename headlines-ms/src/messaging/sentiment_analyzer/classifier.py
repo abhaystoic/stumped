@@ -7,7 +7,7 @@ nltk.download('vader_lexicon')
 
 
 import json
-# import nltk
+import nltk
 # import numpy as np
 # import math
 # import matplotlib.pyplot as plt

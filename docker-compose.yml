@@ -164,10 +164,6 @@ services:
     build:
       context: elastic-search-ms/.
     image: abhaystoic/elastic-search-ms:latest
-    deploy:
-      resources:
-        limits:
-          memory: 200M
     restart: 'unless-stopped'
     environment:
       - node.name=elastic-search
