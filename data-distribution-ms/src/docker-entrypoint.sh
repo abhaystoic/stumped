@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mongod --bind_ip_all --port $MONGODB_PORT &
+mongod --bind_ip_all --port $MONGODB_PORT --smallFiles &
 sleep 10
 echo "###########################################################################################################################"
 echo "Creating app users..."

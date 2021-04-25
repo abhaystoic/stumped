@@ -2,6 +2,9 @@ version: '3.7'
 services:
   data-distribution-ms:
     container_name: data-distribution-ms-container
+    logging:
+      options:
+        max-size: 10m
     privileged: true
     build:
       context: data-distribution-ms/.
@@ -42,6 +45,9 @@ services:
   
   headlines-ms:
     container_name: headlines-ms-container
+    logging:
+      options:
+        max-size: 10m
     privileged: true
     build:
       context: headlines-ms/.                                                                                                                                                                                                                                                                                                                                 
@@ -71,6 +77,9 @@ services:
   
   covid19-ms:
     container_name: covid19-ms-container
+    logging:
+      options:
+        max-size: 10m
     privileged: true
     build:
       context: covid19-ms/.                                                                                                                                                                                                                                                                                                                                 
@@ -100,6 +109,9 @@ services:
   
   all-news-ms:
     container_name: all-news-ms-container
+    logging:
+      options:
+        max-size: 10m
     privileged: true
     build:
       context: all-news-ms/.                                                                                                                                                                                                                                                                                                                                 
@@ -129,6 +141,9 @@ services:
   
   elastic-search-ms:
     container_name: elastic-search-ms-container
+    logging:
+      options:
+        max-size: 10m
     privileged: true
     build:
       context: elastic-search-ms/.
