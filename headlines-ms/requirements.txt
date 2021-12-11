@@ -47,6 +47,6 @@ six==1.15.0
 supervisor==4.2.0
 tqdm==4.46.1
 traitlets==4.3.3
-urllib3==1.25.10
+urllib3==1.26.5
 wcwidth==0.2.4
 Werkzeug==1.0.1
