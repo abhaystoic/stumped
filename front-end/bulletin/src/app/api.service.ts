@@ -169,7 +169,7 @@ export class ApiService {
       },
       '_source': [
         'title', 'description', 'content', 'source', 'url', 'urlToImage',
-        'positivity', 'negativity', 'neutrality'],
+        'positivity', 'negativity', 'neutrality', 'slug'],
     };
     let headers = {
       'Content-Type': 'application/json',

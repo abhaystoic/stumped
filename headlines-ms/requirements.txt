@@ -39,7 +39,7 @@ python-dateutil==2.8.1
 python-slugify==4.0.1
 pytz==2020.1
 pyxdg==0.26
-regex==2020.6.8
+regex==2021.11.10
 scipy==1.4.1
 seaborn==0.10.1
 SecretStorage==2.3.1

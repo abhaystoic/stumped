@@ -66,7 +66,7 @@ def create_unique_links(db, articles):
       rec_id = collection.insert_one(article)
       print('Unique link inserted with record id= ', rec_id)
     except Exception as e:
-      print("An exception occurred while creating unique slug::", e)
+      print('An exception occurred while creating unique slug::', e)
       pass
   return articles_with_slugs
 
